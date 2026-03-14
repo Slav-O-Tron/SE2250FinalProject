@@ -4,51 +4,69 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 4f;
     public float sprintSpeed = 8f;
-    public float gravity = 9.81f;
-    public float jumpHeight = 10; 
-    
-    
-    CharacterController controller;
-    private Vector3 moveInput;
+    public float gravity = 20f;
+    public float jumpHeight = 2f;
+    public float mouseSensitivity = 200f;
+    public Animator animator;
+
+    private CharacterController controller;
     private float verticalVelocity;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        InputManagement();
-    }
-
-    private void InputManagement()
-    {
-        moveInput.x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        moveInput.z = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        moveInput.y = VerticalForceCalculation();
-        controller.Move(moveInput);
-    }
-    
-    private float VerticalForceCalculation(){
-    if(controller.isGrounded)
-    {
-        verticalVelocity = -1f;
-        if(Input.GetButtonDown("Jump"))
+        if (animator == null)
         {
-            verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
+            animator = GetComponentInChildren<Animator>();
         }
     }
-    else
+
+    void Update()
     {
-        verticalVelocity -= gravity * Time.deltaTime;
+        LookAround();
+        MovePlayer();
     }
 
-    return verticalVelocity;
+    private void LookAround()
+    {
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        transform.Rotate(0f, mouseX, 0f);
     }
-    
-    
+
+    private void MovePlayer()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
+
+        Vector3 move = transform.right * horizontal + transform.forward * vertical;
+        move *= currentSpeed;
+
+        if (controller.isGrounded)
+        {
+            verticalVelocity = -2f;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * gravity);
+            }
+        }
+        else
+        {
+            verticalVelocity -= gravity * Time.deltaTime;
+        }
+
+        move.y = verticalVelocity;
+        controller.Move(move * Time.deltaTime);
+
+        Vector3 flatMove = new Vector3(horizontal, 0f, vertical);
+
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", flatMove.magnitude);
+        }
+    }
 }
