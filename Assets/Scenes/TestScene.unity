@@ -387,11 +387,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588f7d0f3e6a4d644a04396aed001cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  moveSpeed: 10
-  sprintSpeed: 20
+  moveSpeed: 3
+  sprintSpeed: 6
   gravity: 30
   jumpHeight: 2
   mouseSensitivity: 200
+  jumpAnimationCooldown: 1
+  animator: {fileID: 643960299}
 --- !u!136 &643960297
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -440,6 +442,11 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &643960299 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8867372405804473313, guid: d3f87f114f86a3b4f88996e8d2e99fd8, type: 3}
+  m_PrefabInstance: {fileID: 1624187225}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &696411061
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +596,8 @@ MonoBehaviour:
   gravity: 1
   jumpHeight: 0.03
   mouseSensitivity: 200
+  jumpAnimationCooldown: 1
+  animator: {fileID: 0}
 --- !u!143 &696411068
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1427,6 +1436,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309882858120561051, guid: d3f87f114f86a3b4f88996e8d2e99fd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867372405804473313, guid: d3f87f114f86a3b4f88996e8d2e99fd8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 669e792d2cd9b41ae9efd4d0dd06b767, type: 2}
+    - target: {fileID: 8867372405804473313, guid: d3f87f114f86a3b4f88996e8d2e99fd8, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

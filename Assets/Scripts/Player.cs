@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public float gravity = 20f;
     public float jumpHeight = 2f;
     public float mouseSensitivity = 200f;
+    public float jumpAnimationCooldown = 4f;
+    private float lastJumpAnimationTime = -999f;
     public Animator animator;
 
     private CharacterController controller;
@@ -44,29 +46,49 @@ public class Player : MonoBehaviour
 
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
         move *= currentSpeed;
+if (controller.isGrounded)
+{
+    verticalVelocity = -2f;
 
-        if (controller.isGrounded)
-        {
-            verticalVelocity = -2f;
+    if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastJumpAnimationTime + jumpAnimationCooldown)
+    {
+        verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * gravity);
+        lastJumpAnimationTime = Time.time;
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * gravity);
-            }
-        }
-        else
+        if (animator != null)
         {
-            verticalVelocity -= gravity * Time.deltaTime;
+            animator.SetTrigger("Jump");
         }
+    }
+}
+else
+{
+    verticalVelocity -= gravity * Time.deltaTime;
+}
+
+
 
         move.y = verticalVelocity;
         controller.Move(move * Time.deltaTime);
 
-        Vector3 flatMove = new Vector3(horizontal, 0f, vertical);
 
         if (animator != null)
         {
-            animator.SetFloat("Speed", flatMove.magnitude);
+            animator.SetBool("isWalking", Input.GetKey(KeyCode.W));
+            animator.SetBool("isWalkingBack", Input.GetKey(KeyCode.S));
+            animator.SetBool("TurnLeft", Input.GetKey(KeyCode.A));
+            animator.SetBool("TurnRight", Input.GetKey(KeyCode.D));
+            animator.SetBool("WalkRight", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D));
+            animator.SetBool("WalkLeft", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A));
+            animator.SetBool("BackRight", Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D));
+            animator.SetBool("BackLeft", Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A));
+            animator.SetBool("Run", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift));
+            animator.SetBool("RunLeft", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.A));
+            animator.SetBool("RunRight", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D));
+            animator.SetBool("Jump", Input.GetKey(KeyCode.Space));
+
         }
-    }
+
+        }
 }
+    
