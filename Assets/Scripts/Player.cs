@@ -7,8 +7,9 @@ public class Player : MonoBehaviour
     public float gravity = 20f;
     public float jumpHeight = 2f;
     public float mouseSensitivity = 200f;
-    public float jumpAnimationCooldown = 4f;
-    private float lastJumpAnimationTime = -999f;
+    public Transform cameraTransform;
+    private float xRotation = 0f;
+    public float maxLookAngle = 60f;
     public Animator animator;
 
     private CharacterController controller;
@@ -34,9 +35,20 @@ public class Player : MonoBehaviour
     private void LookAround()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        transform.Rotate(0f, mouseX, 0f);
-    }
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+        // Turn player left/right
+        transform.Rotate(0f, mouseX, 0f);
+
+        // Look up/down with camera
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
+
+        if (cameraTransform != null)
+        {
+            cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        }
+    }
     private void MovePlayer()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -50,15 +62,10 @@ if (controller.isGrounded)
 {
     verticalVelocity = -2f;
 
-    if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastJumpAnimationTime + jumpAnimationCooldown)
+    if (Input.GetKeyDown(KeyCode.Space))
     {
         verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * gravity);
-        lastJumpAnimationTime = Time.time;
-
-        if (animator != null)
-        {
-            animator.SetTrigger("Jump");
-        }
+        
     }
 }
 else
@@ -91,4 +98,4 @@ else
 
         }
 }
-    
+ 
