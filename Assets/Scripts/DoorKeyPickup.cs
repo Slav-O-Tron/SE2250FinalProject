@@ -4,7 +4,6 @@ public class DoorKeyPickup : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Something entered key trigger: " + other.name);
 
         PlayerInventory inventory = other.GetComponentInParent<PlayerInventory>();
 
