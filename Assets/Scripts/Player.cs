@@ -58,7 +58,8 @@ public class Player : MonoBehaviour
 
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
         move *= currentSpeed;
-if (controller.isGrounded)
+        
+        if (controller.isGrounded)
 {
     verticalVelocity = -2f;
 
