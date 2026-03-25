@@ -4,13 +4,13 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
 
-    [SerializeField] private string itemName;
+    [SerializeField] protected string itemName;
 
-    [SerializeField] private int quantity;
+    [SerializeField] protected int quantity;
     
     [SerializeField] private Sprite sprite;
     
-    [SerializeField] private string itemDescription;
+    [SerializeField] protected string itemDescription;
 
     [TextArea] InventoryManager inventoryManager;
 
@@ -29,5 +29,8 @@ public class Item : MonoBehaviour
             
         }
     }
+    
+    public virtual void Use(Player player){}
+    public virtual void OnPickup(Player player){}
 }
 

@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public Transform cameraTransform;
     public float maxLookAngle = 60f;
     public Animator animator;
+    public int playerHealth = 100;
+    public int maxHealth = 100;
+    public int attackDamage = 10;
 
     private float xRotation = 0f;
     private CharacterController controller;
@@ -101,4 +104,6 @@ public class Player : MonoBehaviour
             animator.SetBool("Jump", Input.GetKey(KeyCode.Space));
         }
     }
+    
+    
 }
