@@ -134,5 +134,4 @@ public class Player : Entity
         // TODO: trigger game over screen
         Debug.Log("Player died.");
     }
-    
 }

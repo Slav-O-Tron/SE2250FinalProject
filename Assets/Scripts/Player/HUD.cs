@@ -28,6 +28,7 @@ public class HUD : MonoBehaviour
 
     [Header("Stamina")]
     [SerializeField] private Slider staminaBar;
+    [SerializeField] private TMP_Text staminaText; 
 
     [Header("Coins")]
     [SerializeField] private TMP_Text coinsText;
@@ -75,6 +76,9 @@ public class HUD : MonoBehaviour
             staminaBar.maxValue = inventory.maxStamina;
             staminaBar.value    = inventory.stamina;
         }
+
+         if (staminaText != null)
+            staminaText.text = $"{inventory.stamina} / {inventory.maxStamina}";
     }
 
     private void UpdateCoins()
