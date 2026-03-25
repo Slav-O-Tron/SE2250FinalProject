@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerInventory))]
+public class Player : Entity
 {
     public float moveSpeed = 4f;
     public float sprintSpeed = 8f;
+    public float staminaDrainRate = 20f;
     public float gravity = 20f;
     public float jumpHeight = 2f;
     public float mouseSensitivity = 200f;
@@ -16,10 +19,17 @@ public class Player : MonoBehaviour
     private float verticalVelocity;
 
     private InventoryManager inventoryManager;
+    private PlayerInventory playerInventory;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        controller      = GetComponent<CharacterController>();
+        playerInventory = GetComponent<PlayerInventory>();
+    }
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -61,12 +71,16 @@ public class Player : MonoBehaviour
     private void MovePlayer()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float vertical   = Input.GetAxis("Vertical");
 
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
+        bool wantsSprint = Input.GetKey(KeyCode.LeftShift);
+        bool isSprinting = wantsSprint && playerInventory != null && playerInventory.HasStamina();
 
-        Vector3 move = transform.right * horizontal + transform.forward * vertical;
-        move *= currentSpeed;
+        if (isSprinting)
+            playerInventory.UseStamina(staminaDrainRate * Time.deltaTime);
+
+        float currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
+        Vector3 move = (transform.right * horizontal + transform.forward * vertical) * currentSpeed;
 
         if (controller.isGrounded)
         {
@@ -95,10 +109,30 @@ public class Player : MonoBehaviour
             animator.SetBool("WalkLeft", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A));
             animator.SetBool("BackRight", Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D));
             animator.SetBool("BackLeft", Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A));
-            animator.SetBool("Run", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift));
-            animator.SetBool("RunLeft", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.A));
-            animator.SetBool("RunRight", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D));
+            animator.SetBool("Run",      isSprinting && Input.GetKey(KeyCode.W));
+            animator.SetBool("RunLeft",  isSprinting && Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A));
+            animator.SetBool("RunRight", isSprinting && Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D));
             animator.SetBool("Jump", Input.GetKey(KeyCode.Space));
         }
     }
+    
+    /// Award XP — call this from Zombie.OnDeath, quest completion, etc.
+    public void GainXP(int amount)     => playerInventory?.AddXP(amount);
+ 
+    /// <summary>Award coins — also called by CoinPickup.</summary>
+    public void GainCoins(int amount)  => AddMoney(amount);   // AddMoney lives in Entity
+ 
+    // Entity abstract implementation 
+ 
+    protected override void OnDamageTaken(int amount)
+    {
+        // TODO: hit flash, sound, UI health bar update
+    }
+ 
+    protected override void OnDeath()
+    {
+        // TODO: trigger game over screen
+        Debug.Log("Player died.");
+    }
+    
 }
