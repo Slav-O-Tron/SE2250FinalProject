@@ -1274,7 +1274,7 @@ GameObject:
   - component: {fileID: 2543573528346409357}
   - component: {fileID: 8479357194206274551}
   m_Layer: 0
-  m_Name: PT_Female_Peasant_01_b
+  m_Name: Merchant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
