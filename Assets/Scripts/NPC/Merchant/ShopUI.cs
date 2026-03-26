@@ -17,15 +17,18 @@ public class ShopUI : MonoBehaviour
     private Player player;
     private InventoryManager inventoryManager;
 
-    private void Start()
+    private void EnsureReferences()
     {
-        player = FindFirstObjectByType<Player>();
-        inventoryManager = FindFirstObjectByType<InventoryManager>();
-        gameObject.SetActive(false);
+        if (player == null)
+            player = FindFirstObjectByType<Player>();
+        if (inventoryManager == null)
+            inventoryManager = FindFirstObjectByType<InventoryManager>();
     }
 
     public void OpenShop(ShopItem[] items)
     {
+        EnsureReferences();
+
         // Clear old buttons
         foreach (Transform child in contentParent)
             Destroy(child.gameObject);

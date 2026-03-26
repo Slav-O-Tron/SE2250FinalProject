@@ -27,7 +27,6 @@ public class DialogueUI : MonoBehaviour
     {
         nextButton.onClick.AddListener(OnNextPressed);
         if (shopButton != null) shopButton.gameObject.SetActive(false);
-        if (dialoguePanel != null) dialoguePanel.SetActive(false);
     }
 
     /// <summary>Start a dialogue sequence. onFinished is called when the player closes it.</summary>
