@@ -15,7 +15,6 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory") && menuActivated)
         {
-            
             InventoryMenu.SetActive(false);
             menuActivated = false;
 
@@ -24,7 +23,6 @@ public class InventoryManager : MonoBehaviour
         }
         else if (Input.GetButtonDown("Inventory") && !menuActivated)
         {
-           
             InventoryMenu.SetActive(true);
             menuActivated = true;
 
@@ -48,7 +46,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (!itemSlot[i].isFull)
             {
-                itemSlot[i].AddItem(itemName, quantity, itemSprite,itemDescription);
+                itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription);
                 return;
             }
         }
