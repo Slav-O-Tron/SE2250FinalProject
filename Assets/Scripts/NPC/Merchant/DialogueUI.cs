@@ -37,6 +37,9 @@ public class DialogueUI : MonoBehaviour
         currentLine = 0;
         onDialogueFinished = onFinished;
 
+        nextButton.onClick.RemoveAllListeners();
+        nextButton.onClick.AddListener(OnNextPressed);
+
         if (shopButton != null) shopButton.gameObject.SetActive(false);
 
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
