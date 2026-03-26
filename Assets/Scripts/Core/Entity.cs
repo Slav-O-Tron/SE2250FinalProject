@@ -37,7 +37,11 @@ public abstract class Entity : MonoBehaviour
         currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
     }
 
-    public virtual void AddMoney(int amount)   { money += amount; }
+    public virtual void AddMoney(int amount)
+    {
+        money += amount;
+        Debug.Log($"{name} gained {amount} coins. Total = {money}");
+    }
 
     /// <summary>Returns false if insufficient funds.</summary>
     public virtual bool SpendMoney(int amount)

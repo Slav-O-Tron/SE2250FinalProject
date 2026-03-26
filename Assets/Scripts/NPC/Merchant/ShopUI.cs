@@ -64,6 +64,10 @@ public class ShopUI : MonoBehaviour
         if (player.SpendMoney(item.price))
         {
             inventoryManager.AddItem(item.itemName, item.quantity, item.itemSprite, item.itemDescription);
+
+            // ALSO remove coins from inventory stack
+            inventoryManager.RemoveItem("Coin", item.price);
+
             Debug.Log($"Bought {item.itemName} for {item.price} coins.");
         }
         else
@@ -71,4 +75,6 @@ public class ShopUI : MonoBehaviour
             Debug.Log("Not enough coins.");
         }
     }
+    
+    
 }

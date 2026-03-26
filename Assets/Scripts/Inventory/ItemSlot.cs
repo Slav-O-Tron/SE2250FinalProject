@@ -89,4 +89,51 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
 
     }
+    public void RemoveQuantity(int amount)
+    {
+        quantity -= amount;
+
+        if (quantity <= 0)
+        {
+            ClearSlot();
+        }
+        else
+        {
+            UpdateQuantityText();
+        }
+    }
+
+    public void ClearSlot()
+    {
+        itemName = "";
+        quantity = 0;
+        itemSprite = null;
+        itemDescription = "";
+        isFull = false;
+        thisItemSelected = false;
+
+        if (itemImage != null)
+        {
+            itemImage.sprite = null;
+            itemImage.enabled = false;
+        }
+
+        if (quantityText != null)
+        {
+            quantityText.text = "";
+            quantityText.enabled = false;
+        }
+
+        if (selectedShader != null)
+            selectedShader.SetActive(false);
+
+        if (ItemDescriptionNameText != null)
+            ItemDescriptionNameText.text = "";
+
+        if (ItemDescriptionText != null)
+            ItemDescriptionText.text = "";
+
+        if (ItemDescriptionImage != null)
+            ItemDescriptionImage.sprite = null;
+    }
 }

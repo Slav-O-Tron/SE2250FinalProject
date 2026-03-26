@@ -67,4 +67,22 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+    public bool RemoveItem(string itemName, int quantity)
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            if (itemSlot[i].isFull && itemSlot[i].itemName == itemName)
+            {
+                if (itemSlot[i].quantity >= quantity)
+                {
+                    itemSlot[i].RemoveQuantity(quantity);
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        return false;
+    }
 }

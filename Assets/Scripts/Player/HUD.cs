@@ -2,33 +2,19 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-
-/// Reads stats from Player (Entity) and PlayerInventory each frame and
-/// pushes them to UI elements. Assign all references in the Inspector.
-///
-/// Scene setup:
-///   Canvas (Screen Space - Overlay)
-///   └── HUD (empty GameObject, attach this script)
-///       ├── HealthBar    (Slider)
-///       ├── HealthText   (TMP_Text)   e.g. "80 / 100"
-///       ├── StaminaBar   (Slider)
-///       ├── CoinsText    (TMP_Text)   e.g. "Coins: 42"
-///       ├── XPBar        (Slider)
-///       └── LevelText    (TMP_Text)   e.g. "Level 3"
-
 public class HUD : MonoBehaviour
 {
     [Header("Target")]
-    [SerializeField] private Player player;                 // Drag your Player GameObject here
-    [SerializeField] private PlayerInventory inventory;     // Same GameObject as Player
+    [SerializeField] private Player player;
+    [SerializeField] private PlayerInventory inventory;
 
     [Header("Health")]
     [SerializeField] private Slider healthBar;
-    [SerializeField] private TMP_Text healthText;           // Optional "80 / 100" label
+    [SerializeField] private TMP_Text healthText;
 
     [Header("Stamina")]
     [SerializeField] private Slider staminaBar;
-    [SerializeField] private TMP_Text staminaText; 
+    [SerializeField] private TMP_Text staminaText;
 
     [Header("Coins")]
     [SerializeField] private TMP_Text coinsText;
@@ -48,24 +34,64 @@ public class HUD : MonoBehaviour
         if (hudPanel != null) hudPanel.SetActive(show);
     }
 
+    private void Awake()
+    {
+        RebindPlayer();
+    }
+
     private void Start()
     {
-        // Auto-find if not assigned in Inspector
-        if (player == null)
-            player = FindFirstObjectByType<Player>();
-
-        if (player != null && inventory == null)
-            inventory = player.GetComponent<PlayerInventory>();
+        RebindPlayer();
+        RefreshAll();
     }
 
     private void Update()
     {
-        if (player == null || inventory == null) return;
+        if (player == null)
+            RebindPlayer();
+
+        if (player == null)
+            return;
 
         UpdateHealth();
-        UpdateStamina();
         UpdateCoins();
-        UpdateXP();
+
+        if (inventory == null)
+            inventory = player.GetComponent<PlayerInventory>();
+
+        if (inventory != null)
+        {
+            UpdateStamina();
+            UpdateXP();
+        }
+    }
+
+    private void RebindPlayer()
+    {
+        Player[] players = FindObjectsByType<Player>(FindObjectsSortMode.None);
+
+        foreach (Player p in players)
+        {
+            if (!p.gameObject.activeInHierarchy) continue;
+
+            player = p;
+            inventory = p.GetComponent<PlayerInventory>();
+            break;
+        }
+    }
+
+    private void RefreshAll()
+    {
+        if (player == null) return;
+
+        UpdateHealth();
+        UpdateCoins();
+
+        if (inventory != null)
+        {
+            UpdateStamina();
+            UpdateXP();
+        }
     }
 
     private void UpdateHealth()
@@ -73,7 +99,7 @@ public class HUD : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.maxValue = player.MaxHealth;
-            healthBar.value    = player.CurrentHealth;
+            healthBar.value = player.CurrentHealth;
         }
 
         if (healthText != null)
@@ -85,17 +111,17 @@ public class HUD : MonoBehaviour
         if (staminaBar != null)
         {
             staminaBar.maxValue = inventory.maxStamina;
-            staminaBar.value    = inventory.stamina;
+            staminaBar.value = inventory.stamina;
         }
 
-         if (staminaText != null)
+        if (staminaText != null)
             staminaText.text = $"{inventory.stamina} / {inventory.maxStamina}";
     }
 
     private void UpdateCoins()
     {
         if (coinsText != null)
-            coinsText.text = $"Coins: {player.Money}";     // Money lives on Entity
+            coinsText.text = $"Coins: {player.Money}";
     }
 
     private void UpdateXP()
@@ -103,7 +129,7 @@ public class HUD : MonoBehaviour
         if (xpBar != null)
         {
             xpBar.maxValue = inventory.xpToNextLevel;
-            xpBar.value    = inventory.xp;
+            xpBar.value = inventory.xp;
         }
 
         if (levelText != null)
