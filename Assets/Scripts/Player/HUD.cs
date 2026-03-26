@@ -37,6 +37,17 @@ public class HUD : MonoBehaviour
     [SerializeField] private Slider xpBar;
     [SerializeField] private TMP_Text levelText;
 
+    [Header("Interact Prompt")]
+    public GameObject interactPrompt;
+
+    [Header("HUD Panel")]
+    public GameObject hudPanel;
+
+    public void ShowHUD(bool show)
+    {
+        if (hudPanel != null) hudPanel.SetActive(show);
+    }
+
     private void Start()
     {
         // Auto-find if not assigned in Inspector
