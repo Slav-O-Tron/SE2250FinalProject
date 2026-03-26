@@ -8,22 +8,17 @@ public class Player : MonoBehaviour
     public float jumpHeight = 2f;
     public float mouseSensitivity = 200f;
     public Transform cameraTransform;
+    private float xRotation = 0f;
     public float maxLookAngle = 60f;
     public Animator animator;
 
-    private float xRotation = 0f;
     private CharacterController controller;
     private float verticalVelocity;
-
-    private InventoryManager inventoryManager;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        inventoryManager = FindFirstObjectByType<InventoryManager>();
-
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
         if (animator == null)
         {
@@ -33,22 +28,37 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (inventoryManager != null && inventoryManager.MenuActivated)
-        {
-            return;
-        }
-
         LookAround();
         MovePlayer();
+        HandleInteraction();
     }
 
+    private void HandleInteraction() {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            float interactRange = 3.0f;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, interactRange);
+            foreach (Collider col in colliders)
+            {
+                IInteractable interactable = col.GetComponent<IInteractable>();
+                if (interactable != null)
+                {
+                    interactable.OnAction();
+                    break;
+                }
+            }
+
+            
+        }
+    }
     private void LookAround()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+        // Turn player left/right
         transform.Rotate(0f, mouseX, 0f);
 
+        // Look up/down with camera
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
 
@@ -57,7 +67,6 @@ public class Player : MonoBehaviour
             cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
     }
-
     private void MovePlayer()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -67,23 +76,26 @@ public class Player : MonoBehaviour
 
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
         move *= currentSpeed;
+if (controller.isGrounded)
+{
+    verticalVelocity = -2f;
 
-        if (controller.isGrounded)
-        {
-            verticalVelocity = -2f;
+    if (Input.GetKeyDown(KeyCode.Space))
+    {
+        verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * gravity);
+        
+    }
+}
+else
+{
+    verticalVelocity -= gravity * Time.deltaTime;
+}
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * gravity);
-            }
-        }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;
-        }
+
 
         move.y = verticalVelocity;
         controller.Move(move * Time.deltaTime);
+
 
         if (animator != null)
         {
@@ -99,6 +111,9 @@ public class Player : MonoBehaviour
             animator.SetBool("RunLeft", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.A));
             animator.SetBool("RunRight", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D));
             animator.SetBool("Jump", Input.GetKey(KeyCode.Space));
+
         }
-    }
+
+        }
 }
+ 
