@@ -2,55 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="972b9f81-0212-41f8-8909-229db963d4ae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_3.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SE2250FinalProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SE2250FinalProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainWorld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainWorld.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_5.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_6.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_6.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Metal_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Metal_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Roof_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Roof_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Roof_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Roof_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Roof_3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Roof_3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Rope_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Rope_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Sea.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Sea.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Terrain 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Terrain 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Wall_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Wall_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Wall_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Wall_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Window_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Window_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Wood_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Wood_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/ground_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/ground_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_6.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Cloth_6.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Metal_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Metal_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Metal_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Metal_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Roof_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Roof_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Rope_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Rope_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Wall_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Wall_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Wall_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Wall_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Water_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Water_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Wood_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/Wood_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/ground_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/ground_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/tent_black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Props/Materials/tent_black.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Terrain/Materials/sky.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Terrain/Materials/sky.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_6.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Cloth_6.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Metal_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Metal_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Metal_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Metal_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Roof_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Roof_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Roof_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Roof_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Rope_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Rope_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Wall_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Wall_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Wall_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Wall_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Window_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Window_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Wood_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/Wood_0.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/ground_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Unique_Buildings/Materials/ground_1.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,16 +24,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.6f1-x86_64\Editor\Unity.exe" />
@@ -141,6 +96,13 @@
       <workItem from="1773761758534" duration="40000" />
       <workItem from="1774468443951" duration="357000" />
       <workItem from="1774469648687" duration="2000" />
+      <workItem from="1774477761104" duration="9000" />
+      <workItem from="1774479027252" duration="3000" />
+      <workItem from="1774479551370" duration="28000" />
+      <workItem from="1774479772526" duration="3000" />
+      <workItem from="1774480055980" duration="6000" />
+      <workItem from="1774481368502" duration="6000" />
+      <workItem from="1774483495847" duration="130000" />
     </task>
     <servers />
   </component>
