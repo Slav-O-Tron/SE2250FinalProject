@@ -1,11 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewShopItem", menuName = "Shop/ShopItem")]
+[CreateAssetMenu(fileName = "NewShopItem", menuName = "Shop/Shop Item")]
 public class ShopItem : ScriptableObject
 {
-    public string itemName;
-    public string itemDescription;
-    public Sprite itemSprite;
-    public int price;
+    public ItemData itemData;
+    public int price = 10;
     public int quantity = 1;
 }

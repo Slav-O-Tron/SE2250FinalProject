@@ -119,6 +119,7 @@ public class Merchant : Entity
         shopOpen = true;
         if (hud != null) hud.ShowHUD(false);
         shopUI.OpenShop(shopItems);
+        
     }
 
     private void CloseShop()

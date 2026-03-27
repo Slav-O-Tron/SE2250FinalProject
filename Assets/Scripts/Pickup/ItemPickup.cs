@@ -1,26 +1,20 @@
 using UnityEngine;
 
 /// <summary>
-/// General-purpose world pickup. Replaces both Item.cs and DoorKeyPickup.cs.
-///
-/// Set fields in the Inspector per prefab:
-///   - itemName / quantity / sprite / itemDescription  → shows up in inventory UI
-///   - grantsDoorKey   → also sets PlayerInventory.hasDoorKey (for OpenDoor.cs)
-///   - coinValue       → adds directly to player's Entity.money
-///   - xpValue         → awards XP through Player.GainXP
-///
-/// Examples:
-///   Door Key prefab   : grantsDoorKey = true, itemName = "Door Key"
-///   Health Potion     : itemName = "Health Potion", quantity = 1
-///   Coin pile         : coinValue = 5, leave itemName empty to skip inventory
+/// General-purpose world pickup for modular inventory/equipment.
+/// 
+/// Set in Inspector:
+/// - itemData       -> the inventory item to add
+/// - quantity       -> how many to add
+/// - grantsDoorKey  -> optional temporary bool for old door logic
+/// - coinValue      -> adds money directly
+/// - xpValue        -> adds XP directly
 /// </summary>
 public class ItemPickup : Pickup
 {
-    [Header("Inventory Entry (leave Name empty to skip UI)")]
-    [SerializeField] private string itemName;
+    [Header("Inventory Item")]
+    [SerializeField] private ItemData itemData;
     [SerializeField] private int quantity = 1;
-    [SerializeField] private Sprite sprite;
-    [SerializeField] private string itemDescription;
 
     [Header("Special Flags")]
     [SerializeField] private bool grantsDoorKey = false;
@@ -31,19 +25,19 @@ public class ItemPickup : Pickup
 
     protected override void OnPickedUp(GameObject player)
     {
-        // Inventory UI
-        if (!string.IsNullOrEmpty(itemName))
+        // Add item to inventory
+        if (itemData != null)
         {
             InventoryManager inventoryManager = GameObject.Find("InventoryCanvas")
                 ?.GetComponent<InventoryManager>();
 
             if (inventoryManager != null)
-                inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+                inventoryManager.AddItem(itemData, quantity);
             else
-                Debug.LogWarning("ItemPickup: InventoryCanvas not found in scene.");
+                Debug.LogWarning("ItemPickup: InventoryCanvas / InventoryManager not found.");
         }
 
-        // Door key flag
+        // Temporary support for old door-key logic
         if (grantsDoorKey)
         {
             PlayerInventory inventory = player.GetComponent<PlayerInventory>();
@@ -51,14 +45,14 @@ public class ItemPickup : Pickup
                 inventory.hasDoorKey = true;
         }
 
-        // Coins and XP via Player (which extends Entity)
+        // Direct rewards
         Player playerEntity = player.GetComponent<Player>();
 
         if (coinValue > 0)
             playerEntity?.AddMoney(coinValue);
 
         if (xpValue > 0)
-            playerEntity?.GainXP(xpValue);
+            playerEntity?.GainXP(xpValue); // change this if your XP method is elsewhere
 
         gameObject.SetActive(false);
     }

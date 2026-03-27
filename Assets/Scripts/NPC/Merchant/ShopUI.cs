@@ -2,17 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// Attach to your ShopPanel UI GameObject.
-/// Scene setup:
-///   Canvas
-///   └── ShopPanel (attach ShopUI here)
-///       ├── ItemButtonPrefab slots (assign prefab below)
-///       ├── ContentParent  (the layout group that holds item buttons)
-///       └── CloseButton
 public class ShopUI : MonoBehaviour
 {
-    [SerializeField] private GameObject itemButtonPrefab;   // Prefab with Image + NameText + PriceText + BuyButton
-    [SerializeField] private Transform contentParent;       // Layout group inside ShopPanel
+    [SerializeField] private GameObject itemButtonPrefab;
+    [SerializeField] private Transform contentParent;
 
     private Player player;
     private InventoryManager inventoryManager;
@@ -21,6 +14,7 @@ public class ShopUI : MonoBehaviour
     {
         if (player == null)
             player = FindFirstObjectByType<Player>();
+
         if (inventoryManager == null)
             inventoryManager = FindFirstObjectByType<InventoryManager>();
     }
@@ -29,20 +23,52 @@ public class ShopUI : MonoBehaviour
     {
         EnsureReferences();
 
-        // Clear old buttons
+        Debug.Log("OpenShop called");
+        Debug.Log("Items length: " + (items == null ? 0 : items.Length));
+
         foreach (Transform child in contentParent)
             Destroy(child.gameObject);
 
-        foreach (ShopItem item in items)
+        foreach (ShopItem shopItem in items)
         {
+            if (shopItem == null)
+            {
+                Debug.Log("shopItem is null");
+                continue;
+            }
+
+            if (shopItem.itemData == null)
+            {
+                Debug.Log("itemData is missing on ShopItem: " + shopItem.name);
+                continue;
+            }
+
+            Debug.Log("Creating button for: " + shopItem.itemData.itemName);
+
             GameObject btn = Instantiate(itemButtonPrefab, contentParent);
 
-            btn.transform.Find("ItemImage").GetComponent<Image>().sprite = item.itemSprite;
-            btn.transform.Find("NameText").GetComponent<TMP_Text>().text = item.itemName;
-            btn.transform.Find("PriceText").GetComponent<TMP_Text>().text = $"{item.price} coins";
+            Transform imageTf = btn.transform.Find("ItemImage");
+            Transform nameTf = btn.transform.Find("NameText");
+            Transform priceTf = btn.transform.Find("PriceText");
+            Transform buyTf = btn.transform.Find("BuyButton");
 
-            ShopItem captured = item;
-            btn.transform.Find("BuyButton").GetComponent<Button>().onClick.AddListener(() => TryBuy(captured));
+            if (imageTf != null)
+                imageTf.GetComponent<Image>().sprite = shopItem.itemData.icon;
+
+            if (nameTf != null)
+                nameTf.GetComponent<TMP_Text>().text = shopItem.itemData.itemName;
+
+            if (priceTf != null)
+                priceTf.GetComponent<TMP_Text>().text = $"{shopItem.price} coins";
+
+            ShopItem capturedItem = shopItem;
+
+            if (buyTf != null)
+            {
+                Button buyButton = buyTf.GetComponent<Button>();
+                buyButton.onClick.RemoveAllListeners();
+                buyButton.onClick.AddListener(() => TryBuy(capturedItem));
+            }
         }
 
         gameObject.SetActive(true);
@@ -57,24 +83,19 @@ public class ShopUI : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void TryBuy(ShopItem item)
+    private void TryBuy(ShopItem shopItem)
     {
-        if (player == null || inventoryManager == null) return;
+        if (player == null || inventoryManager == null || shopItem == null || shopItem.itemData == null)
+            return;
 
-        if (player.SpendMoney(item.price))
+        if (player.SpendMoney(shopItem.price))
         {
-            inventoryManager.AddItem(item.itemName, item.quantity, item.itemSprite, item.itemDescription);
-
-            // ALSO remove coins from inventory stack
-            inventoryManager.RemoveItem("Coin", item.price);
-
-            Debug.Log($"Bought {item.itemName} for {item.price} coins.");
+            inventoryManager.AddItem(shopItem.itemData, shopItem.quantity);
+            Debug.Log($"Bought {shopItem.itemData.itemName} for {shopItem.price} coins.");
         }
         else
         {
             Debug.Log("Not enough coins.");
         }
     }
-    
-    
 }
