@@ -28,7 +28,14 @@ public class Player : Entity
         playerInventory = GetComponent<PlayerInventory>();
     }
 
-    void Start()
+    protected override void Awake()
+    {
+        base.Awake();
+        controller = GetComponent<CharacterController>();
+        playerInventory = GetComponent<PlayerInventory>();
+    }
+
+    private void Start()
     {
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 
@@ -41,7 +48,7 @@ public class Player : Entity
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (inventoryManager != null && inventoryManager.MenuActivated)
         {
@@ -76,6 +83,14 @@ public class Player : Entity
         bool wantsSprint = Input.GetKey(KeyCode.LeftShift);
         bool isSprinting = wantsSprint && playerInventory != null && playerInventory.HasStamina();
 
+        bool wantsSprint = Input.GetKey(KeyCode.LeftShift);
+        bool isSprinting = wantsSprint && playerInventory != null && playerInventory.HasStamina();
+
+        if (isSprinting)
+        {
+            playerInventory.UseStamina(staminaDrainRate * Time.deltaTime);
+        }
+
         if (isSprinting)
             playerInventory.UseStamina(staminaDrainRate * Time.deltaTime);
 
@@ -109,29 +124,31 @@ public class Player : Entity
             animator.SetBool("WalkLeft", Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A));
             animator.SetBool("BackRight", Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D));
             animator.SetBool("BackLeft", Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A));
-            animator.SetBool("Run",      isSprinting && Input.GetKey(KeyCode.W));
-            animator.SetBool("RunLeft",  isSprinting && Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A));
+            animator.SetBool("Run", isSprinting && Input.GetKey(KeyCode.W));
+            animator.SetBool("RunLeft", isSprinting && Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A));
             animator.SetBool("RunRight", isSprinting && Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D));
             animator.SetBool("Jump", Input.GetKey(KeyCode.Space));
         }
     }
-    
-    /// Award XP — call this from Zombie.OnDeath, quest completion, etc.
-    public void GainXP(int amount)     => playerInventory?.AddXP(amount);
- 
-    /// <summary>Award coins — also called by CoinPickup.</summary>
-    public void GainCoins(int amount)  => AddMoney(amount);   // AddMoney lives in Entity
- 
-    // Entity abstract implementation 
- 
+
+    public void GainXP(int amount)
+    {
+        playerInventory?.AddXP(amount);
+    }
+
+    public void GainCoins(int amount)
+    {
+        AddMoney(amount);
+    }
+
     protected override void OnDamageTaken(int amount)
     {
-        // TODO: hit flash, sound, UI health bar update
+        // TODO: hit flash, sound, UI update
     }
- 
+
     protected override void OnDeath()
     {
-        // TODO: trigger game over screen
         Debug.Log("Player died.");
+        // TODO: game over logic
     }
 }
