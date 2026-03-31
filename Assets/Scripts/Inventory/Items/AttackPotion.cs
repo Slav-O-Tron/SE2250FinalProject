@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class AttackPotion : Item
+public class AttackPotion : ItemData
 {
     public int attackBoostAmount = 5;
     public float boostDuration = 10f;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ProjectileItem : Item
+public class ProjectileItem : ItemData
 {
     public GameObject projectilePrefab;
     public float projectileSpeed = 15f;
