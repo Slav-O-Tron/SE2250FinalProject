@@ -15,7 +15,6 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory") && menuActivated)
         {
-            
             InventoryMenu.SetActive(false);
             menuActivated = false;
 
@@ -24,7 +23,6 @@ public class InventoryManager : MonoBehaviour
         }
         else if (Input.GetButtonDown("Inventory") && !menuActivated)
         {
-           
             InventoryMenu.SetActive(true);
             menuActivated = true;
 
@@ -33,14 +31,19 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public void AddItem(ItemData item, int quantity)
     {
-        for (int i = 0; i < itemSlot.Length; i++)
+        if (item == null) return;
+
+        if (item.isStackable)
         {
-            if (itemSlot[i].isFull && itemSlot[i].itemName == itemName)
+            for (int i = 0; i < itemSlot.Length; i++)
             {
-                itemSlot[i].AddQuantity(quantity);
-                return;
+                if (itemSlot[i].isFull && itemSlot[i].itemData == item)
+                {
+                    itemSlot[i].AddQuantity(quantity);
+                    return;
+                }
             }
         }
 
@@ -48,7 +51,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (!itemSlot[i].isFull)
             {
-                itemSlot[i].AddItem(itemName, quantity, itemSprite,itemDescription);
+                itemSlot[i].AddItem(item, quantity);
                 return;
             }
         }
@@ -68,5 +71,23 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
+    }
+    public bool RemoveItem(ItemData item, int quantity)
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            if (itemSlot[i].isFull && itemSlot[i].itemData == item)
+            {
+                if (itemSlot[i].quantity >= quantity)
+                {
+                    itemSlot[i].RemoveQuantity(quantity);
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        return false;
     }
 }

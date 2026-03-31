@@ -24,6 +24,13 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+        controller      = GetComponent<CharacterController>();
+        playerInventory = GetComponent<PlayerInventory>();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
         controller = GetComponent<CharacterController>();
         playerInventory = GetComponent<PlayerInventory>();
     }
@@ -71,7 +78,10 @@ public class Player : Entity
     private void MovePlayer()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float vertical   = Input.GetAxis("Vertical");
+
+        bool wantsSprint = Input.GetKey(KeyCode.LeftShift);
+        bool isSprinting = wantsSprint && playerInventory != null && playerInventory.HasStamina();
 
         bool wantsSprint = Input.GetKey(KeyCode.LeftShift);
         bool isSprinting = wantsSprint && playerInventory != null && playerInventory.HasStamina();
@@ -80,6 +90,9 @@ public class Player : Entity
         {
             playerInventory.UseStamina(staminaDrainRate * Time.deltaTime);
         }
+
+        if (isSprinting)
+            playerInventory.UseStamina(staminaDrainRate * Time.deltaTime);
 
         float currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
         Vector3 move = (transform.right * horizontal + transform.forward * vertical) * currentSpeed;
