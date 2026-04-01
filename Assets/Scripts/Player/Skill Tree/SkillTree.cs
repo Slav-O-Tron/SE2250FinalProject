@@ -72,8 +72,7 @@ public class SkillTree : MonoBehaviour
         switch (skill.skillID)
         {
             case "health_boost":
-                player.playerHealth += 25;
-                player.maxHealth += 25;
+                player.AddMaxHealth(25);
                 break;
 
             case "attack_boost":

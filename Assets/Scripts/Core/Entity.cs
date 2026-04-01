@@ -50,6 +50,13 @@ public abstract class Entity : MonoBehaviour
         money -= amount;
         return true;
     }
+    
+    //adding max health so that health potions can function
+    public void AddMaxHealth(int amount)
+    {
+        maxHealth     += amount;
+        currentHealth += amount;
+    }
 
     protected virtual void OnDamageTaken(int amount) { }
     protected abstract void OnDeath();

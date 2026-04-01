@@ -4,14 +4,23 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInventory))]
 public class Player : Entity
 {
+    [Header("Movement")]
     public float moveSpeed = 4f;
     public float sprintSpeed = 8f;
     public float staminaDrainRate = 20f;
     public float gravity = 20f;
     public float jumpHeight = 2f;
+
+    [Header("Look")]
     public float mouseSensitivity = 200f;
     public Transform cameraTransform;
     public float maxLookAngle = 60f;
+
+    [Header("Combat")]
+    public int attackDamage = 10;
+    public float damageReduction = 0f;
+
+    [Header("References")]
     public Animator animator;
 
     private float xRotation = 0f;
@@ -25,13 +34,6 @@ public class Player : Entity
     {
         base.Awake();
         controller      = GetComponent<CharacterController>();
-        playerInventory = GetComponent<PlayerInventory>();
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        controller = GetComponent<CharacterController>();
         playerInventory = GetComponent<PlayerInventory>();
     }
 
@@ -82,14 +84,6 @@ public class Player : Entity
 
         bool wantsSprint = Input.GetKey(KeyCode.LeftShift);
         bool isSprinting = wantsSprint && playerInventory != null && playerInventory.HasStamina();
-
-        bool wantsSprint = Input.GetKey(KeyCode.LeftShift);
-        bool isSprinting = wantsSprint && playerInventory != null && playerInventory.HasStamina();
-
-        if (isSprinting)
-        {
-            playerInventory.UseStamina(staminaDrainRate * Time.deltaTime);
-        }
 
         if (isSprinting)
             playerInventory.UseStamina(staminaDrainRate * Time.deltaTime);

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
+[CreateAssetMenu(fileName = "NewAttackPotion", menuName = "Inventory/Attack Potion")]
 public class AttackPotion : ItemData
 {
     public int attackBoostAmount = 5;
@@ -7,26 +9,13 @@ public class AttackPotion : ItemData
 
     public override void Use(Player player)
     {
-        if (player != null)
-        {
-            player.StartCoroutine(ApplyAttackBoost(player));
-        }
-
-        quantity--;
-        if (quantity <= 0)
-        {
-            Destroy(gameObject);
-        }
+        player.StartCoroutine(ApplyBoost(player));
     }
 
-    private System.Collections.IEnumerator ApplyAttackBoost(Player player)
+    private IEnumerator ApplyBoost(Player player)
     {
         player.attackDamage += attackBoostAmount;
-        Debug.Log("Attack boosted by " + attackBoostAmount);
-
         yield return new WaitForSeconds(boostDuration);
-
         player.attackDamage -= attackBoostAmount;
-        Debug.Log("Attack boost ended");
     }
 }
