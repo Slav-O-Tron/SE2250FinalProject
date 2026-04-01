@@ -13,7 +13,7 @@ public class ItemData : ScriptableObject
 
     [Header("Armor prefab to spawn on player")]
     public GameObject equipmentPrefab;
-    
+
     
     public virtual void Use(Player player){}
     public virtual void OnPickup(Player player){}
