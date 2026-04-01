@@ -28,4 +28,4 @@ public class ItemData : ScriptableObject
     public virtual void OnPickup(Player player){}
 }
 
-}
+
