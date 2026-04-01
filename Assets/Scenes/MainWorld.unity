@@ -1229,10 +1229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -1429,10 +1427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -4311,10 +4307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -8662,10 +8656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -12909,10 +12901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -13012,10 +13002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -20179,10 +20167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -21568,11 +21554,11 @@ Transform:
   m_GameObject: {fileID: 431768155}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -65.39734, y: 0, z: 2.977598e+9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1780550508}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &432168237
 PrefabInstance:
@@ -30644,10 +30630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -31430,10 +31414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -31794,10 +31776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -32772,10 +32752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -37709,6 +37687,8 @@ MonoBehaviour:
   mouseSensitivity: 200
   cameraTransform: {fileID: 0}
   maxLookAngle: 60
+  attackDamage: 10
+  damageReduction: 0
   animator: {fileID: 0}
 --- !u!23 &737891686
 MeshRenderer:
@@ -38623,10 +38603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -40227,10 +40205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -43710,10 +43686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -46163,10 +46137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -48560,10 +48532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -51172,10 +51142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -56046,10 +56014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -56206,10 +56172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -59951,10 +59915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -62976,10 +62938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -63171,15 +63131,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.627451, g: 0.32156864, b: 0.1764706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 78833f3baafa4804cab980324eea9533, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -64075,15 +64035,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.627451, g: 0.32156864, b: 0.1764706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 78833f3baafa4804cab980324eea9533, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -64258,10 +64218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -68840,10 +68798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -73009,10 +72965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -75317,15 +75271,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.627451, g: 0.32156864, b: 0.1764706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 78833f3baafa4804cab980324eea9533, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -75928,10 +75882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -77970,10 +77922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -80876,10 +80826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -81066,10 +81014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -84403,10 +84349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -85994,10 +85938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -90021,7 +89963,6 @@ Transform:
   m_Children:
   - {fileID: 777771294}
   - {fileID: 2060876580}
-  - {fileID: 431768157}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1782195252
@@ -93755,10 +93696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -97263,10 +97202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -99718,15 +99655,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.627451, g: 0.32156864, b: 0.1764706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 78833f3baafa4804cab980324eea9533, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -103428,7 +103365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2060876580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -104158,10 +104095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: Coin
+  itemData: {fileID: 0}
   quantity: 10
-  sprite: {fileID: 21300000, guid: d092f9e87a864cc4c9c68fc8d3caa43c, type: 3}
-  itemDescription: money
   grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
@@ -105388,10 +105323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd56d0a6d4a4ac99819592bed79853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemName: 
+  itemData: {fileID: 0}
   quantity: 1
-  sprite: {fileID: 0}
-  itemDescription: 
   grantsDoorKey: 0
   coinValue: 0
   xpValue: 0
@@ -105438,6 +105371,8 @@ MonoBehaviour:
   mouseSensitivity: 200
   cameraTransform: {fileID: 1958729409}
   maxLookAngle: 60
+  attackDamage: 10
+  damageReduction: 0
   animator: {fileID: 2093443032}
 --- !u!143 &2093443031
 CharacterController:
@@ -108840,5 +108775,6 @@ SceneRoots:
   - {fileID: 101345014}
   - {fileID: 1780550508}
   - {fileID: 953895578}
+  - {fileID: 431768157}
   - {fileID: 149993862}
   - {fileID: 1906969920}
