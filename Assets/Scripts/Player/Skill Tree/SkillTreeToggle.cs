@@ -2,25 +2,34 @@ using UnityEngine;
 
 public class SkillTreeToggle : MonoBehaviour
 {
-    public GameObject skillTreePanel;
-
+    private GameObject skillTreePanel;
 
     void Start()
     {
-        skillTreePanel.SetActive(false);
+        Transform found = transform.Find("SkillTree");
+        if (found != null)
+            skillTreePanel = found.gameObject;
+
+        if (skillTreePanel != null)
+            skillTreePanel.SetActive(false);
+        else
+            Debug.LogWarning("SkillTreeToggle: could not find SkillTree panel as child.");
     }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.inputString == "k")
             Toggle();
     }
 
     void Toggle()
     {
+        if (skillTreePanel == null) return;
+
         bool isOpen = skillTreePanel.activeSelf;
         skillTreePanel.SetActive(!isOpen);
 
         Cursor.lockState = isOpen ? CursorLockMode.Locked : CursorLockMode.None;
-        Cursor.visible   = !isOpen;
+        Cursor.visible = !isOpen;
     }
 }

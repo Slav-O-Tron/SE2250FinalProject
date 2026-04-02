@@ -12,17 +12,6 @@ public class SkillNode : MonoBehaviour
     [Header("Prerequisites")]
     public List<string> prerequisiteSkillIDs = new List<string>();
 
-    public SkillData GetSkillData()
-    {
-        SkillData data = new SkillData();
-        data.skillID              = skillID;
-        data.skillName            = skillName;
-        data.description          = description;
-        data.cost                 = cost;
-        data.prerequisiteSkillIDs = prerequisiteSkillIDs;
-        return data;
-    }
-
     public bool IsUnlocked()
     {
         return SkillTree.Instance.IsSkillUnlocked(skillID);
@@ -30,11 +19,11 @@ public class SkillNode : MonoBehaviour
 
     public bool CanUnlock()
     {
-        return SkillTree.Instance.CanUnlockSkill(GetSkillData());
+        return SkillTree.Instance.CanUnlockSkill(this);
     }
 
     public void Unlock(Player player)
     {
-        SkillTree.Instance.UnlockSkill(GetSkillData(), player);
+        SkillTree.Instance.UnlockSkill(this, player);
     }
 }

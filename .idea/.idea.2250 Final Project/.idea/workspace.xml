@@ -4,12 +4,11 @@
     <list default="true" id="e18a0033-3404-4744-a1db-5e2fca52fbd3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainWorld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainWorld.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillNodeUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillNodeUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTree.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Polytope Studio/Lowpoly_Characters/Sources/Modular_Armors/Materials/PT_Armors_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Polytope Studio/Lowpoly_Characters/Sources/Modular_Armors/Materials/PT_Armors_Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTreeToggle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTreeToggle.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "master",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
@@ -111,6 +110,8 @@
       <workItem from="1775000694390" duration="2128000" />
       <workItem from="1775108402463" duration="87000" />
       <workItem from="1775108511651" duration="6070000" />
+      <workItem from="1775162028476" duration="43000" />
+      <workItem from="1775162096714" duration="4292000" />
     </task>
     <task id="LOCAL-00001" summary="Added Item and Projectile class scripts, alongside adjusting Player class to have health attribute, and added an enemy health class to have the items damage the enemy">
       <option name="closed" value="true" />

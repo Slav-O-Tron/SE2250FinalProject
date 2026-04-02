@@ -10,6 +10,8 @@ public class SkillTree : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("SkillTree parent: " + (transform.parent == null ? "ROOT" : transform.parent.name));
+
         if (Instance == null)
         {
             Instance = this;
@@ -17,7 +19,7 @@ public class SkillTree : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
@@ -32,13 +34,13 @@ public class SkillTree : MonoBehaviour
         return unlockedSkills.Contains(skillID);
     }
 
-    public bool CanUnlockSkill(SkillData skill)
+    public bool CanUnlockSkill(SkillNode node)
     {
-        if (skill == null) return false;
-        if (IsSkillUnlocked(skill.skillID)) return false;
-        if (availableSkillPoints < skill.cost) return false;
+        if (node == null) return false;
+        if (IsSkillUnlocked(node.skillID)) return false;
+        if (availableSkillPoints < node.cost) return false;
 
-        foreach (string prereq in skill.prerequisiteSkillIDs)
+        foreach (string prereq in node.prerequisiteSkillIDs)
         {
             if (!IsSkillUnlocked(prereq))
                 return false;
@@ -47,71 +49,64 @@ public class SkillTree : MonoBehaviour
         return true;
     }
 
-    public bool UnlockSkill(SkillData skill, Player player)
+    public bool UnlockSkill(SkillNode node, Player player)
     {
-        if (!CanUnlockSkill(skill)) return false;
+        if (!CanUnlockSkill(node)) return false;
 
-        availableSkillPoints -= skill.cost;
-        unlockedSkills.Add(skill.skillID);
+        availableSkillPoints -= node.cost;
+        unlockedSkills.Add(node.skillID);
 
-        ApplySkillEffect(skill, player);
+        ApplySkillEffect(node, player);
 
-        Debug.Log("Unlocked: " + skill.skillName);
+        Debug.Log("Unlocked: " + node.skillName);
 
         RefreshAllNodes();
 
         return true;
     }
 
-    private void ApplySkillEffect(SkillData skill, Player player)
+    private void ApplySkillEffect(SkillNode node, Player player)
     {
         if (player == null) return;
 
         PlayerAbilities abilities = player.GetComponent<PlayerAbilities>();
 
-        switch (skill.skillID)
+        switch (node.skillID)
         {
             case "health_boost":
                 player.AddMaxHealth(25);
                 break;
-
             case "attack_boost":
                 player.attackDamage += 5;
                 break;
-
             case "speed_boost":
                 player.moveSpeed += 1f;
                 player.sprintSpeed += 1.5f;
                 break;
-
             case "double_jump":
-                if (abilities != null)
-                    abilities.canDoubleJump = true;
+                if (abilities != null) abilities.canDoubleJump = true;
                 break;
-
             case "dash":
-                if (abilities != null)
-                    abilities.canDash = true;
+                if (abilities != null) abilities.canDash = true;
                 break;
-
             case "projectile_mastery":
                 player.attackDamage += 3;
                 break;
-
             case "crystal_resonance":
-                if (abilities != null)
-                    abilities.hasCrystalResonance = true;
+                if (abilities != null) abilities.hasCrystalResonance = true;
                 break;
-
             case "damage_resistance":
                 player.damageReduction += 0.1f;
+                break;
+            case "critical_strike":
+                player.attackDamage += 8;
                 break;
         }
     }
 
     private void RefreshAllNodes()
     {
-        foreach (SkillNodeUI node in FindObjectsByType<SkillNodeUI>(FindObjectsSortMode.None))
-            node.Refresh();
+        foreach (SkillNodeUI nodeUI in FindObjectsByType<SkillNodeUI>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            nodeUI.Refresh();
     }
 }
