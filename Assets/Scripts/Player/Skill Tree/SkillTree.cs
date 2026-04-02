@@ -17,7 +17,7 @@ public class SkillTree : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 

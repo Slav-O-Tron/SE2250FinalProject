@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SkillData
+[CreateAssetMenu(fileName = "NewSkill", menuName = "SkillTree/Skill")]
+public class SkillData : ScriptableObject
 {
     public string skillID;
     public string skillName;

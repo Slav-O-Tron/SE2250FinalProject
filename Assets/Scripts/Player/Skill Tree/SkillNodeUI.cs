@@ -14,36 +14,36 @@ public class SkillNodeUI : MonoBehaviour
     private Color availableColor = new Color(0.8f,  0.65f, 0.1f);
     private Color unlockedColor  = new Color(0.15f, 0.6f,  0.15f);
 
-    private Player player;
     private Image background;
+    private SkillConfirmBox confirmBox;
 
-    private void Start()
+    void Start()
     {
-        player     = FindFirstObjectByType<Player>();
         background = GetComponent<Image>();
+        confirmBox = FindFirstObjectByType<SkillConfirmBox>(FindObjectsInactive.Include);
 
-        if (node != null && node.skillData != null)
+        if (node != null)
         {
-            if (titleText != null)       titleText.text       = node.skillData.skillName;
-            if (descriptionText != null) descriptionText.text = node.skillData.description;
-            if (costText != null)        costText.text        = "Cost: " + node.skillData.cost;
+            if (titleText != null)       titleText.text       = node.skillName;
+            if (descriptionText != null) descriptionText.text = node.description;
         }
 
         if (unlockButton != null)
-            unlockButton.onClick.AddListener(TryUnlock);
+            unlockButton.onClick.AddListener(OnClick);
 
         Refresh();
     }
 
-    public void TryUnlock()
+    private void OnClick()
     {
-        if (node != null)
-            node.Unlock(player);
+        if (node == null || !node.CanUnlock()) return;
+        if (confirmBox != null)
+            confirmBox.Show(node);
     }
 
     public void Refresh()
     {
-        if (node == null || node.skillData == null) return;
+        if (node == null) return;
 
         bool unlocked  = node.IsUnlocked();
         bool canUnlock = node.CanUnlock();
@@ -60,7 +60,7 @@ public class SkillNodeUI : MonoBehaviour
 
         if (titleText != null)
             titleText.text = unlocked
-                ? node.skillData.skillName + " (Unlocked)"
-                : node.skillData.skillName;
+                ? node.skillName + " (Unlocked)"
+                : node.skillName;
     }
 }
