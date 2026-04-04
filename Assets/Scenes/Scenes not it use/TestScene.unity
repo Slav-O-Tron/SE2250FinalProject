@@ -214,10 +214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8680d03415291489b105f9efd7d3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: postion
-  quantity: 1
-  sprite: {fileID: 21300000, guid: c83d564ffeed1184a848c431d35d59e9, type: 3}
-  itemDescription: gay fornite potion
 --- !u!54 &44503816
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1709,6 +1705,73 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 668735768885291391, guid: 91ad7bf144749b04ab484a680630a040, type: 3}
   m_PrefabInstance: {fileID: 2079299549}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &457418500
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4146951
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000046157652
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.9503546
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371423051205927639, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7065395965952944898, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: currentHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309824780660937380, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      propertyPath: m_Name
+      value: Zombie1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8309824780660937380, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 485092628}
+    - targetCorrespondingSourceObject: {fileID: 8309824780660937380, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 485092629}
+  m_SourcePrefab: {fileID: 100100000, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
 --- !u!1001 &481720097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1766,6 +1829,61 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91ad7bf144749b04ab484a680630a040, type: 3}
+--- !u!1 &485092623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8309824780660937380, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+  m_PrefabInstance: {fileID: 457418500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &485092628
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485092623}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &485092629
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485092623}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &506872647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2182,13 +2300,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588f7d0f3e6a4d644a04396aed001cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  maxHealth: 100
+  currentHealth: 0
+  money: 0
   moveSpeed: 3
   sprintSpeed: 6
+  staminaDrainRate: 20
   gravity: 30
   jumpHeight: 2
   mouseSensitivity: 200
   cameraTransform: {fileID: 1676601310}
   maxLookAngle: 60
+  attackDamage: 10
+  damageReduction: 0
   animator: {fileID: 643960299}
 --- !u!136 &643960297
 CapsuleCollider:
@@ -2256,6 +2380,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
   hasDoorKey: 1
+  xp: 0
+  level: 1
+  xpToNextLevel: 100
+  maxStamina: 100
+  stamina: 100
+  staminaRegenRate: 10
+  staminaRegenDelay: 1.5
 --- !u!4 &654022918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 668735768885291391, guid: 91ad7bf144749b04ab484a680630a040, type: 3}
@@ -2308,6 +2439,7 @@ GameObject:
   - component: {fileID: 696411066}
   - component: {fileID: 696411067}
   - component: {fileID: 696411068}
+  - component: {fileID: 696411069}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2423,8 +2555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c377843cd996018408a714e89d91fe56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  baseSpeed: 5
-  _mouseSensitivity: 5
 --- !u!114 &696411067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2437,13 +2567,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588f7d0f3e6a4d644a04396aed001cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  maxHealth: 100
+  currentHealth: 100
+  money: 0
   moveSpeed: 10
   sprintSpeed: 20
+  staminaDrainRate: 20
   gravity: 1
   jumpHeight: 0.03
   mouseSensitivity: 200
   cameraTransform: {fileID: 0}
   maxLookAngle: 60
+  attackDamage: 10
+  damageReduction: 0
   animator: {fileID: 0}
 --- !u!143 &696411068
 CharacterController:
@@ -2470,6 +2606,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &696411069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696411061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05dcb8bbf5f35e940995da9668854669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  hasDoorKey: 1
+  xp: 0
+  level: 1
+  xpToNextLevel: 100
+  maxStamina: 100
+  stamina: 100
+  staminaRegenRate: 10
+  staminaRegenDelay: 1.5
 --- !u!224 &698500953 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2701025600973937305, guid: e4ef9a1cef722c142aa51db296e77752, type: 3}
@@ -2859,10 +3015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8680d03415291489b105f9efd7d3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: redpotion
-  quantity: 1
-  sprite: {fileID: 21300000, guid: 28c6121e39d78dd4eb58af6f57c24250, type: 3}
-  itemDescription: red posion
 --- !u!54 &837962173
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7294,3 +7446,4 @@ SceneRoots:
   - {fileID: 44503817}
   - {fileID: 837962174}
   - {fileID: 1885937765}
+  - {fileID: 457418500}

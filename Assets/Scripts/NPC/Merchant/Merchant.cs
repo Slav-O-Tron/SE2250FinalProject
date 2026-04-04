@@ -21,22 +21,58 @@ public class Merchant : Entity
     private bool playerInRange = false;
     private bool shopOpen = false;
     private bool dialogueOpen = false;
-    private bool hasSpokenBefore = false;
+
+    // Tracks which level the player had last time the merchant spoke,
+    // so a fresh warning plays each time they return between levels.
+    private int lastSpokenLevel = -1;
 
     private HUD hud;
+
+    // Pre-level challenge warnings — one entry per level (index 0 = level 1, etc.)
+    private static readonly DialogueLine[][] levelWarningLines =
+    {
+        // Level 1
+        new DialogueLine[]
+        {
+            new DialogueLine { speakerName = "Merchant", text = "The dead have been rising since the eclipse..." },
+            new DialogueLine { speakerName = "Merchant", text = "The Chronosphere ahead twists time itself. Don't let it disorient you." },
+            new DialogueLine { speakerName = "Merchant", text = "Stock up before you go. Stay safe out there." }
+        },
+        // Level 2
+        new DialogueLine[]
+        {
+            new DialogueLine { speakerName = "Merchant", text = "You made it back. Good." },
+            new DialogueLine { speakerName = "Merchant", text = "The next Chronosphere is colder — the creatures inside move faster." },
+            new DialogueLine { speakerName = "Merchant", text = "I'd grab a fire flask if I were you." }
+        },
+        // Level 3
+        new DialogueLine[]
+        {
+            new DialogueLine { speakerName = "Merchant", text = "Halfway there. The hardest part is still ahead." },
+            new DialogueLine { speakerName = "Merchant", text = "Level 3 sits at a rift in time — enemies will split and respawn until the boss falls." },
+            new DialogueLine { speakerName = "Merchant", text = "Don't waste your potions on the small ones." }
+        },
+        // Level 4
+        new DialogueLine[]
+        {
+            new DialogueLine { speakerName = "Merchant", text = "Only two left. I can see the strain in your eyes." },
+            new DialogueLine { speakerName = "Merchant", text = "The fourth Chronosphere warps gravity. Watch your footing." },
+            new DialogueLine { speakerName = "Merchant", text = "Whatever you need — now is the time to get it." }
+        },
+        // Level 5
+        new DialogueLine[]
+        {
+            new DialogueLine { speakerName = "Merchant", text = "This is it. The final Chronosphere." },
+            new DialogueLine { speakerName = "Merchant", text = "The thing inside... it remembers every hero who failed before you." },
+            new DialogueLine { speakerName = "Merchant", text = "Come back alive. I'll have the finest goods waiting." }
+        },
+    };
 
     private void Start()
     {
         hud = FindFirstObjectByType<HUD>();
         if (hud != null) interactPrompt = hud.interactPrompt;
         if (interactPrompt != null) interactPrompt.SetActive(false);
-
-        introLines = new DialogueLine[]
-        {
-            new DialogueLine { speakerName = "Merchant", text = "The dead have been rising since the eclipse..." },
-            new DialogueLine { speakerName = "Merchant", text = "I've been selling supplies to survivors ever since." },
-            new DialogueLine { speakerName = "Merchant", text = "Take a look at what I have. Stay safe out there." }
-        };
 
         repeatLines = new DialogueLine[]
         {
@@ -95,8 +131,7 @@ public class Merchant : Entity
         if (interactPrompt != null) interactPrompt.SetActive(false);
         if (hud != null) hud.ShowHUD(false);
 
-        DialogueLine[] linesToShow = (!hasSpokenBefore && introLines.Length > 0) ? introLines : repeatLines;
-        hasSpokenBefore = true;
+        DialogueLine[] linesToShow = GetDialogueForCurrentLevel();
 
         dialogueUI.StartDialogue(linesToShow, onFinished: () =>
         {
@@ -104,6 +139,21 @@ public class Merchant : Entity
             if (hud != null) hud.ShowHUD(true);
             if (interactPrompt != null) interactPrompt.SetActive(true);
         });
+    }
+
+    private DialogueLine[] GetDialogueForCurrentLevel()
+    {
+        int level = PlayerData.Instance != null ? PlayerData.Instance.currentLevel : 1;
+
+        // Show the level-specific warning the first time per level; repeat lines after that.
+        if (level != lastSpokenLevel)
+        {
+            lastSpokenLevel = level;
+            int index = Mathf.Clamp(level - 1, 0, levelWarningLines.Length - 1);
+            return levelWarningLines[index];
+        }
+
+        return repeatLines;
     }
 
     public void OpenShopFromDialogue()

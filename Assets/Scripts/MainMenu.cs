@@ -14,6 +14,10 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
+        // Reset progression so a fresh run always starts at level 1.
+        if (PlayerData.Instance != null)
+            PlayerData.Instance.ResetProgress();
+
         SceneManager.LoadScene("MainWorld");
     }
 
