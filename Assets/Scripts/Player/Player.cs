@@ -72,9 +72,7 @@ public class Player : Entity
         xRotation = Mathf.Clamp(xRotation, -maxLookAngle, maxLookAngle);
 
         if (cameraTransform != null)
-        {
             cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        }
     }
 
     private void MovePlayer()
