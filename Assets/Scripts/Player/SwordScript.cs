@@ -3,37 +3,28 @@ using UnityEngine;
 public class WeaponHitbox : MonoBehaviour
 {
     public Collider weaponCollider;
-
-    private PlayerCombat playerCombat;
+    private PlayerCombat owner;
 
     void Start()
     {
-        playerCombat = GetComponentInParent<PlayerCombat>();
+        owner = GetComponentInParent<PlayerCombat>();
         weaponCollider.enabled = false;
     }
     private void OnTriggerEnter(Collider other)
     {
         // 1. Check if physics is working at all
         Debug.Log("Physics hit detected with: " + other.name);
-
-        if (other.CompareTag("Enemy"))
-        {
-            EnemyHealth enemy = other.GetComponent<EnemyHealth>();
+        // Try to find ANY entity on the object we hit
         
-            // 2. Check if we found the script
-            if (enemy == null) {
-                Debug.LogError("Found Enemy tag, but EnemyHealth script is missing on " + other.name);
-                return;
-            }
+        Entity victim = other.GetComponent<Entity>();
 
-            // 3. Check if we have the player reference
-            if (playerCombat == null) {
-                Debug.LogError("WeaponHitbox cannot find PlayerCombat in parent objects!");
-                return;
-            }
-
-            enemy.TakeDamage(playerCombat.GetDamage());
+        // Make sure we aren't hitting ourselves and the target exists
+        if (victim != null && victim.gameObject != owner.gameObject)
+        {
+            victim.TakeDamage(owner.GetDamage());
+            Debug.Log($"Hit {other.name} for {owner.GetDamage()} damage!");
         }
+        
     }
 
     public void EnableHitbox()
