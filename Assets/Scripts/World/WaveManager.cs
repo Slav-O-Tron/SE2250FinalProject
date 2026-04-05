@@ -27,7 +27,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float timeBetweenWaves = 5f;
 
     [Header("UI")]
+    [SerializeField] private GameObject waveAnnouncementPanel;
     [SerializeField] private TMP_Text waveAnnouncementText;
+    [SerializeField] private GameObject zombiesRemainingPanel;
     [SerializeField] private TMP_Text zombiesRemainingText;
 
     private LevelCompletion levelCompletion;
@@ -43,6 +45,27 @@ public class WaveManager : MonoBehaviour
         levelCompletion = FindFirstObjectByType<LevelCompletion>();
         hud = FindFirstObjectByType<HUD>();
 
+        if (waveAnnouncementPanel == null && waveAnnouncementText != null && waveAnnouncementText.transform.parent != null)
+            waveAnnouncementPanel = waveAnnouncementText.transform.parent.gameObject;
+
+        if (zombiesRemainingPanel == null && zombiesRemainingText != null && zombiesRemainingText.transform.parent != null)
+            zombiesRemainingPanel = zombiesRemainingText.transform.parent.gameObject;
+
+        if (waveAnnouncementPanel != null)
+            waveAnnouncementPanel.SetActive(false);
+        else if (waveAnnouncementText != null)
+            waveAnnouncementText.gameObject.SetActive(false);
+
+        if (zombiesRemainingText != null)
+        {
+            zombiesRemainingText.text = string.Empty;
+
+            if (zombiesRemainingPanel != null)
+                zombiesRemainingPanel.SetActive(false);
+            else
+                zombiesRemainingText.gameObject.SetActive(false);
+        }
+
         // If there is a StoryNPC in the scene, wait for them to finish talking.
         // Otherwise start waves immediately.
         StoryNPC storyNPC = FindFirstObjectByType<StoryNPC>();
@@ -50,7 +73,7 @@ public class WaveManager : MonoBehaviour
             storyNPC.OnStoryFinished += StartWaves;
         else
         {
-            hud?.SetDefaultPrompt("Survive the waves.");
+            hud?.SetDefaultPrompt("Protect the Elder");
             StartWaves();
         }
     }
@@ -59,6 +82,13 @@ public class WaveManager : MonoBehaviour
     {
         if (wavesStarted) return;
         wavesStarted = true;
+        hud?.SetDefaultPrompt("Protect the Elder");
+
+        if (zombiesRemainingPanel != null)
+            zombiesRemainingPanel.SetActive(true);
+        else if (zombiesRemainingText != null)
+            zombiesRemainingText.gameObject.SetActive(true);
+
         StartCoroutine(RunWaves());
     }
 
@@ -70,9 +100,7 @@ public class WaveManager : MonoBehaviour
         activeZombies.RemoveAll(z => z == null);
 
         if (zombiesRemainingText != null)
-            zombiesRemainingText.text = $"Zombies: {activeZombies.Count}";
-
-        hud?.SetDefaultPrompt($"Wave {currentWave + 1} of {waves.Length} - Zombies left: {activeZombies.Count}");
+            zombiesRemainingText.text = $"Wave {currentWave + 1}/{waves.Length}  |  Zombies Left: {activeZombies.Count}";
 
         // Wave cleared when all spawned zombies are dead
         if (activeZombies.Count == 0)
@@ -88,8 +116,10 @@ public class WaveManager : MonoBehaviour
             Wave wave = waves[currentWave];
 
             // Announce wave
-            hud?.SetDefaultPrompt($"{wave.waveName} - Prepare yourself.");
-            ShowAnnouncement($"{wave.waveName}");
+            if (zombiesRemainingText != null)
+                zombiesRemainingText.text = $"Wave {currentWave + 1}/{waves.Length}  |  Zombies Left: 0";
+
+            ShowAnnouncement($"{wave.waveName} ({currentWave + 1}/{waves.Length})");
             yield return new WaitForSeconds(2f);
             HideAnnouncement();
 
@@ -117,8 +147,11 @@ public class WaveManager : MonoBehaviour
 
             if (currentWave < waves.Length - 1)
             {
-                hud?.SetDefaultPrompt($"Wave {currentWave + 1} cleared. Prepare for the next wave.");
                 ShowAnnouncement("Wave Cleared!");
+
+                if (zombiesRemainingText != null)
+                    zombiesRemainingText.text = $"Wave {currentWave + 1}/{waves.Length}  |  Cleared";
+
                 yield return new WaitForSeconds(timeBetweenWaves);
                 HideAnnouncement();
             }
@@ -126,6 +159,12 @@ public class WaveManager : MonoBehaviour
 
         allWavesDone = true;
         hud?.SetDefaultPrompt("All waves cleared. Return to the boat.");
+
+        if (zombiesRemainingPanel != null)
+            zombiesRemainingPanel.SetActive(false);
+        else if (zombiesRemainingText != null)
+            zombiesRemainingText.gameObject.SetActive(false);
+
         ShowAnnouncement("All Waves Cleared!");
         yield return new WaitForSeconds(2f);
         HideAnnouncement();
@@ -137,7 +176,11 @@ public class WaveManager : MonoBehaviour
     {
         if (waveAnnouncementText != null)
         {
-            waveAnnouncementText.gameObject.SetActive(true);
+            if (waveAnnouncementPanel != null)
+                waveAnnouncementPanel.SetActive(true);
+            else
+                waveAnnouncementText.gameObject.SetActive(true);
+
             waveAnnouncementText.text = message;
         }
         Debug.Log($"[WaveManager] {message}");
@@ -145,7 +188,9 @@ public class WaveManager : MonoBehaviour
 
     private void HideAnnouncement()
     {
-        if (waveAnnouncementText != null)
+        if (waveAnnouncementPanel != null)
+            waveAnnouncementPanel.SetActive(false);
+        else if (waveAnnouncementText != null)
             waveAnnouncementText.gameObject.SetActive(false);
     }
 }
