@@ -722,18 +722,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121ca2185ea18bb478e1979d5ec528ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlot
---- !u!1 &183240574 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8309824780660937380, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
-  m_PrefabInstance: {fileID: 401827166}
-  m_PrefabAsset: {fileID: 0}
 --- !u!54 &183240575
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183240574}
+  m_GameObject: {fileID: 8309824780358121466}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -760,7 +755,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183240574}
+  m_GameObject: {fileID: 8309824780358121466}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d4e0ddda8ac49bfb8476289fa34773a, type: 3}
@@ -770,21 +765,17 @@ MonoBehaviour:
   currentHealth: 0
   money: 0
   data: {fileID: 0}
-  patrolPoints: []
-  animator: {fileID: 183240579}
+  patrolPoints:
+  - {fileID: 1828573336}
+  animator: {fileID: 6918604203556112277}
   rb: {fileID: 183240575}
---- !u!95 &183240579 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6918604203741930187, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
-  m_PrefabInstance: {fileID: 401827166}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &183240581
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183240574}
+  m_GameObject: {fileID: 8309824780358121466}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1726,7 +1717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309824780660937380, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
       propertyPath: m_Name
-      value: Zombie1
+      value: ShawnZombie
       objectReference: {fileID: 0}
     - target: {fileID: 8309824780660937380, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
       propertyPath: m_TagString
@@ -7761,6 +7752,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ef9a1cef722c142aa51db296e77752, type: 3}
+--- !u!95 &6918604203556112277 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6918604203741930187, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+  m_PrefabInstance: {fileID: 401827166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8309824780358121466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8309824780660937380, guid: 7527175a7d01dbe4685acd586d5bf869, type: 3}
+  m_PrefabInstance: {fileID: 401827166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -39,6 +39,8 @@ public class Zombie : Entity
     private int   CoinDropMin    => data != null ? data.coinDropMin    : 1;
     private int   CoinDropMax    => data != null ? data.coinDropMax    : 5;
     private int   XPReward       => data != null ? data.xpReward      : 20;
+    
+    private float PatrolSpeed => MoveSpeed * 0.5f;
 
     // Lifecycle 
 
@@ -88,7 +90,7 @@ public class Zombie : Entity
 
         if (patrolPoints == null || patrolPoints.Length == 0) return;
 
-        MoveTowards(patrolPoints[patrolIndex].position);
+        MoveTowards(patrolPoints[patrolIndex].position, PatrolSpeed);        
         if (Vector3.Distance(transform.position, patrolPoints[patrolIndex].position) < 0.2f)
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
     }
@@ -102,8 +104,7 @@ public class Zombie : Entity
         if (dist > DetectRange * 1.5f) { state = ZombieState.Patrol; return; }
         if (dist <= AttackRange)       { state = ZombieState.Attack;  return; }
 
-        MoveTowards(playerTransform.position);
-    }
+        MoveTowards(playerTransform.position, MoveSpeed);    }
 
     private void HandleAttack()
     {
@@ -120,7 +121,7 @@ public class Zombie : Entity
         }
     }
 
-    private void MoveTowards(Vector3 target)
+    private void MoveTowards(Vector3 target,float speed)
     {
         Vector3 offset = target - transform.position;
         offset.y = 0;
@@ -130,9 +131,9 @@ public class Zombie : Entity
             Vector3 moveDir = offset.normalized;
 
             rb.velocity = new Vector3(
-                moveDir.x * MoveSpeed,
+                moveDir.x * speed,
                 rb.velocity.y,
-                moveDir.z * MoveSpeed
+                moveDir.z * speed
             );
 
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
