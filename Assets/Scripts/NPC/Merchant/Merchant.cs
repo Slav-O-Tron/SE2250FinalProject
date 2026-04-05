@@ -7,8 +7,6 @@ public class Merchant : Entity
 {
     [SerializeField] private string merchantName = "Merchant";
 
-    private GameObject interactPrompt;
-
     [Header("Dialogue")]
     [SerializeField] private DialogueUI dialogueUI;
     [SerializeField] private DialogueLine[] introLines;        // First-time story dialogue
@@ -71,8 +69,6 @@ public class Merchant : Entity
     private void Start()
     {
         hud = FindFirstObjectByType<HUD>();
-        if (hud != null) interactPrompt = hud.interactPrompt;
-        if (interactPrompt != null) interactPrompt.SetActive(false);
 
         repeatLines = new DialogueLine[]
         {
@@ -106,7 +102,7 @@ public class Merchant : Entity
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            if (interactPrompt != null) interactPrompt.SetActive(true);
+            hud?.ShowInteractPrompt("Press E to speak with Merchant");
         }
     }
 
@@ -115,7 +111,7 @@ public class Merchant : Entity
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            if (interactPrompt != null) interactPrompt.SetActive(false);
+            hud?.HideInteractPrompt();
             if (shopOpen) CloseShop();
             if (dialogueOpen) dialogueUI?.CloseDialogue();
             dialogueOpen = false;
@@ -128,7 +124,7 @@ public class Merchant : Entity
         if (dialogueUI == null) return;
 
         dialogueOpen = true;
-        if (interactPrompt != null) interactPrompt.SetActive(false);
+        hud?.HideInteractPrompt();
         if (hud != null) hud.ShowHUD(false);
 
         DialogueLine[] linesToShow = GetDialogueForCurrentLevel();
@@ -137,7 +133,8 @@ public class Merchant : Entity
         {
             dialogueOpen = false;
             if (hud != null) hud.ShowHUD(true);
-            if (interactPrompt != null) interactPrompt.SetActive(true);
+            if (playerInRange)
+                hud?.ShowInteractPrompt("Press E to speak with Merchant");
         });
     }
 

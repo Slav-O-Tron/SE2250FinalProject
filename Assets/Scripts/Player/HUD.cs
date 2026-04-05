@@ -25,9 +25,43 @@ public class HUD : MonoBehaviour
 
     [Header("Interact Prompt")]
     public GameObject interactPrompt;
+    [SerializeField] private TMP_Text interactPromptText;
 
     [Header("HUD Panel")]
     public GameObject hudPanel;
+
+    private string defaultPromptMessage = string.Empty;
+    private bool hasContextPrompt = false;
+
+    public void SetDefaultPrompt(string message)
+    {
+        defaultPromptMessage = message;
+        if (!hasContextPrompt)
+            SetPromptState(!string.IsNullOrEmpty(message), message);
+    }
+
+    public void ClearDefaultPrompt()
+    {
+        defaultPromptMessage = string.Empty;
+        if (!hasContextPrompt)
+            SetPromptState(false);
+    }
+
+    public void ShowInteractPrompt(string message = "Press E to interact")
+    {
+        hasContextPrompt = true;
+        SetPromptState(true, message);
+    }
+
+    public void HideInteractPrompt()
+    {
+        hasContextPrompt = false;
+
+        if (string.IsNullOrEmpty(defaultPromptMessage))
+            SetPromptState(false);
+        else
+            SetPromptState(true, defaultPromptMessage);
+    }
 
     public void ShowHUD(bool show)
     {
@@ -37,12 +71,17 @@ public class HUD : MonoBehaviour
     private void Awake()
     {
         RebindPlayer();
+        BindPromptText();
     }
 
     private void Start()
     {
         RebindPlayer();
+        BindPromptText();
         RefreshAll();
+
+        if (interactPrompt != null)
+            interactPrompt.SetActive(false);
     }
 
     private void Update()
@@ -134,5 +173,22 @@ public class HUD : MonoBehaviour
 
         if (levelText != null)
             levelText.text = $"Level {inventory.level}";
+    }
+
+    private void BindPromptText()
+    {
+        if (interactPromptText == null && interactPrompt != null)
+            interactPromptText = interactPrompt.GetComponentInChildren<TMP_Text>(true);
+    }
+
+    private void SetPromptState(bool visible, string message = null)
+    {
+        BindPromptText();
+
+        if (interactPromptText != null && message != null)
+            interactPromptText.text = message;
+
+        if (interactPrompt != null)
+            interactPrompt.SetActive(visible);
     }
 }

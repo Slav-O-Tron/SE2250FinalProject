@@ -26,19 +26,39 @@ public class WaveManager : MonoBehaviour
     [Tooltip("Seconds to wait after one wave is cleared before the next begins.")]
     [SerializeField] private float timeBetweenWaves = 5f;
 
-    [Header("UI (optional)")]
+    [Header("UI")]
     [SerializeField] private TMP_Text waveAnnouncementText;
     [SerializeField] private TMP_Text zombiesRemainingText;
 
     private LevelCompletion levelCompletion;
+    private HUD hud;
     private int currentWave = 0;
     private List<GameObject> activeZombies = new List<GameObject>();
     private bool waveInProgress = false;
     private bool allWavesDone = false;
+    private bool wavesStarted = false;
 
     private void Start()
     {
         levelCompletion = FindFirstObjectByType<LevelCompletion>();
+        hud = FindFirstObjectByType<HUD>();
+
+        // If there is a StoryNPC in the scene, wait for them to finish talking.
+        // Otherwise start waves immediately.
+        StoryNPC storyNPC = FindFirstObjectByType<StoryNPC>();
+        if (storyNPC != null)
+            storyNPC.OnStoryFinished += StartWaves;
+        else
+        {
+            hud?.SetDefaultPrompt("Survive the waves.");
+            StartWaves();
+        }
+    }
+
+    public void StartWaves()
+    {
+        if (wavesStarted) return;
+        wavesStarted = true;
         StartCoroutine(RunWaves());
     }
 
@@ -51,6 +71,8 @@ public class WaveManager : MonoBehaviour
 
         if (zombiesRemainingText != null)
             zombiesRemainingText.text = $"Zombies: {activeZombies.Count}";
+
+        hud?.SetDefaultPrompt($"Wave {currentWave + 1} of {waves.Length} - Zombies left: {activeZombies.Count}");
 
         // Wave cleared when all spawned zombies are dead
         if (activeZombies.Count == 0)
@@ -66,6 +88,7 @@ public class WaveManager : MonoBehaviour
             Wave wave = waves[currentWave];
 
             // Announce wave
+            hud?.SetDefaultPrompt($"{wave.waveName} - Prepare yourself.");
             ShowAnnouncement($"{wave.waveName}");
             yield return new WaitForSeconds(2f);
             HideAnnouncement();
@@ -94,6 +117,7 @@ public class WaveManager : MonoBehaviour
 
             if (currentWave < waves.Length - 1)
             {
+                hud?.SetDefaultPrompt($"Wave {currentWave + 1} cleared. Prepare for the next wave.");
                 ShowAnnouncement("Wave Cleared!");
                 yield return new WaitForSeconds(timeBetweenWaves);
                 HideAnnouncement();
@@ -101,6 +125,7 @@ public class WaveManager : MonoBehaviour
         }
 
         allWavesDone = true;
+        hud?.SetDefaultPrompt("All waves cleared. Return to the boat.");
         ShowAnnouncement("All Waves Cleared!");
         yield return new WaitForSeconds(2f);
         HideAnnouncement();

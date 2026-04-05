@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainWorld.unity
     guid: 6c9792811fb08fb4882e17eb56f4bb8c
   - enabled: 1
-    path: Assets/Scenes/Levels/Level_1.unity
+    path: Assets/Scenes/Levels/Tomas Level/Level_1.unity
     guid: f3f400f758527440886291f8bba65ed1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
