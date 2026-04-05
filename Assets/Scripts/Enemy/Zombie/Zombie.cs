@@ -64,6 +64,8 @@ public class Zombie : Entity
 
     private void Update()
     {
+        float speed = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
+        animator.SetFloat("Speed", speed);
         if (!IsAlive) return;
         switch (state)
         {
@@ -113,30 +115,56 @@ public class Zombie : Entity
         if (Time.time - lastAttackTime >= AttackCooldown)
         {
             lastAttackTime = Time.time;
+            animator.SetTrigger("Attack");
             playerEntity?.TakeDamage(AttackDamage);     // TakeDamage is on Entity
         }
     }
 
     private void MoveTowards(Vector3 target)
     {
-        Vector3 dir = (target - transform.position).normalized;
-        rb.linearVelocity = new Vector3(dir.x * MoveSpeed, rb.linearVelocity.y, dir.z * MoveSpeed);
-        if (dir.x != 0)
-            transform.localScale = new Vector3(Mathf.Sign(dir.x), 1f, 1f);
+        Vector3 offset = target - transform.position;
+        offset.y = 0;
+
+        if (offset.sqrMagnitude > 0.3f)
+        {
+            Vector3 moveDir = offset.normalized;
+
+            rb.velocity = new Vector3(
+                moveDir.x * MoveSpeed,
+                rb.velocity.y,
+                moveDir.z * MoveSpeed
+            );
+
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                Time.deltaTime * 10f
+            );
+        }
+        else
+        {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
     }
 
     // Entity implementation 
 
     protected override void OnDamageTaken(int amount)
     {
-        // TODO: hit flash / sound
+        currentHealth -= amount;
+        Debug.Log(gameObject.name + " took " + amount + " damage.");
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }    
     }
 
     protected override void OnDeath()
     {
         state = ZombieState.Dead;
-        rb.linearVelocity = Vector3.zero;
-
+        rb.velocity = Vector3.zero;
         // Give coins directly into Entity.money on the player
         int coinsToDrop = Random.Range(CoinDropMin, CoinDropMax + 1);
         playerEntity?.AddMoney(coinsToDrop);    // AddMoney lives in Entity
