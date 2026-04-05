@@ -23,8 +23,21 @@ public class DialogueUI : MonoBehaviour
     private int currentLine = 0;
     private Action onDialogueFinished;
 
+    private void Awake()
+    {
+        AutoBindReferences();
+    }
+
     private void Start()
     {
+        AutoBindReferences();
+
+        if (nextButton == null)
+        {
+            Debug.LogError("[DialogueUI] Next Button is not assigned and could not be auto-found.");
+            return;
+        }
+
         nextButton.onClick.AddListener(OnNextPressed);
         if (shopButton != null) shopButton.gameObject.SetActive(false);
     }
@@ -32,6 +45,14 @@ public class DialogueUI : MonoBehaviour
     /// <summary>Start a dialogue sequence. onFinished is called when the player closes it.</summary>
     public void StartDialogue(DialogueLine[] dialogueLines, Action onFinished = null)
     {
+        AutoBindReferences();
+
+        if (dialoguePanel == null || speakerNameText == null || dialogueBodyText == null || nextButton == null)
+        {
+            Debug.LogError("[DialogueUI] Missing required UI references. Check DialoguePanel, SpeakerNameText, DialogueBodyText, and NextButton.");
+            return;
+        }
+
         lines = dialogueLines;
         currentLine = 0;
         onDialogueFinished = onFinished;
@@ -94,5 +115,33 @@ public class DialogueUI : MonoBehaviour
         bool isLast = index == lines.Length - 1;
         if (nextButtonText != null)
             nextButtonText.text = isLast ? "Done" : "Next";
+    }
+
+    private void AutoBindReferences()
+    {
+        if (dialoguePanel == null)
+            dialoguePanel = gameObject;
+
+        if (nextButton == null)
+            nextButton = GetComponentInChildren<Button>(true);
+
+        if (speakerNameText == null || dialogueBodyText == null || nextButtonText == null)
+        {
+            TMP_Text[] texts = GetComponentsInChildren<TMP_Text>(true);
+            foreach (TMP_Text text in texts)
+            {
+                string lowerName = text.gameObject.name.ToLowerInvariant();
+
+                if (speakerNameText == null && lowerName.Contains("speaker"))
+                    speakerNameText = text;
+                else if (dialogueBodyText == null && (lowerName.Contains("body") || lowerName.Contains("dialogue")))
+                    dialogueBodyText = text;
+                else if (nextButtonText == null && lowerName.Contains("next"))
+                    nextButtonText = text;
+            }
+        }
+
+        if (nextButtonText == null && nextButton != null)
+            nextButtonText = nextButton.GetComponentInChildren<TMP_Text>(true);
     }
 }

@@ -13,14 +13,11 @@ public class LevelExit : MonoBehaviour
 
     private bool isUnlocked = false;
     private bool playerInRange = false;
-    private GameObject interactPrompt;
     private HUD hud;
 
     private void Start()
     {
         hud = FindFirstObjectByType<HUD>();
-        if (hud != null) interactPrompt = hud.interactPrompt;
-        if (interactPrompt != null) interactPrompt.SetActive(false);
     }
 
     private void Update()
@@ -41,8 +38,8 @@ public class LevelExit : MonoBehaviour
     {
         isUnlocked = true;
         // Refresh the prompt if the player is already standing at the boat
-        if (playerInRange && interactPrompt != null)
-            interactPrompt.SetActive(true);
+        if (playerInRange)
+            hud?.ShowInteractPrompt("Press E to return to the Main World");
         Debug.Log("[LevelExit] Exit boat unlocked.");
     }
 
@@ -51,14 +48,16 @@ public class LevelExit : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         playerInRange = true;
 
-        if (isUnlocked && interactPrompt != null)
-            interactPrompt.SetActive(true);
+        if (isUnlocked)
+            hud?.ShowInteractPrompt("Press E to return to the Main World");
+        else
+            hud?.ShowInteractPrompt(lockedMessage);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = false;
-        if (interactPrompt != null) interactPrompt.SetActive(false);
+        hud?.HideInteractPrompt();
     }
 }
