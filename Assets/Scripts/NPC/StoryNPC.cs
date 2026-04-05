@@ -19,10 +19,13 @@ public class StoryNPC : Entity
     public event Action OnStoryFinished;
 
     private HUD hud;
+    private LevelCompletion levelCompletion;
 
     private bool playerInRange = false;
     private bool dialogueOpen = false;
     private bool hasSpokenBefore = false;
+    private bool rewardReady = false;
+    private bool rewardClaimed = false;
 
     // Dialogue 
 
@@ -69,11 +72,40 @@ public class StoryNPC : Entity
         },
     };
 
+    private DialogueLine[] RewardLines => new DialogueLine[]
+    {
+        new DialogueLine
+        {
+            speakerName = npcName,
+            text = "You did it. The seal held, and the dead are falling back."
+        },
+        new DialogueLine
+        {
+            speakerName = npcName,
+            text = "Take this fragment of the Chronosphere. It is one of five pieces needed to restore it."
+        },
+        new DialogueLine
+        {
+            speakerName = npcName,
+            text = "Carry it to the boat. Your path forward is open now."
+        },
+    };
+
+    private DialogueLine[] PostRewardLines => new DialogueLine[]
+    {
+        new DialogueLine
+        {
+            speakerName = npcName,
+            text = "The piece is yours now. Go."
+        },
+    };
+
     // ── Unity lifecycle ───────────────────────────────────────────────────────
 
     private void Start()
     {
         hud = FindFirstObjectByType<HUD>();
+        levelCompletion = FindFirstObjectByType<LevelCompletion>();
 
         if (dialogueUI == null)
             dialogueUI = FindFirstObjectByType<DialogueUI>();
@@ -93,7 +125,7 @@ public class StoryNPC : Entity
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = true;
-        hud?.ShowInteractPrompt($"Press E to speak with {npcName}");
+        hud?.ShowInteractPrompt(GetInteractPromptText());
     }
 
     private void OnTriggerExit(Collider other)
@@ -117,7 +149,8 @@ public class StoryNPC : Entity
         if (hud != null) hud.ShowHUD(false);
 
         bool isFirstTime = !hasSpokenBefore;
-        DialogueLine[] lines = hasSpokenBefore ? ReminderLines : StoryLines;
+        bool isRewardConversation = rewardReady && !rewardClaimed;
+        DialogueLine[] lines = GetCurrentDialogueLines();
         hasSpokenBefore = true;
 
         dialogueUI.StartDialogue(lines, onFinished: () =>
@@ -125,18 +158,61 @@ public class StoryNPC : Entity
             dialogueOpen = false;
             if (hud != null) hud.ShowHUD(true);
 
-            if (playerInRange)
-                hud?.ShowInteractPrompt($"Press E to speak with {npcName}");
-            else
-                hud?.HideInteractPrompt();
-
             // Notify WaveManager only after the opening story is done
             if (isFirstTime)
             {
                 hud?.SetDefaultPrompt("Defend the Elder. Waves incoming.");
                 OnStoryFinished?.Invoke();
             }
+
+            if (isRewardConversation)
+            {
+                rewardClaimed = levelCompletion != null && levelCompletion.ClaimChronosphereReward();
+            }
+
+            if (playerInRange)
+            {
+                if (rewardClaimed)
+                    hud?.HideInteractPrompt();
+                else
+                    hud?.ShowInteractPrompt(GetInteractPromptText());
+            }
+            else
+            {
+                hud?.HideInteractPrompt();
+            }
         });
+    }
+
+    public void PrepareChronosphereReward()
+    {
+        rewardReady = true;
+        hud?.SetDefaultPrompt("Speak with the Elder to claim the Chronosphere piece.");
+
+        if (playerInRange)
+            hud?.ShowInteractPrompt(GetInteractPromptText());
+    }
+
+    private DialogueLine[] GetCurrentDialogueLines()
+    {
+        if (rewardReady && !rewardClaimed)
+            return RewardLines;
+
+        if (!hasSpokenBefore)
+            return StoryLines;
+
+        if (rewardClaimed)
+            return PostRewardLines;
+
+        return ReminderLines;
+    }
+
+    private string GetInteractPromptText()
+    {
+        if (rewardReady && !rewardClaimed)
+            return "Press E to receive the Chronosphere piece";
+
+        return $"Press E to speak with {npcName}";
     }
 
     // ── Entity ────────────────────────────────────────────────────────────────

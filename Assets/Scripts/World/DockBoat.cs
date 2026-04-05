@@ -22,7 +22,10 @@ public class DockBoat : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            TakeBoat();
+            if (CanUseBoat())
+                TakeBoat();
+            else
+                Debug.Log("[DockBoat] Speak with the Merchant before leaving.");
         }
     }
 
@@ -38,13 +41,32 @@ public class DockBoat : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    private bool CanUseBoat()
+    {
+        PlayerData playerData = PlayerData.GetOrCreate();
+        return playerData.currentLevel != 1 || playerData.hasSeenMerchantChronosphereIntro;
+    }
+
+    private string GetBoatPromptText()
+    {
+        PlayerData playerData = PlayerData.GetOrCreate();
+
+        if (!CanUseBoat())
+            return "Speak with the Merchant first";
+
+        if (playerData.currentLevel <= PlayerData.MaxLevels)
+            return $"Press E to go to Level {playerData.currentLevel}";
+
+        return "Press E to take the boat";
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log($"[DockBoat] Trigger entered by: {other.gameObject.name} (tag: {other.tag})");
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            hud?.ShowInteractPrompt("Press E to take the boat");
+            hud?.ShowInteractPrompt(GetBoatPromptText());
         }
     }
 

@@ -158,7 +158,7 @@ public class WaveManager : MonoBehaviour
         }
 
         allWavesDone = true;
-        hud?.SetDefaultPrompt("All waves cleared. Return to the boat.");
+        hud?.SetDefaultPrompt("All waves cleared. Speak with the Elder.");
 
         if (zombiesRemainingPanel != null)
             zombiesRemainingPanel.SetActive(false);
