@@ -20,7 +20,7 @@ public abstract class Entity : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    /// <summary>Apply damage. Override to add armor, resistances, etc.</summary>
+    /// Apply damage. Override to add armor, resistances, etc.
     public virtual void TakeDamage(int amount)
     {
         if (!IsAlive) return;
@@ -30,7 +30,7 @@ public abstract class Entity : MonoBehaviour
             OnDeath();
     }
 
-    /// <summary>Restore health, capped at maxHealth.</summary>
+    /// estore health, capped at maxHealth.
     public virtual void Heal(int amount)
     {
         if (!IsAlive) return;

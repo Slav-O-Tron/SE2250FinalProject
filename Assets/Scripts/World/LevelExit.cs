@@ -10,14 +10,18 @@ public class LevelExit : MonoBehaviour
 {
     [Tooltip("Text shown near the boat before the level is complete.")]
     [SerializeField] private string lockedMessage = "Complete the objective first!";
+    [Tooltip("Scene to load when the full Chronosphere is restored.")]
+    [SerializeField] private string gameWonSceneName = "MainMenu";
 
     private bool isUnlocked = false;
     private bool playerInRange = false;
     private HUD hud;
+    private LevelCompletion levelCompletion;
 
     private void Start()
     {
         hud = FindFirstObjectByType<HUD>();
+        levelCompletion = FindFirstObjectByType<LevelCompletion>();
     }
 
     private void Update()
@@ -27,9 +31,13 @@ public class LevelExit : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isUnlocked)
-                SceneManager.LoadScene("MainWorld");
+            {
+                PlayerData playerData = PlayerData.GetOrCreate();
+                string sceneName = playerData.HasCompletedChronosphere() ? gameWonSceneName : "MainWorld";
+                SceneManager.LoadScene(sceneName);
+            }
             else
-                Debug.Log($"[LevelExit] {lockedMessage}");
+                Debug.Log($"[LevelExit] {GetLockedMessage()}");
         }
     }
 
@@ -51,7 +59,7 @@ public class LevelExit : MonoBehaviour
         if (isUnlocked)
             hud?.ShowInteractPrompt("Press E to return to the Main World");
         else
-            hud?.ShowInteractPrompt(lockedMessage);
+            hud?.ShowInteractPrompt(GetLockedMessage());
     }
 
     private void OnTriggerExit(Collider other)
@@ -59,5 +67,13 @@ public class LevelExit : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         playerInRange = false;
         hud?.HideInteractPrompt();
+    }
+
+    private string GetLockedMessage()
+    {
+        if (levelCompletion != null && levelCompletion.IsComplete && !levelCompletion.RewardClaimed)
+            return "Speak with the Elder first!";
+
+        return lockedMessage;
     }
 }
