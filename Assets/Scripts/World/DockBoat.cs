@@ -10,14 +10,12 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class DockBoat : MonoBehaviour
 {
-    private GameObject interactPrompt;
+    private HUD hud;
     private bool playerInRange = false;
 
     private void Start()
     {
-        HUD hud = FindFirstObjectByType<HUD>();
-        if (hud != null) interactPrompt = hud.interactPrompt;
-        if (interactPrompt != null) interactPrompt.SetActive(false);
+        hud = FindFirstObjectByType<HUD>();
     }
 
     private void Update()
@@ -46,7 +44,7 @@ public class DockBoat : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            if (interactPrompt != null) interactPrompt.SetActive(true);
+            hud?.ShowInteractPrompt("Press E to take the boat");
         }
     }
 
@@ -55,7 +53,7 @@ public class DockBoat : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            if (interactPrompt != null) interactPrompt.SetActive(false);
+            hud?.HideInteractPrompt();
         }
     }
 }
