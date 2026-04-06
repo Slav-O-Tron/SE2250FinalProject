@@ -26,6 +26,14 @@ public class Merchant : Entity
 
     private HUD hud;
 
+    private static readonly DialogueLine[] chronosphereIntroLines =
+    {
+        new DialogueLine { speakerName = "Merchant", text = "You look lost. This place is the last safe harbor between worlds." },
+        new DialogueLine { speakerName = "Merchant", text = "The Chronosphere shattered, and its five pieces were scattered across five different realms." },
+        new DialogueLine { speakerName = "Merchant", text = "If you want to get back home, you must collect all five pieces and restore it." },
+        new DialogueLine { speakerName = "Merchant", text = "The boat will take you to the first realm when you're ready." }
+    };
+
     // Pre-level challenge warnings — one entry per level (index 0 = level 1, etc.)
     private static readonly DialogueLine[][] levelWarningLines =
     {
@@ -69,6 +77,8 @@ public class Merchant : Entity
     private void Start()
     {
         hud = FindFirstObjectByType<HUD>();
+
+        UpdateMainWorldPrompt();
 
         repeatLines = new DialogueLine[]
         {
@@ -131,8 +141,18 @@ public class Merchant : Entity
 
         dialogueUI.StartDialogue(linesToShow, onFinished: () =>
         {
+            PlayerData playerData = PlayerData.GetOrCreate();
+            if (ShouldShowChronosphereIntro(playerData))
+            {
+                playerData.hasSeenMerchantChronosphereIntro = true;
+                lastSpokenLevel = playerData.currentLevel;
+            }
+
             dialogueOpen = false;
             if (hud != null) hud.ShowHUD(true);
+
+            UpdateMainWorldPrompt();
+
             if (playerInRange)
                 hud?.ShowInteractPrompt("Press E to speak with Merchant");
         });
@@ -140,7 +160,11 @@ public class Merchant : Entity
 
     private DialogueLine[] GetDialogueForCurrentLevel()
     {
-        int level = PlayerData.Instance != null ? PlayerData.Instance.currentLevel : 1;
+        PlayerData playerData = PlayerData.GetOrCreate();
+        int level = playerData.currentLevel;
+
+        if (ShouldShowChronosphereIntro(playerData))
+            return chronosphereIntroLines;
 
         // Show the level-specific warning the first time per level; repeat lines after that.
         if (level != lastSpokenLevel)
@@ -151,6 +175,35 @@ public class Merchant : Entity
         }
 
         return repeatLines;
+    }
+
+    private bool ShouldShowChronosphereIntro(PlayerData playerData)
+    {
+        return playerData.currentLevel == 1 && !playerData.hasSeenMerchantChronosphereIntro;
+    }
+
+    private void UpdateMainWorldPrompt()
+    {
+        if (hud == null) return;
+
+        PlayerData playerData = PlayerData.GetOrCreate();
+
+        if (ShouldShowChronosphereIntro(playerData))
+        {
+            hud.SetDefaultPrompt("Talk to the Merchant");
+            return;
+        }
+
+        if (playerData.currentLevel <= PlayerData.MaxLevels)
+        {
+            hud.SetDefaultPrompt($"Go to the boat to reach Level {playerData.currentLevel}");
+            return;
+        }
+
+        if (playerData.HasCompletedChronosphere())
+            hud.SetDefaultPrompt("The Chronosphere is complete.");
+        else
+            hud.ClearDefaultPrompt();
     }
 
     public void OpenShopFromDialogue()

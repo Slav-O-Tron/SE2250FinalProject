@@ -8,32 +8,66 @@ using UnityEngine;
 /// </summary>
 public class LevelCompletion : MonoBehaviour
 {
-    [Tooltip("Optional UI panel to show when all waves are cleared (e.g. 'Level Complete! Return to the boat.').")]
+    [Tooltip("Optional UI panel to show when all waves are cleared (e.g. 'Speak with the Elder').")]
     [SerializeField] private GameObject levelCompletePanel;
 
     private bool levelCompleted = false;
+    private bool rewardClaimed = false;
 
     public bool IsComplete => levelCompleted;
+    public bool RewardClaimed => rewardClaimed;
 
     /// <summary>
     /// Called by WaveManager / BossEnemy when the objective is met.
-    /// Advances PlayerData and unlocks the exit boat.
+    /// Marks the level objective complete, then asks the elder to hand over the piece.
     /// </summary>
     public void CompleteLevel()
     {
         if (levelCompleted) return;
         levelCompleted = true;
 
-        PlayerData.GetOrCreate().AdvanceLevel();
-
         if (levelCompletePanel != null)
             levelCompletePanel.SetActive(true);
 
-        // Notify the exit boat in this scene that it is now usable
+        HUD hud = FindFirstObjectByType<HUD>();
+        hud?.SetDefaultPrompt("Speak with the Elder to claim the Chronosphere piece.");
+
+        StoryNPC elder = FindFirstObjectByType<StoryNPC>();
+        if (elder != null)
+        {
+            elder.PrepareChronosphereReward();
+        }
+        else
+        {
+            ClaimChronosphereReward();
+        }
+
+        Debug.Log("[LevelCompletion] Level objective complete — waiting for Chronosphere reward.");
+    }
+
+    public bool ClaimChronosphereReward()
+    {
+        if (!levelCompleted || rewardClaimed)
+            return false;
+
+        rewardClaimed = true;
+
+        PlayerData playerData = PlayerData.GetOrCreate();
+        int pieceLevel = playerData.currentLevel;
+        bool addedNewPiece = playerData.CollectPieceForLevel(pieceLevel);
+        playerData.AdvanceLevel();
+
+        HUD hud = FindFirstObjectByType<HUD>();
+        if (playerData.HasCompletedChronosphere())
+            hud?.SetDefaultPrompt("Chronosphere restored. Return to the boat.");
+        else
+            hud?.SetDefaultPrompt("Return to the boat.");
+
         LevelExit exit = FindFirstObjectByType<LevelExit>();
         if (exit != null)
             exit.Unlock();
 
-        Debug.Log("[LevelCompletion] Level complete — exit unlocked.");
+        Debug.Log($"[LevelCompletion] Chronosphere piece claimed for level {pieceLevel}. Total pieces: {playerData.ChronospherePieceCount}. New piece: {addedNewPiece}");
+        return true;
     }
 }

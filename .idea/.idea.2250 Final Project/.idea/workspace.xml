@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18a0033-3404-4744-a1db-5e2fca52fbd3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Player 1.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Player 1.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_TerrainAutoUpgrade.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_TerrainAutoUpgrade/layer_Dirty_Grass_Terrain_1B23d3aba195e4d26ee.terrainlayer" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_TerrainAutoUpgrade/layer_Dirty_Grass_Terrain_1B23d3aba195e4d26ee.terrainlayer.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/New Terrain.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New Terrain.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Graveyard.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Graveyard.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/CemeteryPack/Materials/MaterialWoodTile.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/CemeteryPack/Materials/MaterialWoodTile.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Characters/ThirdPersonCharacter/Textures/EthanOcclusion.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Characters/ThirdPersonCharacter/Textures/EthanOcclusion.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/EmaceArt/NatureForge/Prefabs/Stone/EA_Env_Stone_01_PRE.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/EmaceArt/NatureForge/Prefabs/Stone/EA_Env_Stone_01_PRE.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Medieval Desert City/Models/Civilian_Buildings/Materials/Cloth_4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemy/Zombie/Animations/Zombie.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemy/Zombie/Animations/Zombie.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Shawn Level/Level_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Shawn Level/Level_2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Scenes not it use/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Scenes not it use/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/Zombie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/Zombie.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/SwordScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/SwordScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShawnScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShawnScene.unity.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "DylanLevel",
+    "git-widget-placeholder": "Merging DylanLevel",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
@@ -124,6 +118,7 @@
       <workItem from="1775162096714" duration="6082000" />
       <workItem from="1775284029795" duration="983000" />
       <workItem from="1775375620531" duration="4047000" />
+      <workItem from="1775423406647" duration="850000" />
     </task>
     <task id="LOCAL-00001" summary="Added Item and Projectile class scripts, alongside adjusting Player class to have health attribute, and added an enemy health class to have the items damage the enemy">
       <option name="closed" value="true" />
