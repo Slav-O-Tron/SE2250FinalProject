@@ -8,10 +8,10 @@ public class SkillTree : MonoBehaviour
     public int availableSkillPoints = 0;
     public List<string> unlockedSkills = new List<string>();
 
+    private Player cachedPlayer;
+
     private void Awake()
     {
-        Debug.Log("SkillTree parent: " + (transform.parent == null ? "ROOT" : transform.parent.name));
-
         if (Instance == null)
         {
             Instance = this;
@@ -21,6 +21,13 @@ public class SkillTree : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private Player GetPlayer()
+    {
+        if (cachedPlayer == null)
+            cachedPlayer = FindFirstObjectByType<Player>();
+        return cachedPlayer;
     }
 
     public void AddSkillPoints(int amount)
@@ -56,10 +63,10 @@ public class SkillTree : MonoBehaviour
         availableSkillPoints -= node.cost;
         unlockedSkills.Add(node.skillID);
 
-        ApplySkillEffect(node, player);
+        Player p = player ?? GetPlayer();
+        ApplySkillEffect(node, p);
 
         Debug.Log("Unlocked: " + node.skillName);
-
         RefreshAllNodes();
 
         return true;
@@ -67,7 +74,11 @@ public class SkillTree : MonoBehaviour
 
     private void ApplySkillEffect(SkillNode node, Player player)
     {
-        if (player == null) return;
+        if (player == null)
+        {
+            Debug.LogWarning("SkillTree: no player found to apply effect to");
+            return;
+        }
 
         PlayerAbilities abilities = player.GetComponent<PlayerAbilities>();
 
@@ -75,31 +86,44 @@ public class SkillTree : MonoBehaviour
         {
             case "health_boost":
                 player.AddMaxHealth(25);
+                Debug.Log("Health boosted by 25");
                 break;
             case "attack_boost":
                 player.attackDamage += 5;
+                Debug.Log("Attack damage: " + player.attackDamage);
                 break;
             case "speed_boost":
                 player.moveSpeed += 1f;
                 player.sprintSpeed += 1.5f;
+                Debug.Log("Speed boosted");
                 break;
             case "double_jump":
                 if (abilities != null) abilities.canDoubleJump = true;
+                Debug.Log("Double jump unlocked");
                 break;
             case "dash":
                 if (abilities != null) abilities.canDash = true;
+                Debug.Log("Dash unlocked");
                 break;
             case "projectile_mastery":
                 player.attackDamage += 3;
+                Debug.Log("Projectile mastery: attack damage " + player.attackDamage);
                 break;
-            case "crystal_resonance":
-                if (abilities != null) abilities.hasCrystalResonance = true;
+            case "endure_hit":
+                if (abilities != null)
+                {
+                    abilities.hasEndureHit = true;
+                    abilities.endureHitAvailable = true;
+                }
+                Debug.Log("Endure Hit unlocked");
                 break;
             case "damage_resistance":
                 player.damageReduction += 0.1f;
+                Debug.Log("Damage reduction: " + player.damageReduction);
                 break;
             case "critical_strike":
                 player.attackDamage += 8;
+                Debug.Log("Critical strike: attack damage " + player.attackDamage);
                 break;
         }
     }
