@@ -30,8 +30,26 @@ public class Player : MonoBehaviour
     {
         LookAround();
         MovePlayer();
+        HandleInteraction();
     }
 
+    private void HandleInteraction() {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            float interactRange = 3.0f;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, interactRange);
+            foreach (Collider col in colliders)
+            {
+                IInteractable interactable = col.GetComponent<IInteractable>();
+                if (interactable != null)
+                {
+                    interactable.OnAction();
+                    break;
+                }
+            }
+
+            
+        }
+    }
     private void LookAround()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
