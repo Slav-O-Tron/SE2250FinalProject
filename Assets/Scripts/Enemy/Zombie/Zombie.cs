@@ -66,7 +66,7 @@ public class Zombie : Entity
 
     private void Update()
     {
-        float speed = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
+        float speed = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude;
         animator.SetFloat("Speed", speed);
         if (!IsAlive) return;
         switch (state)
@@ -130,9 +130,9 @@ public class Zombie : Entity
         {
             Vector3 moveDir = offset.normalized;
 
-            rb.velocity = new Vector3(
+            rb.linearVelocity = new Vector3(
                 moveDir.x * speed,
-                rb.velocity.y,
+                rb.linearVelocity.y,
                 moveDir.z * speed
             );
 
@@ -145,7 +145,7 @@ public class Zombie : Entity
         }
         else
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
     }
 
@@ -165,7 +165,7 @@ public class Zombie : Entity
     protected override void OnDeath()
     {
         state = ZombieState.Dead;
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         // Give coins directly into Entity.money on the player
         int coinsToDrop = Random.Range(CoinDropMin, CoinDropMax + 1);
         playerEntity?.AddMoney(coinsToDrop);    // AddMoney lives in Entity
