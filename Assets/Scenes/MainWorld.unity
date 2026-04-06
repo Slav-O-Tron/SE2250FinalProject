@@ -51329,6 +51329,7 @@ MonoBehaviour:
   shopItems:
   - {fileID: 11400000, guid: 9ec536675eb2cfe4cac7e749e402783d, type: 2}
   - {fileID: 11400000, guid: 808b0e1892b4b594b9a2bff120d0272f, type: 2}
+  - {fileID: 11400000, guid: 808b0e1892b4b594b9a2bff120d0272f, type: 2}
   shopUI: {fileID: 1377900414}
 --- !u!135 &989512243
 SphereCollider:
