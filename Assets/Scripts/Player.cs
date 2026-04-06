@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     public float moveSpeed = 4f;
     public float sprintSpeed = 8f;
