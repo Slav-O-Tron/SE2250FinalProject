@@ -172,7 +172,7 @@ public class Player : Entity
     
         Vector3 dashDir = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
 
-        while (elapsed < dashDuration)
+        while (elapsed < dashDuration)  
         {
             controller.Move(dashDir * dashSpeed * Time.deltaTime);
             elapsed += Time.deltaTime;
