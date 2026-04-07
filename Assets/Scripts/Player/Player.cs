@@ -150,6 +150,7 @@ public class Player : Entity
             animator.SetBool("RunLeft", isSprinting && Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A));
             animator.SetBool("RunRight", isSprinting && Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D));
             animator.SetBool("Jump", Input.GetKey(KeyCode.Space));
+            animator.SetBool("Attack", Input.GetMouseButtonDown(1));;
         }
     }
 
@@ -172,7 +173,7 @@ public class Player : Entity
     
         Vector3 dashDir = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
 
-        while (elapsed < dashDuration)
+        while (elapsed < dashDuration)  
         {
             controller.Move(dashDir * dashSpeed * Time.deltaTime);
             elapsed += Time.deltaTime;

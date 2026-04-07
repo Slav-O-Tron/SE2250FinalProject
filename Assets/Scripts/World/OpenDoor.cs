@@ -26,13 +26,20 @@ public class Door : MonoBehaviour
 
     public void OpenFromKeypad()
     {
+        Debug.Log("Door: OpenFromKeypad was called");
         isOpen = true;
     }
 
     void Update()
     {
-        if (player == null) return;
-        if (inventoryManager == null) return;
+        // Always handle door movement first
+        if (isOpen)
+            transform.rotation = Quaternion.Slerp(transform.rotation, openRotation, Time.deltaTime * openSpeed);
+        else
+            transform.rotation = Quaternion.Slerp(transform.rotation, closedRotation, Time.deltaTime * openSpeed);
+
+        // Only handle manual key opening if player/inventory exist
+        if (player == null || inventoryManager == null) return;
 
         float distance = Vector3.Distance(player.position, transform.position);
 
@@ -52,16 +59,12 @@ public class Door : MonoBehaviour
                 }
 
                 isOpen = !isOpen;
+                Debug.Log("Door toggled with key item.");
             }
             else
             {
                 Debug.Log("You need the " + requiredKey.itemName + " to open this door.");
             }
         }
-
-        if (isOpen)
-            transform.rotation = Quaternion.Slerp(transform.rotation, openRotation, Time.deltaTime * openSpeed);
-        else
-            transform.rotation = Quaternion.Slerp(transform.rotation, closedRotation, Time.deltaTime * openSpeed);
     }
 }
