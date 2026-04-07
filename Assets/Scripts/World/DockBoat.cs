@@ -14,7 +14,7 @@ public class DockBoat : MonoBehaviour
     private bool playerInRange = false;
 
     [Tooltip("Override scene names per level. Index 0 = Level 1, index 1 = Level 2, etc.")]
-    [SerializeField] private string[] levelSceneNames = { "Level_1", "Graveyard", "Level_2", "Anthony Level _4", "Level_5" };
+    [SerializeField] private string[] levelSceneNames = { "Level_1", "Level_2", "Level_3", "Level _4", "Level_5" };
 
     [Tooltip("Optional between-levels panel. Wire up a LevelTransitionPanel in the scene.")]
     [SerializeField] private LevelTransitionPanel levelTransitionPanel;
@@ -28,10 +28,7 @@ public class DockBoat : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (CanUseBoat())
-                TakeBoat();
-            else
-                Debug.Log("[DockBoat] Speak with the Merchant before leaving.");
+            TakeBoat();
         }
     }
 
