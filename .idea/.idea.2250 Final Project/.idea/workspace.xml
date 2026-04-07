@@ -3,15 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e18a0033-3404-4744-a1db-5e2fca52fbd3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player 2.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Graveyard.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Graveyard.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Tomas Level/Level_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Tomas Level/Level_1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Entity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/Zombie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/Zombie.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/PlayerAbilities.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/PlayerAbilities.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTree.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Cemetery Kit V1.25/Materials/Dirty_Grass_Terrain_1B2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Cemetery Kit V1.25/Materials/Dirty_Grass_Terrain_1B2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,18 +47,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "DylanLevel",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DylanLevel&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:\Unity\6000.3.6f1\Editor\Unity.exe" />
@@ -120,7 +113,8 @@
       <workItem from="1775162096714" duration="6082000" />
       <workItem from="1775284029795" duration="983000" />
       <workItem from="1775375620531" duration="4047000" />
-      <workItem from="1775423406647" duration="7235000" />
+      <workItem from="1775423406647" duration="8719000" />
+      <workItem from="1775537807117" duration="461000" />
     </task>
     <task id="LOCAL-00001" summary="Added Item and Projectile class scripts, alongside adjusting Player class to have health attribute, and added an enemy health class to have the items damage the enemy">
       <option name="closed" value="true" />
