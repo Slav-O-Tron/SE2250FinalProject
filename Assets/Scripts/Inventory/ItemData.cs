@@ -14,10 +14,11 @@ public class ItemData : ScriptableObject
     [Header("Armor prefab to spawn on player")]
     public GameObject equipmentPrefab;
 
-    
+    [Header("Equip Offsets")]
+    public Vector3 equipPositionOffset = Vector3.zero;
+    public Vector3 equipRotationOffset = Vector3.zero;
+    public Vector3 equipScaleOffset = Vector3.one;
+
     public virtual void Use(Player player){}
     public virtual void OnPickup(Player player){}
 }
-
-
-

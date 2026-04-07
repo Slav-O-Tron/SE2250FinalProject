@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    [Header("Drag the PLAYER'S PT_Hips here")]
-    public Transform playerRigRoot;
+    [Header("Armor")]
+    public Transform playerRigRoot;   // Drag PT_Hips here
+
+    [Header("Weapon Attach Points")]
+    public Transform rightHandSocket; // Drag PT_Right_Hand_Weapon_slot here
+    public Transform leftHandSocket;  // Optional
 
     private Dictionary<EquipmentSlot, GameObject> equippedObjects =
         new Dictionary<EquipmentSlot, GameObject>();
@@ -31,12 +35,42 @@ public class EquipmentManager : MonoBehaviour
     public void Equip(ItemData item)
     {
         if (item == null || item.equipmentPrefab == null)
+        {
+            Debug.LogWarning("Equip failed: item or equipmentPrefab is missing.");
             return;
+        }
 
         Unequip(item.equipmentSlot);
 
+        // Weapon
+        if (item.equipmentSlot == EquipmentSlot.Weapon)
+        {
+            if (rightHandSocket == null)
+            {
+                Debug.LogWarning("Right hand socket is missing.");
+                return;
+            }
+
+            GameObject newWeapon = Instantiate(item.equipmentPrefab, rightHandSocket);
+            newWeapon.transform.localPosition = item.equipPositionOffset;
+            newWeapon.transform.localRotation = Quaternion.Euler(item.equipRotationOffset);
+            newWeapon.transform.localScale = item.equipScaleOffset;
+
+            equippedObjects[item.equipmentSlot] = newWeapon;
+            equippedItems[item.equipmentSlot] = item;
+
+            Debug.Log("Equipped weapon: " + item.itemName);
+            return;
+        }
+
+        // Armor / other skinned equipment
         GameObject newPiece = Instantiate(item.equipmentPrefab, transform);
-        RebindArmor(newPiece);
+
+        RebindArmorObject(newPiece);
+
+        newPiece.transform.localPosition = item.equipPositionOffset;
+        newPiece.transform.localRotation = Quaternion.Euler(item.equipRotationOffset);
+        newPiece.transform.localScale = item.equipScaleOffset;
 
         equippedObjects[item.equipmentSlot] = newPiece;
         equippedItems[item.equipmentSlot] = item;
@@ -55,10 +89,13 @@ public class EquipmentManager : MonoBehaviour
         equippedItems.Remove(slot);
     }
 
-    private void RebindArmor(GameObject armorObject)
+    private void RebindArmorObject(GameObject armorObject)
     {
         if (playerRigRoot == null)
+        {
+            Debug.LogWarning("Player rig root is missing.");
             return;
+        }
 
         Dictionary<string, Transform> targetBones = new Dictionary<string, Transform>();
 
@@ -71,18 +108,23 @@ public class EquipmentManager : MonoBehaviour
         SkinnedMeshRenderer[] renderers =
             armorObject.GetComponentsInChildren<SkinnedMeshRenderer>(true);
 
+        if (renderers.Length == 0)
+        {
+            Debug.LogWarning("No SkinnedMeshRenderer found on " + armorObject.name);
+            return;
+        }
+
         foreach (SkinnedMeshRenderer smr in renderers)
         {
-            Transform[] newBones = new Transform[smr.bones.Length];
+            Transform[] oldBones = smr.bones;
+            Transform[] newBones = new Transform[oldBones.Length];
 
-            for (int i = 0; i < smr.bones.Length; i++)
+            for (int i = 0; i < oldBones.Length; i++)
             {
-                Transform oldBone = smr.bones[i];
-
-                if (oldBone != null && targetBones.TryGetValue(oldBone.name, out Transform match))
+                if (oldBones[i] != null && targetBones.TryGetValue(oldBones[i].name, out Transform match))
                     newBones[i] = match;
                 else
-                    newBones[i] = oldBone;
+                    newBones[i] = oldBones[i];
             }
 
             smr.bones = newBones;

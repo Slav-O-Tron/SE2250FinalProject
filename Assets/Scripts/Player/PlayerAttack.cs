@@ -1,15 +1,24 @@
 using UnityEngine;
+
 public class PlayerCombat : MonoBehaviour
 {
-    public WeaponHitbox weaponHitbox; // Drag your Weapon object here in the Inspector
-    public float attackDuration = 0.5f; // How long the hitbox stays "active"
+    public WeaponHitbox weaponHitbox;
+    public float attackDuration = 0.5f;
     public float attackCooldown = 1f;
+    public int attackDamage = 10;
+
     private bool canAttack = true;
-    public int attackDamage = 10; 
-    
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canAttack)
+        // right CLICK
+        if (Input.GetMouseButtonDown(1) && canAttack)
         {
             Attack();
         }
@@ -18,15 +27,17 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
         canAttack = false;
+
         Debug.Log("Attack Started");
 
-        // 1. Turn the hitbox ON
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+
         weaponHitbox.EnableHitbox();
 
-        // 2. Schedule the hitbox to turn OFF
         Invoke(nameof(DisableHitbox), attackDuration);
-        
-        // 3. Schedule the next time you can click
         Invoke(nameof(ResetAttack), attackCooldown);
     }
 
@@ -39,7 +50,7 @@ public class PlayerCombat : MonoBehaviour
     {
         canAttack = true;
     }
-    
+
     public int GetDamage()
     {
         return attackDamage;
