@@ -19,6 +19,28 @@ public class PlayerInventory : MonoBehaviour
 
     private float regenDelayTimer = 0f;
 
+    private void Awake()
+    {
+        PlayerData pd = PlayerData.GetOrCreate();
+        xp = pd.xp;
+        level = pd.playerLevel;
+        xpToNextLevel = pd.xpToNextLevel;
+    }
+
+    private void OnDestroy()
+    {
+        SaveToPlayerData();
+    }
+
+    /// <summary>Persist current XP and level into PlayerData so they survive scene loads.</summary>
+    public void SaveToPlayerData()
+    {
+        PlayerData pd = PlayerData.GetOrCreate();
+        pd.xp = xp;
+        pd.playerLevel = level;
+        pd.xpToNextLevel = xpToNextLevel;
+    }
+
     private void Update()
     {
         if (regenDelayTimer > 0f)
@@ -40,6 +62,7 @@ public class PlayerInventory : MonoBehaviour
             OnLevelUp();
         }
         Debug.Log($"XP: {xp}/{xpToNextLevel}  Level: {level}");
+        SaveToPlayerData();
     }
 
     private void OnLevelUp()

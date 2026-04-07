@@ -45,6 +45,28 @@ public class Player : Entity
         controller      = GetComponent<CharacterController>();
         playerInventory = GetComponent<PlayerInventory>();
         abilities = GetComponent<PlayerAbilities>();
+
+        // Restore persisted gold from PlayerData
+        money = PlayerData.GetOrCreate().gold;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerData.GetOrCreate().gold = money;
+    }
+
+    public override void AddMoney(int amount)
+    {
+        base.AddMoney(amount);
+        PlayerData.GetOrCreate().gold = money;
+    }
+
+    public override bool SpendMoney(int amount)
+    {
+        bool spent = base.SpendMoney(amount);
+        if (spent)
+            PlayerData.GetOrCreate().gold = money;
+        return spent;
     }
 
     private void Start()

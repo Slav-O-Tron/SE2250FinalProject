@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-/// <summary>
+
 /// Place one instance of this in every level scene.
 /// Called by Player.OnDeath and ProtectedNPC.OnDeath to show the fail screen
 /// and halt the wave system.
@@ -11,7 +11,7 @@ using TMPro;
 ///   - failPanel      : the root UI panel to activate on failure
 ///   - failReasonText : (optional) TMP_Text inside the panel to show the reason
 /// The panel should contain Retry and Main Menu buttons wired to RetryLevel() / GoToMainMenu().
-/// </summary>
+
 public class LevelFailManager : MonoBehaviour
 {
     public static LevelFailManager Instance { get; private set; }
