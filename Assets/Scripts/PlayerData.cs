@@ -10,19 +10,44 @@ public class PlayerData : MonoBehaviour
 {
     public static PlayerData Instance { get; private set; }
 
+    // ── Game-world progress ───────────────────────────────────────────────────
     public int currentLevel = 1;
     public bool hasSeenMerchantChronosphereIntro = false;
     public const int MaxLevels = 5;
+
+    // ── Player currency & character progression ───────────────────────────────
+    /// <summary>Gold carried by the player across scenes.</summary>
+    public int gold = 0;
+    /// <summary>Current experience points (within the current character level).</summary>
+    public int xp = 0;
+    /// <summary>Player character level (skill level, not the game world level).</summary>
+    public int playerLevel = 1;
+    /// <summary>XP required to reach the next character level.</summary>
+    public int xpToNextLevel = 100;
+
+    // ── Scene → display name mapping ─────────────────────────────────────────
+
+    /// Human-readable names for each game-world level (index 0 = level 1).
+    /// Matches the order set in DockBoat.levelSceneNames.    /// </summary>
+    public static readonly string[] LevelDisplayNames =
+    {
+        "The Village",
+        "The Graveyard",
+        "The Wasteland",
+        "The Dark Sanctum",
+        "The Final Realm"
+    };
+
     private readonly HashSet<int> collectedChronospherePieces = new HashSet<int>();
 
     public int ChronospherePieceCount => collectedChronospherePieces.Count;
     public bool HasCompletedChronosphere() => ChronospherePieceCount >= MaxLevels;
 
-    /// <summary>
+
     /// Called by any script that needs PlayerData before it may have been
     /// created (e.g. entering a level directly in the editor).
     /// Creates a runtime instance automatically if none exists yet.
-    /// </summary>
+
     public static PlayerData GetOrCreate()
     {
         if (Instance != null) return Instance;
@@ -67,7 +92,7 @@ public class PlayerData : MonoBehaviour
 
     public bool IsGameWon() => currentLevel > MaxLevels;
 
-    /// <summary>Reset back to level 1, e.g. on New Game.</summary>
+    /// Reset back to level 1, e.g. on New Game.
     public void ResetProgress()
     {
         currentLevel = 1;

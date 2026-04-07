@@ -13,6 +13,12 @@ public class DockBoat : MonoBehaviour
     private HUD hud;
     private bool playerInRange = false;
 
+    [Tooltip("Override scene names per level. Index 0 = Level 1, index 1 = Level 2, etc.")]
+    [SerializeField] private string[] levelSceneNames = { "Level_1", "Graveyard", "Level_2", "Anthony Level _4", "Level_5" };
+
+    [Tooltip("Optional between-levels panel. Wire up a LevelTransitionPanel in the scene.")]
+    [SerializeField] private LevelTransitionPanel levelTransitionPanel;
+
     private void Start()
     {
         hud = FindFirstObjectByType<HUD>();
@@ -29,11 +35,9 @@ public class DockBoat : MonoBehaviour
         }
     }
 
-    [Tooltip("Override scene names per level. Index 0 = Level 1, index 1 = Level 2, etc.")]
-    [SerializeField] private string[] levelSceneNames = { "Level_1", "Level_2", "Level_3", "Level_4", "Level_5" };
-
     private void TakeBoat()
     {
+        levelTransitionPanel?.Hide();
         int level = PlayerData.GetOrCreate().currentLevel;
         int index = Mathf.Clamp(level - 1, 0, levelSceneNames.Length - 1);
         string sceneName = levelSceneNames[index];
@@ -67,6 +71,7 @@ public class DockBoat : MonoBehaviour
         {
             playerInRange = true;
             hud?.ShowInteractPrompt(GetBoatPromptText());
+            levelTransitionPanel?.Show();
         }
     }
 
@@ -76,6 +81,7 @@ public class DockBoat : MonoBehaviour
         {
             playerInRange = false;
             hud?.HideInteractPrompt();
+            levelTransitionPanel?.Hide();
         }
     }
 }
