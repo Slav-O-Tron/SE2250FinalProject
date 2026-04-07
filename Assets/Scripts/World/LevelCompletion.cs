@@ -1,11 +1,11 @@
 using UnityEngine;
 
-/// <summary>
+
 /// Place one instance of this in every Level scene.
 /// Called by WaveManager or BossEnemy when the objective is complete.
 /// Does NOT auto-load any scene — instead it unlocks the LevelExit boat
 /// so the player can walk back to it and leave manually.
-/// </summary>
+
 public class LevelCompletion : MonoBehaviour
 {
     [Tooltip("Optional UI panel to show when all waves are cleared (e.g. 'Speak with the Elder').")]
@@ -17,10 +17,10 @@ public class LevelCompletion : MonoBehaviour
     public bool IsComplete => levelCompleted;
     public bool RewardClaimed => rewardClaimed;
 
-    /// <summary>
+
     /// Called by WaveManager / BossEnemy when the objective is met.
     /// Marks the level objective complete, then asks the elder to hand over the piece.
-    /// </summary>
+
     public void CompleteLevel()
     {
         if (levelCompleted) return;

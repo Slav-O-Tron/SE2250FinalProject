@@ -7,15 +7,18 @@ using TMPro;
 /// Attach to a WaveManager GameObject in your level scene.
 /// Configure waves in the Inspector. When all waves are cleared,
 /// calls LevelCompletion.CompleteLevel() automatically.
-/// </summary>
+
 public class WaveManager : MonoBehaviour
 {
     [System.Serializable]
     public class Wave
     {
         public string waveName = "Wave 1";
+        [Tooltip("Leave null to use defaultZombiePrefab.")]
         public GameObject zombiePrefab;
-        public int zombieCount = 5;
+        [Tooltip("How many zombies to spawn. 0 = use baseZombieCount + waveIndex * zombieCountIncreasePerWave.")]
+        public int zombieCount = 0;
+        [Tooltip("Leave empty to use globalSpawnPoints with progressive unlock.")]
         public Transform[] spawnPoints;
         [Tooltip("Seconds between each zombie spawning in this wave.")]
         public float spawnInterval = 1f;
@@ -25,6 +28,16 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Wave[] waves;
     [Tooltip("Seconds to wait after one wave is cleared before the next begins.")]
     [SerializeField] private float timeBetweenWaves = 5f;
+
+    [Header("Scaling Defaults")]
+    [Tooltip("Prefab used when a Wave's zombiePrefab is null.")]
+    [SerializeField] private GameObject defaultZombiePrefab;
+    [Tooltip("All spawn points in the level, ordered by distance from the NPC. Wave N unlocks the first N+1 points.")]
+    [SerializeField] private Transform[] globalSpawnPoints;
+    [Tooltip("Base zombie count when a Wave's zombieCount is 0.")]
+    [SerializeField] private int baseZombieCount = 3;
+    [Tooltip("Added to baseZombieCount for each subsequent wave.")]
+    [SerializeField] private int zombieCountIncreasePerWave = 2;
 
     [Header("UI")]
     [SerializeField] private GameObject waveAnnouncementPanel;
@@ -39,32 +52,18 @@ public class WaveManager : MonoBehaviour
     private bool waveInProgress = false;
     private bool allWavesDone = false;
     private bool wavesStarted = false;
+    private bool levelFailed = false;
 
     private void Start()
     {
         levelCompletion = FindFirstObjectByType<LevelCompletion>();
         hud = FindFirstObjectByType<HUD>();
 
-        if (waveAnnouncementPanel == null && waveAnnouncementText != null && waveAnnouncementText.transform.parent != null)
-            waveAnnouncementPanel = waveAnnouncementText.transform.parent.gameObject;
-
-        if (zombiesRemainingPanel == null && zombiesRemainingText != null && zombiesRemainingText.transform.parent != null)
-            zombiesRemainingPanel = zombiesRemainingText.transform.parent.gameObject;
-
-        if (waveAnnouncementPanel != null)
-            waveAnnouncementPanel.SetActive(false);
-        else if (waveAnnouncementText != null)
-            waveAnnouncementText.gameObject.SetActive(false);
+        if (zombiesRemainingPanel != null)
+            zombiesRemainingPanel.SetActive(false);
 
         if (zombiesRemainingText != null)
-        {
             zombiesRemainingText.text = string.Empty;
-
-            if (zombiesRemainingPanel != null)
-                zombiesRemainingPanel.SetActive(false);
-            else
-                zombiesRemainingText.gameObject.SetActive(false);
-        }
 
         // If there is a StoryNPC in the scene, wait for them to finish talking.
         // Otherwise start waves immediately.
@@ -86,34 +85,70 @@ public class WaveManager : MonoBehaviour
 
         if (zombiesRemainingPanel != null)
             zombiesRemainingPanel.SetActive(true);
-        else if (zombiesRemainingText != null)
-            zombiesRemainingText.gameObject.SetActive(true);
 
         StartCoroutine(RunWaves());
     }
 
     private void Update()
     {
-        if (allWavesDone || !waveInProgress) return;
+        if (allWavesDone || levelFailed) return;
 
         // Clean up destroyed entries
         activeZombies.RemoveAll(z => z == null);
 
-        if (zombiesRemainingText != null)
-            zombiesRemainingText.text = $"Wave {currentWave + 1}/{waves.Length}  |  Zombies Left: {activeZombies.Count}";
-
-        // Wave cleared when all spawned zombies are dead
-        if (activeZombies.Count == 0)
+        // Always keep the counter visible and current once waves have started
+        if (wavesStarted && zombiesRemainingText != null)
         {
-            waveInProgress = false;
+            if (waveInProgress)
+                zombiesRemainingText.text = $"Wave {currentWave + 1}/{waves.Length}  |  Zombies Left: {activeZombies.Count}";
+
+            // Wave cleared when all spawned zombies are dead
+            if (waveInProgress && activeZombies.Count == 0)
+                waveInProgress = false;
         }
     }
+
+    // --- Spawn helpers -----------------------------------------------------------
+
+    private Transform[] GetAllSpawnPoints()
+    {
+        if (globalSpawnPoints == null || globalSpawnPoints.Length == 0) return null;
+        return globalSpawnPoints;
+    }
+
+    /// <summary>Halt waves immediately (called by LevelFailManager).</summary>
+    public void StopWaves()
+    {
+        levelFailed = true;
+        StopAllCoroutines();
+    }
+
+    // ---------------------------------------------------------------------------
 
     private IEnumerator RunWaves()
     {
         for (currentWave = 0; currentWave < waves.Length; currentWave++)
         {
+            if (levelFailed) yield break;
+
             Wave wave = waves[currentWave];
+
+            // Resolve effective settings for this wave
+            int effectiveCount = wave.zombieCount > 0
+                ? wave.zombieCount
+                : baseZombieCount + currentWave * zombieCountIncreasePerWave;
+
+            GameObject prefab = wave.zombiePrefab != null ? wave.zombiePrefab : defaultZombiePrefab;
+
+            Transform[] spawnPoints = (wave.spawnPoints != null && wave.spawnPoints.Length > 0)
+                ? wave.spawnPoints
+                : GetAllSpawnPoints();
+
+            if (spawnPoints == null || spawnPoints.Length == 0)
+            {
+                Debug.LogWarning($"[WaveManager] Wave '{wave.waveName}' has no spawn points. Assign globalSpawnPoints.");
+                spawnPoints = new Transform[] { transform };
+            }
 
             // Announce wave
             if (zombiesRemainingText != null)
@@ -123,27 +158,34 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
             HideAnnouncement();
 
+            if (levelFailed) yield break;
+
             // Spawn zombies
             waveInProgress = true;
             activeZombies.Clear();
 
-            for (int i = 0; i < wave.zombieCount; i++)
+            if (prefab == null)
             {
-                if (wave.spawnPoints == null || wave.spawnPoints.Length == 0)
+                Debug.LogWarning($"[WaveManager] Wave '{wave.waveName}' has no zombie prefab. Assign defaultZombiePrefab.");
+            }
+            else
+            {
+                for (int i = 0; i < effectiveCount; i++)
                 {
-                    Debug.LogWarning($"[WaveManager] Wave '{wave.waveName}' has no spawn points assigned.");
-                    break;
+                    if (levelFailed) yield break;
+
+                    Transform spawnPoint = spawnPoints[i % spawnPoints.Length];
+                    GameObject zombie = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+                    activeZombies.Add(zombie);
+
+                    yield return new WaitForSeconds(wave.spawnInterval);
                 }
-
-                Transform spawnPoint = wave.spawnPoints[i % wave.spawnPoints.Length];
-                GameObject zombie = Instantiate(wave.zombiePrefab, spawnPoint.position, spawnPoint.rotation);
-                activeZombies.Add(zombie);
-
-                yield return new WaitForSeconds(wave.spawnInterval);
             }
 
             // Wait until all zombies from this wave are dead
-            yield return new WaitUntil(() => !waveInProgress);
+            yield return new WaitUntil(() => !waveInProgress || levelFailed);
+
+            if (levelFailed) yield break;
 
             if (currentWave < waves.Length - 1)
             {
@@ -154,20 +196,18 @@ public class WaveManager : MonoBehaviour
 
                 yield return new WaitForSeconds(timeBetweenWaves);
                 HideAnnouncement();
+
+                if (levelFailed) yield break;
             }
         }
 
         allWavesDone = true;
         hud?.SetDefaultPrompt("All waves cleared. Speak with the Elder.");
 
-        if (zombiesRemainingPanel != null)
-            zombiesRemainingPanel.SetActive(false);
-        else if (zombiesRemainingText != null)
-            zombiesRemainingText.gameObject.SetActive(false);
-
-        ShowAnnouncement("All Waves Cleared!");
-        yield return new WaitForSeconds(2f);
-        HideAnnouncement();
+        if (zombiesRemainingText != null)
+            zombiesRemainingText.text = "All Waves Cleared!";
+        if (waveAnnouncementText != null)
+            waveAnnouncementText.text = string.Empty;
 
         levelCompletion?.CompleteLevel();
     }
@@ -175,22 +215,13 @@ public class WaveManager : MonoBehaviour
     private void ShowAnnouncement(string message)
     {
         if (waveAnnouncementText != null)
-        {
-            if (waveAnnouncementPanel != null)
-                waveAnnouncementPanel.SetActive(true);
-            else
-                waveAnnouncementText.gameObject.SetActive(true);
-
             waveAnnouncementText.text = message;
-        }
         Debug.Log($"[WaveManager] {message}");
     }
 
     private void HideAnnouncement()
     {
-        if (waveAnnouncementPanel != null)
-            waveAnnouncementPanel.SetActive(false);
-        else if (waveAnnouncementText != null)
-            waveAnnouncementText.gameObject.SetActive(false);
+        if (waveAnnouncementText != null)
+            waveAnnouncementText.text = string.Empty;
     }
 }

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c262a28cd53b64accb0a8e212a13f931
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 30232
+  packageName: Zombie
+  packageVersion: Draft 1.2
+  assetPath: Assets/Zombie/Prefabs/Zombie1.prefab
+  uploadId: 334764

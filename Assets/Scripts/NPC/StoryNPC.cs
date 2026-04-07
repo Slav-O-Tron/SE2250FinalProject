@@ -225,7 +225,12 @@ public class StoryNPC : Entity
     protected override void OnDeath()
     {
         Debug.Log($"[{npcName}] Has fallen.");
-        // ProtectedNPC handles the fail state if you also attach that component,
-        // or wire this up to your own fail logic here.
+        LevelFailManager failManager = LevelFailManager.Instance != null
+            ? LevelFailManager.Instance
+            : FindFirstObjectByType<LevelFailManager>();
+        if (failManager != null)
+            failManager.TriggerFail("The Elder has fallen!");
+        else
+            Debug.LogError("[StoryNPC] No LevelFailManager found in scene.");
     }
 }
