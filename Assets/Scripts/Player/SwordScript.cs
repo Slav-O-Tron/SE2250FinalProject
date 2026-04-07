@@ -8,7 +8,7 @@ public class WeaponHitbox : MonoBehaviour
     void Start()
     {
         owner = GetComponentInParent<PlayerCombat>();
-        weaponCollider.enabled = false;
+        weaponCollider.enabled = true;
     }
     private void OnTriggerEnter(Collider other)
     {

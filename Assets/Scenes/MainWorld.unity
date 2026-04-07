@@ -37683,6 +37683,7 @@ GameObject:
   - component: {fileID: 737891681}
   - component: {fileID: 737891689}
   - component: {fileID: 737891690}
+  - component: {fileID: 737891691}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -37878,6 +37879,22 @@ MonoBehaviour:
   canDash: 0
   hasEndureHit: 0
   endureHitAvailable: 1
+--- !u!114 &737891691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737891680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338cebf41a116e84c98f6abb2982d9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  weaponHitbox: {fileID: 5803164081483708637, guid: 645ec62e9afaadd4abb74bf74ae13308, type: 3}
+  attackDuration: 0.5
+  attackCooldown: 1
+  attackDamage: 10
 --- !u!1001 &737984945
 PrefabInstance:
   m_ObjectHideFlags: 0
