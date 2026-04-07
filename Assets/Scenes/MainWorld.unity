@@ -56181,6 +56181,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4158344807235840, guid: 2594e9284459863408cbe27384553415, type: 3}
   m_PrefabInstance: {fileID: 1133363984}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1134643282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6703086857296863133, guid: eb5f3e0f7a547ae45a42b304e85ed023, type: 3}
+  m_PrefabInstance: {fileID: 1557379011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1134643284 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3967525597871023153, guid: eb5f3e0f7a547ae45a42b304e85ed023, type: 3}
+  m_PrefabInstance: {fileID: 1557379011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1134643287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134643282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0161e6854ea09064ab1204c0470e7cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponHitbox
+  weaponCollider: {fileID: 1134643284}
 --- !u!1001 &1134665166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77316,7 +77339,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6703086857296863133, guid: eb5f3e0f7a547ae45a42b304e85ed023, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1134643287}
   m_SourcePrefab: {fileID: 100100000, guid: eb5f3e0f7a547ae45a42b304e85ed023, type: 3}
 --- !u!1001 &1560284159
 PrefabInstance:

@@ -45694,7 +45694,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 1
-  grantsDoorKey: 0
   coinValue: 0
   xpValue: 0
 --- !u!143 &1296662626
@@ -60399,6 +60398,8 @@ MonoBehaviour:
   - {fileID: 1973748356}
   - {fileID: 908573073}
   - {fileID: 995933592}
+  playerMovementScript: {fileID: 0}
+  playerLookScript: {fileID: 0}
 --- !u!114 &1678241870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62118,6 +62119,10 @@ MonoBehaviour:
     spawnPoints: []
     spawnInterval: 0
   timeBetweenWaves: 5
+  defaultZombiePrefab: {fileID: 0}
+  globalSpawnPoints: []
+  baseZombieCount: 3
+  zombieCountIncreasePerWave: 2
   waveAnnouncementPanel: {fileID: 0}
   waveAnnouncementText: {fileID: 0}
   zombiesRemainingPanel: {fileID: 0}
@@ -66302,8 +66307,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   money: 0
-  failDelay: 2
-  failPanel: {fileID: 0}
 --- !u!114 &1809559933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78554,6 +78557,8 @@ MonoBehaviour:
   - {fileID: 1771573387}
   - {fileID: 2163350}
   - {fileID: 318349139}
+  playerMovementScript: {fileID: 0}
+  playerLookScript: {fileID: 0}
 --- !u!114 &2113629740
 MonoBehaviour:
   m_ObjectHideFlags: 0
