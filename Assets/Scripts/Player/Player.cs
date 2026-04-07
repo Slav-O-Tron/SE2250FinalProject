@@ -141,6 +141,12 @@ public class Player : Entity
     protected override void OnDeath()
     {
         Debug.Log("Player died.");
-        // TODO: game over logic
+        LevelFailManager failManager = LevelFailManager.Instance != null
+            ? LevelFailManager.Instance
+            : FindFirstObjectByType<LevelFailManager>();
+        if (failManager != null)
+            failManager.TriggerFail("You have fallen!");
+        else
+            Debug.LogError("[Player] No LevelFailManager found in scene. Add a LevelFailManager GameObject to this level.");
     }
 }

@@ -2986,7 +2986,6 @@ GameObject:
   - component: {fileID: 6371423051205927639}
   - component: {fileID: 6918604203741930187}
   - component: {fileID: 8601572643885212505}
-  - component: {fileID: 7065395965952944898}
   m_Layer: 0
   m_Name: Zombie1
   m_TagString: Untagged
@@ -3068,20 +3067,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7065395965952944898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8309824780660937380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29cdf069e8840654ea16ebeb9e20c486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ZombieMotion
-  target: {fileID: 0}
-  agent: {fileID: 8601572643885212505}
 --- !u!1 &8374402848515088021
 GameObject:
   m_ObjectHideFlags: 0
