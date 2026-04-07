@@ -11,6 +11,9 @@ public class LevelCompletion : MonoBehaviour
     [Tooltip("Optional UI panel to show when all waves are cleared (e.g. 'Speak with the Elder').")]
     [SerializeField] private GameObject levelCompletePanel;
 
+    [Tooltip("The Chronosphere Piece ItemData ScriptableObject to add to the player's inventory on level completion.")]
+    [SerializeField] private ItemData chronospherePieceItemData;
+
     private bool levelCompleted = false;
     private bool rewardClaimed = false;
 
@@ -56,6 +59,15 @@ public class LevelCompletion : MonoBehaviour
         int pieceLevel = playerData.currentLevel;
         bool addedNewPiece = playerData.CollectPieceForLevel(pieceLevel);
         playerData.AdvanceLevel();
+
+        if (addedNewPiece && chronospherePieceItemData != null)
+        {
+            InventoryManager inventoryManager = FindFirstObjectByType<InventoryManager>();
+            if (inventoryManager != null)
+                inventoryManager.AddItem(chronospherePieceItemData, 1);
+            else
+                Debug.LogWarning("[LevelCompletion] InventoryManager not found — Chronosphere piece not added to inventory.");
+        }
 
         HUD hud = FindFirstObjectByType<HUD>();
         if (playerData.HasCompletedChronosphere())

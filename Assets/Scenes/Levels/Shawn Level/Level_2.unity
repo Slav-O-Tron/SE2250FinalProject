@@ -7487,6 +7487,9 @@ PrefabInstance:
       addedObject: {fileID: 2002482998}
     - targetCorrespondingSourceObject: {fileID: 1372221035203834, guid: 6feceae911d87fa43973eb944d04162f, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2002483002}
+    - targetCorrespondingSourceObject: {fileID: 1372221035203834, guid: 6feceae911d87fa43973eb944d04162f, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2002482997}
   m_SourcePrefab: {fileID: 100100000, guid: 6feceae911d87fa43973eb944d04162f, type: 3}
 --- !u!4 &205923168 stripped
@@ -45694,7 +45697,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 1
-  grantsDoorKey: 0
   coinValue: 0
   xpValue: 0
 --- !u!143 &1296662626
@@ -46892,12 +46894,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323345219}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1edb653814ff4af89c5ae57144cb9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCompletion
   levelCompletePanel: {fileID: 0}
+  chronospherePieceItemData: {fileID: 0}
 --- !u!4 &1323345221
 Transform:
   m_ObjectHideFlags: 0
@@ -60399,6 +60402,8 @@ MonoBehaviour:
   - {fileID: 1973748356}
   - {fileID: 908573073}
   - {fileID: 995933592}
+  playerMovementScript: {fileID: 0}
+  playerLookScript: {fileID: 0}
 --- !u!114 &1678241870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62118,6 +62123,10 @@ MonoBehaviour:
     spawnPoints: []
     spawnInterval: 0
   timeBetweenWaves: 5
+  defaultZombiePrefab: {fileID: 0}
+  globalSpawnPoints: []
+  baseZombieCount: 3
+  zombieCountIncreasePerWave: 2
   waveAnnouncementPanel: {fileID: 0}
   waveAnnouncementText: {fileID: 0}
   zombiesRemainingPanel: {fileID: 0}
@@ -66302,8 +66311,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   money: 0
-  failDelay: 2
-  failPanel: {fileID: 0}
 --- !u!114 &1809559933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74890,6 +74897,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelExit
   lockedMessage: Complete the objective first!
   gameWonSceneName: MainMenu
+--- !u!114 &2002483002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002482991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456dc4ce351b645bb968a0aa0aae5f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::tempFlow
+  unlockKey: 101
 --- !u!1 &2003392134
 GameObject:
   m_ObjectHideFlags: 0
@@ -78554,6 +78574,8 @@ MonoBehaviour:
   - {fileID: 1771573387}
   - {fileID: 2163350}
   - {fileID: 318349139}
+  playerMovementScript: {fileID: 0}
+  playerLookScript: {fileID: 0}
 --- !u!114 &2113629740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79785,7 +79807,6 @@ SceneRoots:
   - {fileID: 638522543}
   - {fileID: 924718717}
   - {fileID: 2076164725}
-  - {fileID: 1323345221}
   - {fileID: 1714935375}
   - {fileID: 133480535}
   - {fileID: 30920470}
@@ -79796,3 +79817,4 @@ SceneRoots:
   - {fileID: 1811363268}
   - {fileID: 1748753128}
   - {fileID: 1212647328}
+  - {fileID: 1323345221}

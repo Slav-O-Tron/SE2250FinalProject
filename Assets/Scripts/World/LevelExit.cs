@@ -33,6 +33,13 @@ public class LevelExit : MonoBehaviour
             if (isUnlocked)
             {
                 PlayerData playerData = PlayerData.GetOrCreate();
+
+                // If the level was never completed through normal flow, advance the level now
+                // so DockBoat loads the correct next level when back in MainWorld.
+                bool completedNormally = levelCompletion != null && levelCompletion.RewardClaimed;
+                if (!completedNormally)
+                    playerData.AdvanceLevel();
+
                 string sceneName = playerData.HasCompletedChronosphere() ? gameWonSceneName : "MainWorld";
                 SceneManager.LoadScene(sceneName);
             }
