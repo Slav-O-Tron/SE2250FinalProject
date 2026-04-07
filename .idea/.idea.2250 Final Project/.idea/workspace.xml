@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18a0033-3404-4744-a1db-5e2fca52fbd3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemy/Zombie/Animations/Zombie.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemy/Zombie/Animations/Zombie.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Shawn Level/Level_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Shawn Level/Level_2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Scenes not it use/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Scenes not it use/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Graveyard.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Graveyard.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Tomas Level/Level_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Tomas Level/Level_1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Entity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/Zombie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/Zombie.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/SwordScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/SwordScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShawnScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShawnScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/PlayerAbilities.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/PlayerAbilities.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTree.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Cemetery Kit V1.25/Materials/Dirty_Grass_Terrain_1B2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Cemetery Kit V1.25/Materials/Dirty_Grass_Terrain_1B2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +60,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "Merging DylanLevel",
+    "git-widget-placeholder": "DylanLevel",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
@@ -118,7 +120,7 @@
       <workItem from="1775162096714" duration="6082000" />
       <workItem from="1775284029795" duration="983000" />
       <workItem from="1775375620531" duration="4047000" />
-      <workItem from="1775423406647" duration="850000" />
+      <workItem from="1775423406647" duration="7235000" />
     </task>
     <task id="LOCAL-00001" summary="Added Item and Projectile class scripts, alongside adjusting Player class to have health attribute, and added an enemy health class to have the items damage the enemy">
       <option name="closed" value="true" />

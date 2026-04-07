@@ -24,6 +24,20 @@ public abstract class Entity : MonoBehaviour
     public virtual void TakeDamage(int amount)
     {
         if (!IsAlive) return;
+        //for Endure hit in SkillTree
+        PlayerAbilities abilities = GetComponent<PlayerAbilities>();
+        int newHealth = currentHealth - amount;
+
+        if (abilities != null && abilities.hasEndureHit && abilities.endureHitAvailable && newHealth <= 0)
+        {
+            currentHealth = 1;
+            abilities.endureHitAvailable = false;
+            Debug.Log("Endure Hit triggered - survived with 1 HP!");
+            OnDamageTaken(amount);
+            return;
+        }
+        
+        
         currentHealth = Mathf.Max(0, currentHealth - amount);
         OnDamageTaken(amount);
         if (currentHealth <= 0)
