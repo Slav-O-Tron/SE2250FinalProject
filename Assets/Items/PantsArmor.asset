@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6642e2709a074fdbbdacd64067b8d4f6, type: 3}
   m_Name: PantsArmor
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
+  itemName: Pants
+  icon: {fileID: 21300000, guid: f60454ab7fd248145a2f2d5137c3d464, type: 3}
   description: 
   isStackable: 0
-  isEquipable: 0
-  equipmentSlot: 0
-  equipmentPrefab: {fileID: 0}
+  isEquipable: 1
+  equipmentSlot: 3
+  equipmentPrefab: {fileID: 2031652815331222946, guid: 2fd7b97df57b8b245954f8296e7d9be1, type: 3}
+  equipPositionOffset: {x: 0, y: 0, z: 0}
+  equipRotationOffset: {x: 0, y: 0, z: 0}
+  equipScaleOffset: {x: 1, y: 1, z: 1}

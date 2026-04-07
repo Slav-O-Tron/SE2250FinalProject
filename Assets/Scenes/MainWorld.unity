@@ -1276,7 +1276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &30220923 stripped
@@ -1474,7 +1473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &35613499 stripped
@@ -4354,7 +4352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &98199400 stripped
@@ -8738,7 +8735,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &182078580 stripped
@@ -12978,7 +12974,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &266695361 stripped
@@ -13079,7 +13074,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &268557967 stripped
@@ -20244,7 +20238,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &404785119 stripped
@@ -30707,7 +30700,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &601521580 stripped
@@ -31491,7 +31483,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &622449920 stripped
@@ -31853,7 +31844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &636376122 stripped
@@ -32829,7 +32819,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &647864881 stripped
@@ -36336,6 +36325,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5949706081513176824, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2093443027}
+    - targetCorrespondingSourceObject: {fileID: 5949706081513176824, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2093443034}
+    - targetCorrespondingSourceObject: {fileID: 5949706081513176824, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2093443033}
   m_SourcePrefab: {fileID: 100100000, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
 --- !u!1001 &713206176
 PrefabInstance:
@@ -38697,7 +38692,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &753778576 stripped
@@ -40299,7 +40293,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &794343225 stripped
@@ -42795,6 +42788,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4478025086236128, guid: a7635237256fa0c49ab389f128e1ba27, type: 3}
   m_PrefabInstance: {fileID: 857084487}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &859720011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8495727780433895157, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+  m_PrefabInstance: {fileID: 712512739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &861041828 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: bd72cb0da4523894aa69559d8ccd3a45, type: 3}
@@ -43780,7 +43778,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &883422682 stripped
@@ -46231,7 +46228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &941526550 stripped
@@ -46871,6 +46867,8 @@ MonoBehaviour:
   - {fileID: 705853388}
   - {fileID: 1504381850}
   - {fileID: 546175352}
+  playerMovementScript: {fileID: 0}
+  playerLookScript: {fileID: 0}
 --- !u!114 &953895575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48632,7 +48630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &983560055 stripped
@@ -48943,8 +48940,10 @@ MonoBehaviour:
   introLines: []
   repeatLines: []
   shopItems:
-  - {fileID: 11400000, guid: 9ec536675eb2cfe4cac7e749e402783d, type: 2}
-  - {fileID: 11400000, guid: 808b0e1892b4b594b9a2bff120d0272f, type: 2}
+  - {fileID: 11400000, guid: 6af48b31827e66a4da70337f56bb36cf, type: 2}
+  - {fileID: 11400000, guid: 3aeaafc4ea12dae4fb56c55053f324b1, type: 2}
+  - {fileID: 11400000, guid: 3b9d831551147564a889f0517ac697ad, type: 2}
+  - {fileID: 11400000, guid: d5b713e5ea2108f4680d123c935a04d7, type: 2}
   shopUI: {fileID: 1377900414}
 --- !u!135 &989512243
 SphereCollider:
@@ -51242,7 +51241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1032792216 stripped
@@ -56114,7 +56112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1133349549 stripped
@@ -56272,7 +56269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1137673512 stripped
@@ -60015,7 +60011,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1208993366 stripped
@@ -61048,6 +61043,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4641666428511186, guid: d7fd44a9ba1363345ba0969019d4c1c9, type: 3}
   m_PrefabInstance: {fileID: 1226416400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1227470336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7989958647440730211, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+  m_PrefabInstance: {fileID: 712512739}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1228755099
 PrefabInstance:
@@ -63038,7 +63038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1265382717 stripped
@@ -64318,7 +64317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1282002266 stripped
@@ -68940,7 +68938,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1376797104 stripped
@@ -73107,7 +73104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1457991479 stripped
@@ -76024,7 +76020,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1518265907 stripped
@@ -78065,7 +78060,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1573060354 stripped
@@ -79956,6 +79950,8 @@ MonoBehaviour:
   - {fileID: 1290046473}
   - {fileID: 1900773440}
   - {fileID: 1437803347}
+  playerMovementScript: {fileID: 0}
+  playerLookScript: {fileID: 0}
 --- !u!114 &1605117165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80969,7 +80965,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1620329170 stripped
@@ -81157,7 +81152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1624230794 stripped
@@ -84491,7 +84485,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1679502908 stripped
@@ -86220,7 +86213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1710131239 stripped
@@ -94090,7 +94082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1856571155 stripped
@@ -97596,7 +97587,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &1932138954 stripped
@@ -104489,7 +104479,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 10
-  grantsDoorKey: 0
   coinValue: 10
   xpValue: 0
 --- !u!4 &2072374363 stripped
@@ -105717,7 +105706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 1
-  grantsDoorKey: 0
   coinValue: 0
   xpValue: 0
 --- !u!114 &2093443028
@@ -105796,6 +105784,36 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1097301955641835064, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
   m_PrefabInstance: {fileID: 712512739}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2093443033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093443025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f695b04eb2a6d9e4182f9b1fd71217aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RebindArmor
+  armorRenderer: {fileID: 0}
+  targetRigRoot: {fileID: 859720011}
+  rootBoneName: PT_Hips
+--- !u!114 &2093443034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093443025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec1c098f0704a5d8cffc5d190b250dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentManager
+  playerRigRoot: {fileID: 859720011}
+  rightHandSocket: {fileID: 1227470336}
+  leftHandSocket: {fileID: 0}
 --- !u!1001 &2093778934
 PrefabInstance:
   m_ObjectHideFlags: 0

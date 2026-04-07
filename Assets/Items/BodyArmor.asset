@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6642e2709a074fdbbdacd64067b8d4f6, type: 3}
   m_Name: BodyArmor
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
+  itemName: Body
+  icon: {fileID: 21300000, guid: 5045858afe942664f961a2c67e949c12, type: 3}
   description: 
   isStackable: 0
-  isEquipable: 0
-  equipmentSlot: 0
-  equipmentPrefab: {fileID: 0}
+  isEquipable: 1
+  equipmentSlot: 2
+  equipmentPrefab: {fileID: 6486813894900432493, guid: e66d4cc425023c246b63c04357f51885, type: 3}
+  equipPositionOffset: {x: 0, y: 0, z: 0}
+  equipRotationOffset: {x: 0, y: 0, z: 0}
+  equipScaleOffset: {x: 1, y: 1, z: 1}

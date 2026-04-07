@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c241e5d883f43cd90bf5c360f191c8, type: 3}
   m_Name: BodyArmorShop
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: e6d8bf7efa3409f43b6b48048e99ad12, type: 2}
   price: 10
   quantity: 1

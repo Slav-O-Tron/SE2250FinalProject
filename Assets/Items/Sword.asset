@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Sword
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 31cc6eb2eb069d946b904f8af8dc7290, type: 3}
   description: 
   isStackable: 0
-  isEquipable: 0
-  equipmentSlot: 0
-  equipmentPrefab: {fileID: 0}
+  isEquipable: 1
+  equipmentSlot: 6
+  equipmentPrefab: {fileID: 7877441343542505112, guid: 645ec62e9afaadd4abb74bf74ae13308, type: 3}
+  equipPositionOffset: {x: 0, y: 0, z: 0}
+  equipRotationOffset: {x: 180, y: 0, z: 0}
+  equipScaleOffset: {x: 1, y: 1, z: 1}

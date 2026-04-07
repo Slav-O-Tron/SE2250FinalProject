@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c241e5d883f43cd90bf5c360f191c8, type: 3}
   m_Name: PantsArmorShop
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: cfcca4ae74a5a87498dab6606448c23c, type: 2}
   price: 10
   quantity: 1
