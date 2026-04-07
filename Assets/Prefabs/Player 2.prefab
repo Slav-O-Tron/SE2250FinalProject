@@ -821,8 +821,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2700750156751189440}
   - {fileID: 3424820309526336881}
+  - {fileID: 2700750156751189440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1226062611394915863
@@ -2507,7 +2507,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 0}
   quantity: 1
-  grantsDoorKey: 0
   coinValue: 0
   xpValue: 0
 --- !u!4 &3795353611996275957 stripped
