@@ -139,23 +139,26 @@ public class Merchant : Entity
 
         DialogueLine[] linesToShow = GetDialogueForCurrentLevel();
 
-        dialogueUI.StartDialogue(linesToShow, onFinished: () =>
-        {
-            PlayerData playerData = PlayerData.GetOrCreate();
-            if (ShouldShowChronosphereIntro(playerData))
+        dialogueUI.StartDialogue(
+            linesToShow,
+            onFinished: () =>
             {
-                playerData.hasSeenMerchantChronosphereIntro = true;
-                lastSpokenLevel = playerData.currentLevel;
-            }
+                PlayerData playerData = PlayerData.GetOrCreate();
+                if (ShouldShowChronosphereIntro(playerData))
+                {
+                    playerData.hasSeenMerchantChronosphereIntro = true;
+                    lastSpokenLevel = playerData.currentLevel;
+                }
 
-            dialogueOpen = false;
-            if (hud != null) hud.ShowHUD(true);
+                dialogueOpen = false;
+                if (hud != null) hud.ShowHUD(true);
 
-            UpdateMainWorldPrompt();
+                UpdateMainWorldPrompt();
 
-            if (playerInRange)
-                hud?.ShowInteractPrompt("Press E to speak with Merchant");
-        });
+                if (playerInRange && !shopOpen)
+                    hud?.ShowInteractPrompt("Press E to speak with Merchant");
+            },
+            onShopPressed: OpenShopFromDialogue);
     }
 
     private DialogueLine[] GetDialogueForCurrentLevel()
@@ -208,7 +211,6 @@ public class Merchant : Entity
 
     public void OpenShopFromDialogue()
     {
-        dialogueUI?.CloseDialogue();
         dialogueOpen = false;
         OpenShop();
     }

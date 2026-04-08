@@ -63,15 +63,13 @@ public class ShopUI : MonoBehaviour
         }
 
         gameObject.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        SetMenuState(true);
     }
 
     public void CloseShop()
     {
         gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        SetMenuState(false);
     }
 
     private void TryBuy(ShopItem shopItem)
@@ -99,5 +97,17 @@ public class ShopUI : MonoBehaviour
         }
         else
             Debug.Log("Not enough coins.");
+    }
+
+    private void SetMenuState(bool isOpen)
+    {
+        if (inventoryManager != null)
+        {
+            inventoryManager.SetExternalMenuActive(isOpen);
+            return;
+        }
+
+        Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isOpen;
     }
 }

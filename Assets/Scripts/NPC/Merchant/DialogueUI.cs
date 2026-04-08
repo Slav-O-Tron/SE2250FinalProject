@@ -3,13 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-/// Attach to your DialoguePanel UI GameObject.
-/// Scene setup:
-///   DialoguePanel
-///   ├── SpeakerNameText  (TMP_Text)
-///   ├── DialogueBodyText (TMP_Text)
-///   ├── NextButton       (Button) - "Next" / "Close"
-///   └── ShopButton       (Button) - shown only after dialogue ends (can be hidden initially)
+
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private GameObject dialoguePanel;   // Drag DialoguePanel here
@@ -22,6 +16,8 @@ public class DialogueUI : MonoBehaviour
     private DialogueLine[] lines;
     private int currentLine = 0;
     private Action onDialogueFinished;
+    private Action onShopSelected;
+    private InventoryManager inventoryManager;
 
     private void Awake()
     {
@@ -42,8 +38,13 @@ public class DialogueUI : MonoBehaviour
         if (shopButton != null) shopButton.gameObject.SetActive(false);
     }
 
-    /// <summary>Start a dialogue sequence. onFinished is called when the player closes it.</summary>
+    /// Start a dialogue sequence. onFinished is called when the player closes it.
     public void StartDialogue(DialogueLine[] dialogueLines, Action onFinished = null)
+    {
+        StartDialogue(dialogueLines, onFinished, null);
+    }
+
+    public void StartDialogue(DialogueLine[] dialogueLines, Action onFinished, Action onShopPressed)
     {
         AutoBindReferences();
 
@@ -56,6 +57,7 @@ public class DialogueUI : MonoBehaviour
         lines = dialogueLines;
         currentLine = 0;
         onDialogueFinished = onFinished;
+        onShopSelected = onShopPressed;
 
         nextButton.onClick.RemoveAllListeners();
         nextButton.onClick.AddListener(OnNextPressed);
@@ -63,17 +65,25 @@ public class DialogueUI : MonoBehaviour
         if (shopButton != null) shopButton.gameObject.SetActive(false);
 
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        SetMenuState(true);
 
         ShowLine(currentLine);
     }
 
     public void CloseDialogue()
     {
+        CloseDialogue(true);
+    }
+
+    private void CloseDialogue(bool restoreGameplayState)
+    {
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
+        if (shopButton != null)
+            shopButton.gameObject.SetActive(false);
+
+        if (restoreGameplayState)
+            SetMenuState(false);
     }
 
     private void OnNextPressed()
@@ -87,11 +97,19 @@ public class DialogueUI : MonoBehaviour
         else
         {
             // Dialogue over — show shop button if assigned, then close
-            if (shopButton != null)
+            if (shopButton != null && onShopSelected != null)
             {
                 shopButton.gameObject.SetActive(true);
                 nextButtonText.text = "Close";
-                // Clicking Next again just closes
+
+                shopButton.onClick.RemoveAllListeners();
+                shopButton.onClick.AddListener(() =>
+                {
+                    CloseDialogue(false);
+                    onDialogueFinished?.Invoke();
+                    onShopSelected?.Invoke();
+                });
+
                 nextButton.onClick.RemoveAllListeners();
                 nextButton.onClick.AddListener(() =>
                 {
@@ -114,11 +132,14 @@ public class DialogueUI : MonoBehaviour
 
         bool isLast = index == lines.Length - 1;
         if (nextButtonText != null)
-            nextButtonText.text = isLast ? "Done" : "Next";
+            nextButtonText.text = isLast ? "Close" : "Next";
     }
 
     private void AutoBindReferences()
     {
+        if (inventoryManager == null)
+            inventoryManager = FindFirstObjectByType<InventoryManager>();
+
         if (dialoguePanel == null)
             dialoguePanel = gameObject;
 
@@ -143,5 +164,17 @@ public class DialogueUI : MonoBehaviour
 
         if (nextButtonText == null && nextButton != null)
             nextButtonText = nextButton.GetComponentInChildren<TMP_Text>(true);
+    }
+
+    private void SetMenuState(bool isOpen)
+    {
+        if (inventoryManager != null)
+        {
+            inventoryManager.SetExternalMenuActive(isOpen);
+            return;
+        }
+
+        Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isOpen;
     }
 }

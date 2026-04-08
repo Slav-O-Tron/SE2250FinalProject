@@ -166,6 +166,8 @@ public class Zombie : Entity
     {
         state = ZombieState.Dead;
         rb.linearVelocity = Vector3.zero;
+        GetComponent<ChronoShardCarrier>()?.Drop();
+
         // Give coins directly into Entity.money on the player
         int coinsToDrop = Random.Range(CoinDropMin, CoinDropMax + 1);
         playerEntity?.AddMoney(coinsToDrop);    // AddMoney lives in Entity

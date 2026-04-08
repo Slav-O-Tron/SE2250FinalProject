@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
-/// <summary>
+
 /// Attach to a WaveManager GameObject in your level scene.
 /// Configure waves in the Inspector. When all waves are cleared,
 /// calls LevelCompletion.CompleteLevel() automatically.
@@ -47,17 +47,20 @@ public class WaveManager : MonoBehaviour
 
     private LevelCompletion levelCompletion;
     private HUD hud;
+    private StoryNPC storyNPC;
     private int currentWave = 0;
     private List<GameObject> activeZombies = new List<GameObject>();
     private bool waveInProgress = false;
     private bool allWavesDone = false;
     private bool wavesStarted = false;
     private bool levelFailed = false;
+    private bool shardDeliveredForWave = false;
 
     private void Start()
     {
         levelCompletion = FindFirstObjectByType<LevelCompletion>();
         hud = FindFirstObjectByType<HUD>();
+        storyNPC = FindFirstObjectByType<StoryNPC>();
 
         if (zombiesRemainingPanel != null)
             zombiesRemainingPanel.SetActive(false);
@@ -67,12 +70,14 @@ public class WaveManager : MonoBehaviour
 
         // If there is a StoryNPC in the scene, wait for them to finish talking.
         // Otherwise start waves immediately.
-        StoryNPC storyNPC = FindFirstObjectByType<StoryNPC>();
         if (storyNPC != null)
+        {
             storyNPC.OnStoryFinished += StartWaves;
+            storyNPC.OnChronoShardDelivered += HandleChronoShardDelivered;
+        }
         else
         {
-            hud?.SetDefaultPrompt("Protect the Elder");
+            hud?.SetDefaultPrompt("Defend the Elder and recover the next Chrono Shard.");
             StartWaves();
         }
     }
@@ -81,7 +86,7 @@ public class WaveManager : MonoBehaviour
     {
         if (wavesStarted) return;
         wavesStarted = true;
-        hud?.SetDefaultPrompt("Protect the Elder");
+        hud?.SetDefaultPrompt("Defend the Elder and recover the next Chrono Shard.");
 
         if (zombiesRemainingPanel != null)
             zombiesRemainingPanel.SetActive(true);
@@ -108,7 +113,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    // --- Spawn helpers -----------------------------------------------------------
+    // Spawn helpers 
 
     private Transform[] GetAllSpawnPoints()
     {
@@ -123,7 +128,22 @@ public class WaveManager : MonoBehaviour
         StopAllCoroutines();
     }
 
-    // ---------------------------------------------------------------------------
+    private void OnDestroy()
+    {
+        if (storyNPC != null)
+        {
+            storyNPC.OnStoryFinished -= StartWaves;
+            storyNPC.OnChronoShardDelivered -= HandleChronoShardDelivered;
+        }
+    }
+
+    private void HandleChronoShardDelivered(int waveNumber)
+    {
+        if (waveNumber == currentWave + 1)
+            shardDeliveredForWave = true;
+    }
+
+    // Wave flow 
 
     private IEnumerator RunWaves()
     {
@@ -176,6 +196,7 @@ public class WaveManager : MonoBehaviour
 
                     Transform spawnPoint = spawnPoints[i % spawnPoints.Length];
                     GameObject zombie = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+
                     activeZombies.Add(zombie);
 
                     yield return new WaitForSeconds(wave.spawnInterval);
@@ -186,6 +207,22 @@ public class WaveManager : MonoBehaviour
             yield return new WaitUntil(() => !waveInProgress || levelFailed);
 
             if (levelFailed) yield break;
+
+            bool isLastWave = currentWave >= waves.Length - 1;
+            if (storyNPC != null)
+            {
+                shardDeliveredForWave = false;
+                storyNPC.PrepareChronoShardTurnIn(currentWave + 1, isLastWave);
+
+                if (zombiesRemainingText != null)
+                    zombiesRemainingText.text = isLastWave
+                        ? "Final wave cleared  |  Return the final shard to the Elder"
+                        : $"Wave {currentWave + 1}/{waves.Length}  |  Return the recovered shard to the Elder";
+
+                yield return new WaitUntil(() => shardDeliveredForWave || levelFailed);
+
+                if (levelFailed) yield break;
+            }
 
             if (currentWave < waves.Length - 1)
             {
@@ -209,7 +246,8 @@ public class WaveManager : MonoBehaviour
         if (waveAnnouncementText != null)
             waveAnnouncementText.text = string.Empty;
 
-        levelCompletion?.CompleteLevel();
+        if (levelCompletion != null && !levelCompletion.IsComplete)
+            levelCompletion.CompleteLevel();
     }
 
     private void ShowAnnouncement(string message)

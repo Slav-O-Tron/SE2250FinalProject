@@ -38,6 +38,22 @@ public class PlayerData : MonoBehaviour
         "The Final Realm"
     };
 
+    // ── Persistent inventory ──────────────────────────────────────────────────
+    [System.Serializable]
+    public class InventorySaveEntry
+    {
+        public ItemData item;
+        public int quantity;
+    }
+    public List<InventorySaveEntry> savedInventory = new List<InventorySaveEntry>();
+
+    // ── Persistent equipped items ─────────────────────────────────────────────
+    public List<ItemData> savedEquipped = new List<ItemData>();
+
+    // ── Persistent health ─────────────────────────────────────────────────────
+    /// -1 means "not yet set — start at full health".
+    public int savedHealth = -1;
+
     private readonly HashSet<int> collectedChronospherePieces = new HashSet<int>();
 
     public int ChronospherePieceCount => collectedChronospherePieces.Count;

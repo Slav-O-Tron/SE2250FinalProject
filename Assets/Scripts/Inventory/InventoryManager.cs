@@ -4,6 +4,7 @@ public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
     private bool menuActivated;
+    private bool externalMenuActive;
     public ItemSlot[] itemSlot;
 
     [Header("Player Control")]
@@ -12,11 +13,53 @@ public class InventoryManager : MonoBehaviour
 
     public bool MenuActivated
     {
-        get { return menuActivated; }
+        get { return menuActivated || externalMenuActive; }
+    }
+
+    private void Start()
+    {
+        RestoreFromPlayerData();
+    }
+
+    private void OnDestroy()
+    {
+        SaveToPlayerData();
+    }
+
+    private void SaveToPlayerData()
+    {
+        PlayerData pd = PlayerData.GetOrCreate();
+        pd.savedInventory.Clear();
+        foreach (ItemSlot slot in itemSlot)
+        {
+            if (slot.isFull && slot.itemData != null)
+            {
+                pd.savedInventory.Add(new PlayerData.InventorySaveEntry
+                {
+                    item = slot.itemData,
+                    quantity = slot.quantity
+                });
+            }
+        }
+    }
+
+    private void RestoreFromPlayerData()
+    {
+        PlayerData pd = PlayerData.GetOrCreate();
+        if (pd.savedInventory == null || pd.savedInventory.Count == 0) return;
+
+        foreach (PlayerData.InventorySaveEntry entry in pd.savedInventory)
+        {
+            if (entry.item != null)
+                AddItem(entry.item, entry.quantity);
+        }
     }
 
     void Update()
     {
+        if (externalMenuActive)
+            return;
+
         if (Input.GetButtonDown("Inventory") && menuActivated)
         {
             CloseInventory();
@@ -31,15 +74,7 @@ public class InventoryManager : MonoBehaviour
     {
         InventoryMenu.SetActive(true);
         menuActivated = true;
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        if (playerMovementScript != null)
-            playerMovementScript.enabled = false;
-
-        if (playerLookScript != null)
-            playerLookScript.enabled = false;
+        ApplyMenuState();
     }
 
     void CloseInventory()
@@ -47,14 +82,27 @@ public class InventoryManager : MonoBehaviour
         InventoryMenu.SetActive(false);
         menuActivated = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        ApplyMenuState();
+    }
+
+    public void SetExternalMenuActive(bool isActive)
+    {
+        externalMenuActive = isActive;
+        ApplyMenuState();
+    }
+
+    private void ApplyMenuState()
+    {
+        bool anyMenuOpen = menuActivated || externalMenuActive;
+
+        Cursor.lockState = anyMenuOpen ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = anyMenuOpen;
 
         if (playerMovementScript != null)
-            playerMovementScript.enabled = true;
+            playerMovementScript.enabled = !anyMenuOpen;
 
         if (playerLookScript != null)
-            playerLookScript.enabled = true;
+            playerLookScript.enabled = !anyMenuOpen;
     }
 
     public void AddItem(ItemData item, int quantity)

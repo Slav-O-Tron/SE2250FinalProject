@@ -228,6 +228,7 @@ public class TomasZombie : Entity
     {
         state = ZombieState.Dead;
         StopMoving();
+        GetComponent<ChronoShardCarrier>()?.Drop();
 
         int coinsToDrop = Random.Range(CoinDropMin, CoinDropMax + 1);
         RefreshPlayerReference();

@@ -10,6 +10,12 @@ public class ItemPickup : Pickup
     [SerializeField] private int coinValue = 0;
     [SerializeField] private int xpValue = 0;
 
+    public void Initialize(ItemData item, int amount)
+    {
+        itemData = item;
+        quantity = Mathf.Max(1, amount);
+    }
+
     protected override void OnPickedUp(GameObject player)
     {
         if (itemData != null)

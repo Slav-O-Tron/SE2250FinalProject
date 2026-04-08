@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 
 /// Place one instance of this in every Level scene.
@@ -14,11 +15,16 @@ public class LevelCompletion : MonoBehaviour
     [Tooltip("The Chronosphere Piece ItemData ScriptableObject to add to the player's inventory on level completion.")]
     [SerializeField] private ItemData chronospherePieceItemData;
 
+    [Tooltip("Optional shard ordering puzzle shown before the Chronosphere piece is awarded.")]
+    [SerializeField] private ShardAssemblyPuzzlePanel shardAssemblyPuzzlePanel;
+
     private bool levelCompleted = false;
     private bool rewardClaimed = false;
+    private bool shardAssemblySolved = false;
 
     public bool IsComplete => levelCompleted;
     public bool RewardClaimed => rewardClaimed;
+    public bool HasPendingRewardPuzzle => shardAssemblyPuzzlePanel != null && !shardAssemblySolved;
 
 
     /// Called by WaveManager / BossEnemy when the objective is met.
@@ -33,7 +39,7 @@ public class LevelCompletion : MonoBehaviour
             levelCompletePanel.SetActive(true);
 
         HUD hud = FindFirstObjectByType<HUD>();
-        hud?.SetDefaultPrompt("Speak with the Elder to claim the Chronosphere piece.");
+        hud?.SetDefaultPrompt("The ritual is complete. Speak with the Elder.");
 
         StoryNPC elder = FindFirstObjectByType<StoryNPC>();
         if (elder != null)
@@ -46,6 +52,22 @@ public class LevelCompletion : MonoBehaviour
         }
 
         Debug.Log("[LevelCompletion] Level objective complete — waiting for Chronosphere reward.");
+    }
+
+    public bool TryOpenRewardPuzzle(Action onSolved, Action onClosed = null)
+    {
+        if (rewardClaimed || shardAssemblyPuzzlePanel == null || shardAssemblySolved)
+            return false;
+
+        shardAssemblyPuzzlePanel.Show(
+            solvedCallback: () =>
+            {
+                shardAssemblySolved = true;
+                onSolved?.Invoke();
+            },
+            closedCallback: onClosed);
+
+        return true;
     }
 
     public bool ClaimChronosphereReward()

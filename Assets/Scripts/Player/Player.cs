@@ -46,13 +46,21 @@ public class Player : Entity
         playerInventory = GetComponent<PlayerInventory>();
         abilities = GetComponent<PlayerAbilities>();
 
-        // Restore persisted gold from PlayerData
-        money = PlayerData.GetOrCreate().gold;
+        PlayerData pd = PlayerData.GetOrCreate();
+
+        // Restore persisted gold
+        money = pd.gold;
+
+        // Restore persisted health (savedHealth == -1 means first load — stay at full)
+        if (pd.savedHealth > 0)
+            currentHealth = Mathf.Min(pd.savedHealth, maxHealth);
     }
 
     private void OnDestroy()
     {
-        PlayerData.GetOrCreate().gold = money;
+        PlayerData pd = PlayerData.GetOrCreate();
+        pd.gold = money;
+        pd.savedHealth = currentHealth;
     }
 
     public override void AddMoney(int amount)
@@ -206,9 +214,15 @@ public class Player : Entity
     }
     
 
+    public override void TakeDamage(int amount)
+    {
+        int reduced = Mathf.RoundToInt(amount * (1f - Mathf.Clamp01(damageReduction)));
+        base.TakeDamage(reduced);
+    }
+
     protected override void OnDamageTaken(int amount)
     {
-        // TODO: hit flash, sound, UI update
+        // TODO: hit flash, sound
     }
 
     protected override void OnDeath()

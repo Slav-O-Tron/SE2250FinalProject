@@ -38,9 +38,9 @@ public class LevelFailManager : MonoBehaviour
             Instance = null;
     }
 
-    /// <summary>
+
     /// Trigger the fail state. Safe to call multiple times — only fires once.
-    /// </summary>
+
     public void TriggerFail(string reason = "")
     {
         if (hasFailed) return;

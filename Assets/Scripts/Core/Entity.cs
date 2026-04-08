@@ -15,6 +15,9 @@ public abstract class Entity : MonoBehaviour
     public bool IsAlive      => currentHealth > 0;
     public Vector3 Position  => transform.position;
 
+    /// Fired whenever health changes: (currentHealth, maxHealth)
+    public event System.Action<int, int> OnHealthChanged;
+
     protected virtual void Awake()
     {
         currentHealth = maxHealth;
@@ -33,12 +36,14 @@ public abstract class Entity : MonoBehaviour
             currentHealth = 1;
             abilities.endureHitAvailable = false;
             Debug.Log("Endure Hit triggered - survived with 1 HP!");
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
             OnDamageTaken(amount);
             return;
         }
         
         
         currentHealth = Mathf.Max(0, currentHealth - amount);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
         OnDamageTaken(amount);
         if (currentHealth <= 0)
             OnDeath();
@@ -49,6 +54,7 @@ public abstract class Entity : MonoBehaviour
     {
         if (!IsAlive) return;
         currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     public virtual void AddMoney(int amount)

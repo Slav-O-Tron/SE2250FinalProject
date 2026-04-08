@@ -80,7 +80,8 @@ public class HUD : MonoBehaviour
         BindPromptText();
         RefreshAll();
 
-        if (interactPrompt != null)
+        // Only hide if nothing has already set a default prompt (e.g. Merchant.Start ran first)
+        if (interactPrompt != null && string.IsNullOrEmpty(defaultPromptMessage))
             interactPrompt.SetActive(false);
     }
 
@@ -113,10 +114,32 @@ public class HUD : MonoBehaviour
         {
             if (!p.gameObject.activeInHierarchy) continue;
 
+            if (player != null)
+                player.OnHealthChanged -= OnHealthChanged;
+
             player = p;
             inventory = p.GetComponent<PlayerInventory>();
+            player.OnHealthChanged += OnHealthChanged;
             break;
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (player != null)
+            player.OnHealthChanged -= OnHealthChanged;
+    }
+
+    private void OnHealthChanged(int current, int max)
+    {
+        if (healthBar != null)
+        {
+            healthBar.maxValue = max;
+            healthBar.value = current;
+        }
+
+        if (healthText != null)
+            healthText.text = $"{current} / {max}";
     }
 
     private void RefreshAll()

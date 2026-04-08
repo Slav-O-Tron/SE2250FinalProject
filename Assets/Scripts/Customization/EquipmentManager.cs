@@ -16,6 +16,27 @@ public class EquipmentManager : MonoBehaviour
     private Dictionary<EquipmentSlot, ItemData> equippedItems =
         new Dictionary<EquipmentSlot, ItemData>();
 
+    private void Start()
+    {
+        PlayerData pd = PlayerData.GetOrCreate();
+        foreach (ItemData item in pd.savedEquipped)
+        {
+            if (item != null)
+                Equip(item);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerData pd = PlayerData.GetOrCreate();
+        pd.savedEquipped.Clear();
+        foreach (ItemData item in equippedItems.Values)
+        {
+            if (item != null)
+                pd.savedEquipped.Add(item);
+        }
+    }
+
     public void ToggleEquip(ItemData item)
     {
         if (item == null || !item.isEquipable)
