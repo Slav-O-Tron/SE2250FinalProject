@@ -21,7 +21,8 @@ public class SkillTreeToggle : MonoBehaviour
         if (Input.inputString == "k")
             Toggle();
     }
-
+    
+    
     void Toggle()
     {
         if (skillTreePanel == null) return;
@@ -29,7 +30,16 @@ public class SkillTreeToggle : MonoBehaviour
         bool isOpen = skillTreePanel.activeSelf;
         skillTreePanel.SetActive(!isOpen);
 
+        if (!isOpen)
+            RefreshAllNodes();
+
         Cursor.lockState = isOpen ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !isOpen;
+    }
+
+    private void RefreshAllNodes()
+    {
+        foreach (SkillNodeUI nodeUI in FindObjectsByType<SkillNodeUI>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            nodeUI.Refresh();
     }
 }

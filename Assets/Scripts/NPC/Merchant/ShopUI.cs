@@ -6,7 +6,6 @@ public class ShopUI : MonoBehaviour
 {
     [SerializeField] private GameObject itemButtonPrefab;
     [SerializeField] private Transform contentParent;
-
     private Player player;
     private InventoryManager inventoryManager;
 
@@ -14,7 +13,6 @@ public class ShopUI : MonoBehaviour
     {
         if (player == null)
             player = FindFirstObjectByType<Player>();
-
         if (inventoryManager == null)
             inventoryManager = FindFirstObjectByType<InventoryManager>();
     }
@@ -22,47 +20,40 @@ public class ShopUI : MonoBehaviour
     public void OpenShop(ShopItem[] items)
     {
         EnsureReferences();
-
-        Debug.Log("OpenShop called");
-        Debug.Log("Items length: " + (items == null ? 0 : items.Length));
-
         foreach (Transform child in contentParent)
             Destroy(child.gameObject);
 
         foreach (ShopItem shopItem in items)
         {
-            if (shopItem == null)
-            {
-                Debug.Log("shopItem is null");
-                continue;
-            }
-
-            if (shopItem.itemData == null)
-            {
-                Debug.Log("itemData is missing on ShopItem: " + shopItem.name);
-                continue;
-            }
-
-            Debug.Log("Creating button for: " + shopItem.itemData.itemName);
+            if (shopItem == null) continue;
 
             GameObject btn = Instantiate(itemButtonPrefab, contentParent);
-
             Transform imageTf = btn.transform.Find("ItemImage");
             Transform nameTf = btn.transform.Find("NameText");
             Transform priceTf = btn.transform.Find("PriceText");
             Transform buyTf = btn.transform.Find("BuyButton");
 
-            if (imageTf != null)
-                imageTf.GetComponent<Image>().sprite = shopItem.itemData.icon;
-
-            if (nameTf != null)
-                nameTf.GetComponent<TMP_Text>().text = shopItem.itemData.itemName;
-
-            if (priceTf != null)
-                priceTf.GetComponent<TMP_Text>().text = $"{shopItem.price} coins";
+            if (shopItem.isSkillPoints)
+            {
+                if (imageTf != null)
+                    imageTf.GetComponent<Image>().sprite = null;
+                if (nameTf != null)
+                    nameTf.GetComponent<TMP_Text>().text = $"+{shopItem.skillPointAmount} Skill Point(s)";
+                if (priceTf != null)
+                    priceTf.GetComponent<TMP_Text>().text = $"{shopItem.price} coins";
+            }
+            else
+            {
+                if (shopItem.itemData == null) continue;
+                if (imageTf != null)
+                    imageTf.GetComponent<Image>().sprite = shopItem.itemData.icon;
+                if (nameTf != null)
+                    nameTf.GetComponent<TMP_Text>().text = shopItem.itemData.itemName;
+                if (priceTf != null)
+                    priceTf.GetComponent<TMP_Text>().text = $"{shopItem.price} coins";
+            }
 
             ShopItem capturedItem = shopItem;
-
             if (buyTf != null)
             {
                 Button buyButton = buyTf.GetComponent<Button>();
@@ -85,8 +76,21 @@ public class ShopUI : MonoBehaviour
 
     private void TryBuy(ShopItem shopItem)
     {
-        if (player == null || inventoryManager == null || shopItem == null || shopItem.itemData == null)
+        if (player == null || shopItem == null) return;
+
+        if (shopItem.isSkillPoints)
+        {
+            if (player.SpendMoney(shopItem.price))
+            {
+                SkillTree.Instance?.AddSkillPoints(shopItem.skillPointAmount);
+                Debug.Log($"Bought {shopItem.skillPointAmount} skill point(s) for {shopItem.price} coins.");
+            }
+            else
+                Debug.Log("Not enough coins.");
             return;
+        }
+
+        if (inventoryManager == null || shopItem.itemData == null) return;
 
         if (player.SpendMoney(shopItem.price))
         {
@@ -94,8 +98,6 @@ public class ShopUI : MonoBehaviour
             Debug.Log($"Bought {shopItem.itemData.itemName} for {shopItem.price} coins.");
         }
         else
-        {
             Debug.Log("Not enough coins.");
-        }
     }
 }

@@ -55,4 +55,6 @@ public class OrderPuzzle : MonoBehaviour
             cathedralDoor.SetActive(false);
         Debug.Log("Puzzle solved - door opens!");
     }
+    
+
 }
