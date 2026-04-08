@@ -9,7 +9,10 @@ public class PlayerCombat : MonoBehaviour
 
     private bool canAttack = true;
     private Animator animator;
+    
+    [SerializeField] private Wand wand;
 
+    
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -21,6 +24,16 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && canAttack)
         {
             Attack();
+        }
+        
+        // LEFT CLICK → Wand
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("FAHHH");
+            if (wand != null)
+            {
+                wand.CastSpell();
+            }
         }
     }
 
