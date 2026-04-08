@@ -3,8 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e18a0033-3404-4744-a1db-5e2fca52fbd3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Graveyard.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Graveyard.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Level_3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Level_3.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Level_3.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Level_3.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainWorld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainWorld.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPC/Merchant/ShopItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPC/Merchant/ShopItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NPC/Merchant/ShopUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NPC/Merchant/ShopUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTreeToggle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Skill Tree/SkillTreeToggle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/World/Level3/OrderPuzzle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/World/Level3/OrderPuzzle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/World/Level3/PushableStone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/World/Level3/PushableStone.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Daniel Mistage/Stylized Fantasy Armory/Prefabs/Weapons and Shields/Swords/Sword.001.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Daniel Mistage/Stylized Fantasy Armory/Prefabs/Weapons and Shields/Swords/Sword.001.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +122,8 @@
       <workItem from="1775284029795" duration="983000" />
       <workItem from="1775375620531" duration="4047000" />
       <workItem from="1775423406647" duration="8719000" />
-      <workItem from="1775537807117" duration="461000" />
+      <workItem from="1775537807117" duration="962000" />
+      <workItem from="1775632662959" duration="4685000" />
     </task>
     <task id="LOCAL-00001" summary="Added Item and Projectile class scripts, alongside adjusting Player class to have health attribute, and added an enemy health class to have the items damage the enemy">
       <option name="closed" value="true" />

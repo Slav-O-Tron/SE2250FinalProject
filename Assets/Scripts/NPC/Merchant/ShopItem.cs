@@ -6,4 +6,6 @@ public class ShopItem : ScriptableObject
     public ItemData itemData;
     public int price = 10;
     public int quantity = 1;
+    public bool isSkillPoints = false;
+    public int skillPointAmount = 1;
 }

@@ -21,4 +21,8 @@ public class PushableStone : MonoBehaviour
                          RigidbodyConstraints.FreezePositionY;
         startY = transform.position.y;
     }
+    private void OnCollisionEnter(Collision col)
+    {
+        Debug.Log("Stone hit by: " + col.gameObject.name);
+    }
 }
