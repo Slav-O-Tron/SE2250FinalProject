@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6642e2709a074fdbbdacd64067b8d4f6, type: 3}
+  m_Name: ChronoCrystal
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: Chrono Crystal
+  icon: {fileID: 21300000, guid: 4dd1a98259a11ef4ab6122c5eadcf8c9, type: 3}
+  description: A crystallised fragment of time
+  isStackable: 1
+  isEquipable: 0
+  equipmentSlot: 0
+  equipmentPrefab: {fileID: 0}
+  equipPositionOffset: {x: 0, y: 0, z: 0}
+  equipRotationOffset: {x: 0, y: 0, z: 0}
+  equipScaleOffset: {x: 1, y: 1, z: 1}

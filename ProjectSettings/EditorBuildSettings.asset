@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Shawn Level/Level_2.unity
     guid: 31c61d28d31784d0ba10665496ceb0bc
   - enabled: 1
-    path: Assets/Scenes/Levels/Dylan Level/Level_3.unity
+    path: Assets/Scenes/Levels/Dylan Level/TestMainWorld.unity
     guid: eaeedc211cf9d2a4e9c4cd5bba488220
   - enabled: 1
     path: Assets/Scenes/Levels/Anthony Level/Level_4.unity
