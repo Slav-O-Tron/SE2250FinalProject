@@ -69,7 +69,7 @@ public class Wand : MonoBehaviour
         Rigidbody rb = spell.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = direction * spellSpeed;
+            rb.linearVelocity = direction * spellSpeed;
         }
     }
 }

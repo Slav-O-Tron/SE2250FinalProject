@@ -108,20 +108,24 @@ public class HUD : MonoBehaviour
 
     private void RebindPlayer()
     {
-        Player[] players = FindObjectsByType<Player>(FindObjectsSortMode.None);
+        Player targetPlayer = Player.ResolveActivePlayer();
 
-        foreach (Player p in players)
+        if (player == targetPlayer)
         {
-            if (!p.gameObject.activeInHierarchy) continue;
+            if (inventory == null && player != null)
+                inventory = player.GetComponent<PlayerInventory>();
 
-            if (player != null)
-                player.OnHealthChanged -= OnHealthChanged;
-
-            player = p;
-            inventory = p.GetComponent<PlayerInventory>();
-            player.OnHealthChanged += OnHealthChanged;
-            break;
+            return;
         }
+
+        if (player != null)
+            player.OnHealthChanged -= OnHealthChanged;
+
+        player = targetPlayer;
+        inventory = player != null ? player.GetComponent<PlayerInventory>() : null;
+
+        if (player != null)
+            player.OnHealthChanged += OnHealthChanged;
     }
 
     private void OnDestroy()

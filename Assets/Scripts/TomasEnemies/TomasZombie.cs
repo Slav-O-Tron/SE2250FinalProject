@@ -164,7 +164,10 @@ public class TomasZombie : Entity
 
     private void RefreshPlayerReference()
     {
-        playerTargets = FindObjectsByType<Player>(FindObjectsSortMode.None);
+        Player activePlayer = Player.ResolveActivePlayer();
+        playerTargets = activePlayer != null
+            ? new[] { activePlayer }
+            : FindObjectsByType<Player>(FindObjectsSortMode.None);
     }
 
     private void RefreshNpcReferences()

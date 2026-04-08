@@ -5,6 +5,8 @@ using System.Collections;
 [RequireComponent(typeof(PlayerInventory))]
 public class Player : Entity
 {
+    public static Player ActivePlayer { get; private set; }
+
     [Header("Movement")]
     public float moveSpeed = 4f;
     public float sprintSpeed = 8f;
@@ -45,6 +47,7 @@ public class Player : Entity
         controller      = GetComponent<CharacterController>();
         playerInventory = GetComponent<PlayerInventory>();
         abilities = GetComponent<PlayerAbilities>();
+        RegisterAsActivePlayer();
 
         PlayerData pd = PlayerData.GetOrCreate();
 
@@ -56,11 +59,20 @@ public class Player : Entity
             currentHealth = Mathf.Min(pd.savedHealth, maxHealth);
     }
 
+    private void OnEnable()
+    {
+        RegisterAsActivePlayer();
+    }
+
     private void OnDestroy()
     {
-        PlayerData pd = PlayerData.GetOrCreate();
-        pd.gold = money;
-        pd.savedHealth = currentHealth;
+        if (ActivePlayer == this)
+        {
+            PlayerData pd = PlayerData.GetOrCreate();
+            pd.gold = money;
+            pd.savedHealth = currentHealth;
+            ActivePlayer = null;
+        }
     }
 
     public override void AddMoney(int amount)
@@ -235,5 +247,51 @@ public class Player : Entity
             failManager.TriggerFail("You have fallen!");
         else
             Debug.LogError("[Player] No LevelFailManager found in scene. Add a LevelFailManager GameObject to this level.");
+    }
+
+    public static Player ResolveActivePlayer()
+    {
+        if (IsUsablePlayer(ActivePlayer))
+            return ActivePlayer;
+
+        Player[] players = FindObjectsByType<Player>(FindObjectsSortMode.None);
+        Player bestPlayer = null;
+
+        foreach (Player candidate in players)
+        {
+            if (ShouldReplaceActivePlayer(candidate, bestPlayer))
+                bestPlayer = candidate;
+        }
+
+        ActivePlayer = bestPlayer;
+        return ActivePlayer;
+    }
+
+    private void RegisterAsActivePlayer()
+    {
+        if (ShouldReplaceActivePlayer(this, ActivePlayer))
+            ActivePlayer = this;
+    }
+
+    private static bool ShouldReplaceActivePlayer(Player candidate, Player current)
+    {
+        if (!IsUsablePlayer(candidate))
+            return false;
+
+        if (!IsUsablePlayer(current))
+            return true;
+
+        bool candidateHasCamera = candidate.cameraTransform != null;
+        bool currentHasCamera = current.cameraTransform != null;
+
+        if (candidateHasCamera != currentHasCamera)
+            return candidateHasCamera;
+
+        return false;
+    }
+
+    private static bool IsUsablePlayer(Player candidate)
+    {
+        return candidate != null && candidate.gameObject.activeInHierarchy;
     }
 }

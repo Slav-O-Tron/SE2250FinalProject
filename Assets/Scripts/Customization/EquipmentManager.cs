@@ -77,6 +77,8 @@ public class EquipmentManager : MonoBehaviour
             newWeapon.transform.localRotation = Quaternion.Euler(item.equipRotationOffset);
             newWeapon.transform.localScale = item.equipScaleOffset;
 
+            BindWeaponOwnership(newWeapon);
+
             equippedObjects[item.equipmentSlot] = newWeapon;
             equippedItems[item.equipmentSlot] = item;
 
@@ -101,6 +103,15 @@ public class EquipmentManager : MonoBehaviour
 
     public void Unequip(EquipmentSlot slot)
     {
+        if (slot == EquipmentSlot.Weapon)
+        {
+            PlayerCombat combatOwner = GetComponentInParent<PlayerCombat>();
+            if (combatOwner != null)
+            {
+                combatOwner.weaponHitbox = null;
+            }
+        }
+
         if (equippedObjects.ContainsKey(slot) && equippedObjects[slot] != null)
         {
             Destroy(equippedObjects[slot]);
@@ -152,6 +163,28 @@ public class EquipmentManager : MonoBehaviour
 
             if (targetBones.TryGetValue("PT_Hips", out Transform rootBone))
                 smr.rootBone = rootBone;
+        }
+    }
+
+    private void BindWeaponOwnership(GameObject weaponObject)
+    {
+        if (weaponObject == null)
+        {
+            return;
+        }
+
+        Player playerOwner = GetComponentInParent<Player>();
+        PlayerCombat combatOwner = GetComponentInParent<PlayerCombat>();
+        WeaponHitbox[] hitboxes = weaponObject.GetComponentsInChildren<WeaponHitbox>(true);
+
+        foreach (WeaponHitbox hitbox in hitboxes)
+        {
+            hitbox.InitializeOwner(playerOwner, combatOwner);
+        }
+
+        if (combatOwner != null)
+        {
+            combatOwner.weaponHitbox = hitboxes.Length > 0 ? hitboxes[0] : null;
         }
     }
 }
