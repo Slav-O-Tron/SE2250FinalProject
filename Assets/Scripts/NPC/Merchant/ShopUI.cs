@@ -11,8 +11,7 @@ public class ShopUI : MonoBehaviour
 
     private void EnsureReferences()
     {
-        if (player == null)
-            player = FindFirstObjectByType<Player>();
+        player = Player.ResolveActivePlayer();
         if (inventoryManager == null)
             inventoryManager = FindFirstObjectByType<InventoryManager>();
     }
@@ -74,6 +73,7 @@ public class ShopUI : MonoBehaviour
 
     private void TryBuy(ShopItem shopItem)
     {
+        EnsureReferences();
         if (player == null || shopItem == null) return;
 
         if (shopItem.isSkillPoints)

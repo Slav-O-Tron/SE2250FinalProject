@@ -39,6 +39,10 @@ public class WaveManager : MonoBehaviour
     [Tooltip("Added to baseZombieCount for each subsequent wave.")]
     [SerializeField] private int zombieCountIncreasePerWave = 2;
 
+    [Header("Chrono Shard Drop")]
+    [Tooltip("The Chrono Shard ItemData to drop from the last zombie of each wave.")]
+    [SerializeField] private ItemData chronoShardItem;
+
     [Header("UI")]
     [SerializeField] private GameObject waveAnnouncementPanel;
     [SerializeField] private TMP_Text waveAnnouncementText;
@@ -190,16 +194,25 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
+                GameObject lastZombieSpawned = null;
                 for (int i = 0; i < effectiveCount; i++)
                 {
                     if (levelFailed) yield break;
 
                     Transform spawnPoint = spawnPoints[i % spawnPoints.Length];
                     GameObject zombie = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+                    lastZombieSpawned = zombie;
 
                     activeZombies.Add(zombie);
 
                     yield return new WaitForSeconds(wave.spawnInterval);
+                }
+
+                // Mark the last zombie to drop the Chrono Shard on death
+                if (lastZombieSpawned != null && chronoShardItem != null)
+                {
+                    ChronoShardCarrier carrier = lastZombieSpawned.AddComponent<ChronoShardCarrier>();
+                    carrier.Configure(chronoShardItem);
                 }
             }
 
