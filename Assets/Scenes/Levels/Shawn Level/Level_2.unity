@@ -16198,6 +16198,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4100746201267738, guid: ed6e5b1d2f26395489aaa939b5842132, type: 3}
   m_PrefabInstance: {fileID: 1855754443}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &424958967
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1025.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 612.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800125307698748497, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_Name
+      value: Special Zombie
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9114487151173512232, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 653941192}
+  m_SourcePrefab: {fileID: 100100000, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
 --- !u!1001 &426556251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24753,6 +24814,40 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81d0d04bac28bc6438e2b11e8713aa93, type: 3}
+--- !u!1 &653941191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+  m_PrefabInstance: {fileID: 424958967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &653941192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653941191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42c1d11926b7ac479f406f9cbde0b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShawnZombie2
+  maxHealth: 50
+  currentHealth: 0
+  money: 0
+  data: {fileID: 11400000, guid: 08bf08bdf21b5447aa70eb7d9840c68a, type: 2}
+  flipForward: 0
+  animator: {fileID: 653941196}
+  rb: {fileID: 653941194}
+--- !u!54 &653941194 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1690951763191760223, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+  m_PrefabInstance: {fileID: 424958967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &653941196 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5341245393821848766, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+  m_PrefabInstance: {fileID: 424958967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &655167401 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4376031979868920, guid: 78f32741cff7dcd4f86eeb972929b6f4, type: 3}
@@ -31198,6 +31293,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 37793575766568550, guid: 1acd31801450af642809c2066c2a0c02, type: 3}
+      propertyPath: chronospherePieceItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: aa9fb487d0e5adb4b9dd2571b213705b, type: 2}
     - target: {fileID: 5146323385346563619, guid: 1acd31801450af642809c2066c2a0c02, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1023.43005
@@ -48424,7 +48523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1323345220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48432,13 +48531,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323345219}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1edb653814ff4af89c5ae57144cb9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCompletion
   levelCompletePanel: {fileID: 0}
-  chronospherePieceItemData: {fileID: 0}
+  chronospherePieceItemData: {fileID: 11400000, guid: aa9fb487d0e5adb4b9dd2571b213705b, type: 2}
   shardAssemblyPuzzlePanel: {fileID: 0}
 --- !u!4 &1323345221
 Transform:
@@ -68411,7 +68510,7 @@ MonoBehaviour:
   money: 0
   npcName: Elder
   dialogueUI: {fileID: 1950684618}
-  storyGiftItem: {fileID: 0}
+  storyGiftItem: {fileID: 11400000, guid: aa9fb487d0e5adb4b9dd2571b213705b, type: 2}
   storyGiftLine: "Take this \u2014 you will need it to fight off the enemies."
   chronoShardItem: {fileID: 11400000, guid: aa9fb487d0e5adb4b9dd2571b213705b, type: 2}
 --- !u!114 &1809559935
@@ -82158,3 +82257,4 @@ SceneRoots:
   - {fileID: 689023358}
   - {fileID: 2015635186}
   - {fileID: 1992312309}
+  - {fileID: 424958967}

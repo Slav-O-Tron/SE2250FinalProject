@@ -110,10 +110,20 @@ public class LevelCompletion : MonoBehaviour
         }
 
         HUD hud = FindFirstObjectByType<HUD>();
+        DungeonNPC dungeonNPC = FindFirstObjectByType<DungeonNPC>();
         if (playerData.HasCompletedChronosphere())
             hud?.SetDefaultPrompt("Chronosphere restored. Return to the boat.");
         else
-            hud?.SetDefaultPrompt("Return to the boat.");
+        {
+            if (dungeonNPC != null)
+            {
+                hud?.SetDefaultPrompt("Talk to the Prisoner Again");
+            }
+            else
+            {
+                hud?.SetDefaultPrompt("Return to the boat.");
+            }
+        }
 
         LevelExit exit = FindFirstObjectByType<LevelExit>();
         if (exit != null)
