@@ -36868,6 +36868,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4520716785383396158, guid: 03fb6f49d936d5e429b639fccb1f29a6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1809559932}
+    - targetCorrespondingSourceObject: {fileID: 4520716785383396158, guid: 03fb6f49d936d5e429b639fccb1f29a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1809559935}
   m_SourcePrefab: {fileID: 100100000, guid: 03fb6f49d936d5e429b639fccb1f29a6, type: 3}
 --- !u!4 &1010042543 stripped
 Transform:
@@ -67997,7 +68000,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809559927}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cfa7e749e37b402a824fb7de5007aed, type: 3}
   m_Name: 
@@ -68012,7 +68015,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809559927}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f8807f231be14756992d4653094990e, type: 3}
   m_Name: 
@@ -68025,6 +68028,23 @@ MonoBehaviour:
   storyGiftItem: {fileID: 0}
   storyGiftLine: "Take this \u2014 you will need it to fight off the enemies."
   chronoShardItem: {fileID: 0}
+--- !u!114 &1809559935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809559927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4ae586386b64341bd4ec9869772af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShawnNPC
+  maxHealth: 100
+  currentHealth: 100
+  money: 0
+  npcName: Forest Man
+  dialogueUI: {fileID: 1950684618}
 --- !u!1001 &1811363268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76354,11 +76374,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1637711352278440079, guid: ce962c51fa50c5941a020aa5a733e9f1, type: 3}
       propertyPath: m_Name
-      value: NPC (1)
+      value: DylanNPCPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 1637711352278440079, guid: ce962c51fa50c5941a020aa5a733e9f1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8401912897966793047, guid: ce962c51fa50c5941a020aa5a733e9f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -79290,7 +79310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2076164725
 Transform:
   m_ObjectHideFlags: 0
