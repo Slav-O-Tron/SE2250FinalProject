@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-
 /// Place one instance of this in every level scene.
 /// Called by Player.OnDeath and ProtectedNPC.OnDeath to show the fail screen
 /// and halt the wave system.

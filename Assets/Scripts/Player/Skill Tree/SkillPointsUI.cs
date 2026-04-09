@@ -14,6 +14,6 @@ public class SkillPointsUI : MonoBehaviour
     void Refresh()
     {
         if (SkillTree.Instance != null)
-            text.text = "Skill Points: " + SkillTree.Instance.availableSkillPoints;
+            text.text = "Level: " + SkillTree.Instance.GetAvailableLevels();
     }
 }
