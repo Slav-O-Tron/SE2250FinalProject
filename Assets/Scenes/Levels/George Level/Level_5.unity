@@ -803,6 +803,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tomas Zombie (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1864,6 +1868,23 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1097301955641835064, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
   m_PrefabInstance: {fileID: 700197154}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &258500220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258500213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338cebf41a116e84c98f6abb2982d9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  weaponHitbox: {fileID: 927216408}
+  attackDuration: 0.5
+  attackCooldown: 1
+  attackDamage: 10
+  wand: {fileID: 0}
 --- !u!1 &284860090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,7 +3151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentManager
   playerRigRoot: {fileID: 0}
-  rightHandSocket: {fileID: 0}
+  rightHandSocket: {fileID: 649945367}
   leftHandSocket: {fileID: 0}
 --- !u!1 &465516982
 GameObject:
@@ -4030,6 +4051,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121ca2185ea18bb478e1979d5ec528ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlot
+--- !u!4 &649945367 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8249127235893397339, guid: 10f9a56fe422e4e2ba1c4b7eca8349f4, type: 3}
+  m_PrefabInstance: {fileID: 3278601489662254066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &663298643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4384,6 +4410,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6474569345499571266, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
       insertIndex: -1
       addedObject: {fileID: 465516983}
+    - targetCorrespondingSourceObject: {fileID: 4870613138204239307, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927216407}
     - targetCorrespondingSourceObject: {fileID: 5191376522251220343, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1692169033}
@@ -4400,7 +4429,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5949706081513176824, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
       insertIndex: -1
       addedObject: {fileID: 258500215}
+    - targetCorrespondingSourceObject: {fileID: 5949706081513176824, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 258500220}
   m_SourcePrefab: {fileID: 100100000, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+--- !u!4 &707676203 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4870613138204239307, guid: a0cb3b35b5fb2564983f2275ffa69733, type: 3}
+  m_PrefabInstance: {fileID: 700197154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &725910952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4527,6 +4564,10 @@ PrefabInstance:
     - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
       propertyPath: m_Name
       value: Tomas Zombie (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5036,6 +5077,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1705849404070370923, guid: 3af956640595c6e4cb9436f0f4545ffd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1481540352}
+    - targetCorrespondingSourceObject: {fileID: 1705849404070370923, guid: 3af956640595c6e4cb9436f0f4545ffd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1481540358}
+    - targetCorrespondingSourceObject: {fileID: 1705849404070370923, guid: 3af956640595c6e4cb9436f0f4545ffd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1481540357}
   m_SourcePrefab: {fileID: 100100000, guid: 3af956640595c6e4cb9436f0f4545ffd, type: 3}
 --- !u!1 &877583416
 GameObject:
@@ -5946,6 +5993,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924122251}
   m_CullTransparentMesh: 1
+--- !u!1 &927216406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+  m_PrefabInstance: {fileID: 1534522481}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &927216407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+  m_PrefabInstance: {fileID: 1534522481}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &927216408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927216406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0161e6854ea09064ab1204c0470e7cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponHitbox
+  weaponCollider: {fileID: 927216409}
+--- !u!136 &927216409
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927216406}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.9069614
+  m_Direction: 1
+  m_Center: {x: -0.00000017038082, y: 0.9534797, z: 0.00000071137737}
 --- !u!1 &966498400
 GameObject:
   m_ObjectHideFlags: 0
@@ -7333,6 +7426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tomas Zombie (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7549,6 +7646,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6334826068141619221, guid: 5bba62d8b65dae44898012275d24ba9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1279306112}
+    - targetCorrespondingSourceObject: {fileID: 6334826068141619221, guid: 5bba62d8b65dae44898012275d24ba9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1279306119}
   m_SourcePrefab: {fileID: 100100000, guid: 5bba62d8b65dae44898012275d24ba9e, type: 3}
 --- !u!1 &1279306111 stripped
 GameObject:
@@ -7562,7 +7662,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279306111}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f9b71f04a0d423f9d0c41d379212fd4, type: 3}
   m_Name: 
@@ -7629,10 +7729,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1.174211
+  m_Height: 2.670372
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.335186, z: 0}
 --- !u!95 &1279306116
 Animator:
   serializedVersion: 7
@@ -7677,6 +7777,25 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1279306119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279306111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a88ce2e5aad4d9dae35b3fba40290c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TomasZombie
+  maxHealth: 20
+  currentHealth: 20
+  money: 0
+  data: {fileID: 0}
+  flipForward: 0
+  animator: {fileID: 5341245393821848766, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+  rb: {fileID: 1690951763191760223, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
 --- !u!1 &1346970017
 GameObject:
   m_ObjectHideFlags: 0
@@ -8604,7 +8723,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481540351}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f9b71f04a0d423f9d0c41d379212fd4, type: 3}
   m_Name: 
@@ -8667,6 +8786,48 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1481540357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481540351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a88ce2e5aad4d9dae35b3fba40290c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TomasZombie
+  maxHealth: 20
+  currentHealth: 20
+  money: 0
+  data: {fileID: 0}
+  flipForward: 0
+  animator: {fileID: 6613862515287446398, guid: 9106f50afafba492b9586114c7a829a0, type: 3}
+  rb: {fileID: 6298242141894490367, guid: 9106f50afafba492b9586114c7a829a0, type: 3}
+--- !u!136 &1481540358
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481540351}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.819751
+  m_Height: 3.639502
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &1492361964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8924,6 +9085,69 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1acd31801450af642809c2066c2a0c02, type: 3}
+--- !u!1001 &1534522481
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 707676203}
+    m_Modifications:
+    - target: {fileID: 100004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_Name
+      value: Basic Long Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7660445
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.6427876
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -80
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927216409}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927216408}
+  m_SourcePrefab: {fileID: 100100000, guid: 20602b013fedb89409cfecba1621d25a, type: 3}
 --- !u!1 &1556456345
 GameObject:
   m_ObjectHideFlags: 0
@@ -9856,6 +10080,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tomas Zombie (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10162,6 +10390,10 @@ PrefabInstance:
     - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
       propertyPath: m_Name
       value: Tomas Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12390,6 +12622,10 @@ PrefabInstance:
     - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
       propertyPath: m_Name
       value: Tomas Zombie (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081390247330129784, guid: 7e2615fc1538a409d848181914632e4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

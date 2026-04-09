@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18a0033-3404-4744-a1db-5e2fca52fbd3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2250 Final Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Controls Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Controls Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Anthony Level/DungeonNPC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Anthony Level/DungeonNPC.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Anthony Level/Level_4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Anthony Level/Level_4.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Level_3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Dylan Level/Level_3.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/George Level/Level_5.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/George Level/Level_5.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Shawn Level/Level_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Shawn Level/Level_2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/World/LevelCompletion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/World/LevelCompletion.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Castle 1 LITE/FBX/Materials/Basic Sword UV.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Castle 1 LITE/FBX/Materials/Basic Sword UV.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Standard Assets/Castle 1 LITE/Prefabs/Blacksmith/Weapons, Tools/Materials/Basic Sword UV Alt 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Standard Assets/Castle 1 LITE/Prefabs/Blacksmith/Weapons, Tools/Materials/Basic Sword UV Alt 2.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
