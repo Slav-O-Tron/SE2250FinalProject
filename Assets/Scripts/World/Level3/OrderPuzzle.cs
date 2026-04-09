@@ -53,7 +53,17 @@ public class OrderPuzzle : MonoBehaviour
         puzzleSolved = true;
         if (cathedralDoor != null)
             cathedralDoor.SetActive(false);
-        Debug.Log("Puzzle solved - door opens!");
+
+        Debug.Log("SolvePuzzle called");
+    
+        LevelCompletion levelCompletion = FindFirstObjectByType<LevelCompletion>();
+        if (levelCompletion != null)
+        {
+            Debug.Log("LevelCompletion found, calling CompleteLevel");
+            levelCompletion.CompleteLevel();
+        }
+        else
+            Debug.LogWarning("No LevelCompletion found in scene!");
     }
     
 
