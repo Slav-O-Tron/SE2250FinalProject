@@ -25,6 +25,7 @@ public class ShopUI : MonoBehaviour
         foreach (ShopItem shopItem in items)
         {
             if (shopItem == null) continue;
+            if (shopItem.isSkillPoints) continue;
 
             GameObject btn = Instantiate(itemButtonPrefab, contentParent);
             Transform imageTf = btn.transform.Find("ItemImage");
@@ -32,16 +33,6 @@ public class ShopUI : MonoBehaviour
             Transform priceTf = btn.transform.Find("PriceText");
             Transform buyTf = btn.transform.Find("BuyButton");
 
-            if (shopItem.isSkillPoints)
-            {
-                if (imageTf != null)
-                    imageTf.GetComponent<Image>().sprite = null;
-                if (nameTf != null)
-                    nameTf.GetComponent<TMP_Text>().text = $"+{shopItem.skillPointAmount} Skill Point(s)";
-                if (priceTf != null)
-                    priceTf.GetComponent<TMP_Text>().text = $"{shopItem.price} coins";
-            }
-            else
             {
                 if (shopItem.itemData == null) continue;
                 if (imageTf != null)
@@ -76,17 +67,7 @@ public class ShopUI : MonoBehaviour
         EnsureReferences();
         if (player == null || shopItem == null) return;
 
-        if (shopItem.isSkillPoints)
-        {
-            if (player.SpendMoney(shopItem.price))
-            {
-                SkillTree.Instance?.AddSkillPoints(shopItem.skillPointAmount);
-                Debug.Log($"Bought {shopItem.skillPointAmount} skill point(s) for {shopItem.price} coins.");
-            }
-            else
-                Debug.Log("Not enough coins.");
-            return;
-        }
+        if (shopItem.isSkillPoints) return;
 
         if (inventoryManager == null || shopItem.itemData == null) return;
 

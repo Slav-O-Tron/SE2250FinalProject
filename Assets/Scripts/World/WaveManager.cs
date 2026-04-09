@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,6 +14,8 @@ public class WaveManager : MonoBehaviour
     public class Wave
     {
         public string waveName = "Wave 1";
+        [Tooltip("Label shown in the counter UI, e.g. \"Zombie\" or \"Spider\".")]
+        public string enemyDisplayName = "Zombie";
         [Tooltip("Leave null to use defaultZombiePrefab.")]
         public GameObject zombiePrefab;
         [Tooltip("How many zombies to spawn. 0 = use baseZombieCount + waveIndex * zombieCountIncreasePerWave.")]
@@ -109,7 +111,10 @@ public class WaveManager : MonoBehaviour
         if (wavesStarted && zombiesRemainingText != null)
         {
             if (waveInProgress)
-                zombiesRemainingText.text = $"Wave {currentWave + 1}/{waves.Length}  |  Zombies Left: {activeZombies.Count}";
+            {
+                string label = waves[currentWave].enemyDisplayName;
+                zombiesRemainingText.text = $"Wave {currentWave + 1}/{waves.Length}  |  {label}s Left: {activeZombies.Count}";
+            }
 
             // Wave cleared when all spawned zombies are dead
             if (waveInProgress && activeZombies.Count == 0)

@@ -10,6 +10,8 @@ public class TomasZombie : Entity
 {
     [Header("Zombie Settings")]
     [SerializeField] private ZombieData data;
+    [Tooltip("Tick this if the model was imported facing backwards.")]
+    [SerializeField] private bool flipForward = false;
 
     [Header("References")]
     [SerializeField] private Animator animator;
@@ -113,7 +115,10 @@ public class TomasZombie : Entity
         Vector3 dir = targetTransform.position - transform.position;
         dir.y = 0;
         if (dir != Vector3.zero)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10f);
+        {
+            Vector3 lookDir = flipForward ? -dir : dir;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * 10f);
+        }
 
         if (Time.time - lastAttackTime >= AttackCooldown)
         {
@@ -135,8 +140,8 @@ public class TomasZombie : Entity
             Vector3 moveDir = offset.normalized;
             rb.linearVelocity = new Vector3(moveDir.x * MoveSpeed, rb.linearVelocity.y, moveDir.z * MoveSpeed);
 
-            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            Vector3 lookDir = flipForward ? -moveDir : moveDir;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * 10f);
         }
         else
         {
