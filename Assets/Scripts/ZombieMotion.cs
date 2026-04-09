@@ -1,19 +1,34 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-public class ZombieMotion: EnemyMotion
+public class ZombieMotion : MonoBehaviour
 {
-     protected override void Update()
+    public Transform target;
+    private Animator anim;
+    private float moveSpeed = 4f;
+
+    void Start()
     {
-        base.Update();
+        anim = GetComponent<Animator>();
 
-        if (Vector3.Distance(transform.position, target.position) < 2f)
+        if (target == null)
         {
-            Debug.Log("The zombie is groaning!");
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                target = playerObj.transform;
+            }
         }
-
     }
 
+    void Update()
+    {
+        if (target == null || anim == null) return;
+
+        // Move toward player
+        Vector3 directionToPlayer = (target.position - transform.position).normalized;
+        transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
+
+        // Set animation
+        anim.SetFloat("Speed", moveSpeed);
+    }
 }
-
-
