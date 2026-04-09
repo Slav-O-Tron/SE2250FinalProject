@@ -1,10 +1,10 @@
 using UnityEngine;
 using System;
 
-public class ShawnNPC : Entity
+public class DungeonNPC : Entity
 {
     [Header("Identity")]
-    [SerializeField] private string npcName = "Ancient Spirit";
+    [SerializeField] private string npcName = "Prisoner";
 
     [Header("References")]
     [SerializeField] private DialogueUI dialogueUI;
@@ -13,38 +13,25 @@ public class ShawnNPC : Entity
 
     private HUD hud;
     private LevelCompletion levelCompletion;
+    private Player playerController;
 
     private bool playerInRange = false;
     private bool dialogueOpen = false;
-    private bool hasSpokenBefore = true; // Skip intro
     private bool rewardReady = false;
     private bool rewardClaimed = false;
+    private bool hasTriggeredCompletion = false;
 
     private DialogueLine[] RewardLines => new DialogueLine[]
     {
         new DialogueLine
         {
             speakerName = npcName,
-            text = "You have proven yourself worthy in combat."
+            text = "Thank you for rescuing me."
         },
         new DialogueLine
         {
             speakerName = npcName,
-            text = "Take this fragment of the Chronosphere. It is one of five pieces needed to restore it."
-        },
-        new DialogueLine
-        {
-            speakerName = npcName,
-            text = "Carry it to the boat. Your path forward is open now."
-        },
-    };
-
-    private DialogueLine[] ReminderLines => new DialogueLine[]
-    {
-        new DialogueLine
-        {
-            speakerName = npcName,
-            text = "Go into the forest and defeat the enemies at the tower"
+            text = "Here is the Chrono Crystal you came here for."
         },
     };
 
@@ -53,7 +40,16 @@ public class ShawnNPC : Entity
         new DialogueLine
         {
             speakerName = npcName,
-            text = "The piece is yours now. Go."
+            text = "Now go, before more of them come."
+        },
+    };
+
+    private DialogueLine[] ReminderLines => new DialogueLine[]
+    {
+        new DialogueLine
+        {
+            speakerName = npcName,
+            text = "Please, get me out of here."
         },
     };
 
@@ -61,6 +57,7 @@ public class ShawnNPC : Entity
     {
         hud = FindFirstObjectByType<HUD>();
         levelCompletion = FindFirstObjectByType<LevelCompletion>();
+        playerController = FindFirstObjectByType<Player>();
 
         if (dialogueUI == null)
             dialogueUI = FindFirstObjectByType<DialogueUI>();
@@ -84,11 +81,20 @@ public class ShawnNPC : Entity
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+
         playerInRange = false;
         hud?.HideInteractPrompt();
-        if (dialogueOpen) dialogueUI?.CloseDialogue();
+
+        if (dialogueOpen)
+            dialogueUI?.CloseDialogue();
+
         dialogueOpen = false;
-        if (hud != null) hud.ShowHUD(true);
+
+        if (playerController != null)
+            playerController.enabled = true;
+
+        if (hud != null)
+            hud.ShowHUD(true);
     }
 
     private void OpenDialogue()
@@ -97,7 +103,20 @@ public class ShawnNPC : Entity
 
         dialogueOpen = true;
         hud?.HideInteractPrompt();
-        if (hud != null) hud.ShowHUD(false);
+
+        if (hud != null)
+            hud.ShowHUD(false);
+
+        // Disable player movement while talking
+        if (playerController != null)
+            playerController.enabled = false;
+
+        if (!hasTriggeredCompletion)
+        {
+            hasTriggeredCompletion = true;
+            if (levelCompletion != null)
+                levelCompletion.CompleteLevel();
+        }
 
         bool isRewardConversation = rewardReady && !rewardClaimed;
         DialogueLine[] lines = GetCurrentDialogueLines();
@@ -105,7 +124,13 @@ public class ShawnNPC : Entity
         dialogueUI.StartDialogue(lines, onFinished: () =>
         {
             dialogueOpen = false;
-            if (hud != null) hud.ShowHUD(true);
+
+            // Turn player movement back on
+            if (playerController != null)
+                playerController.enabled = true;
+
+            if (hud != null)
+                hud.ShowHUD(true);
 
             if (isRewardConversation)
                 rewardClaimed = levelCompletion != null && levelCompletion.ClaimChronosphereReward();
@@ -118,14 +143,16 @@ public class ShawnNPC : Entity
                     hud?.ShowInteractPrompt(GetInteractPromptText());
             }
             else
+            {
                 hud?.HideInteractPrompt();
+            }
         });
     }
 
     public void PrepareChronosphereReward()
     {
         rewardReady = true;
-        hud?.SetDefaultPrompt("Speak with the Ancient Spirit to claim the Chronosphere piece.");
+        hud?.SetDefaultPrompt($"Speak with {npcName} to claim the Chronosphere piece.");
 
         if (playerInRange)
             hud?.ShowInteractPrompt(GetInteractPromptText());
@@ -150,15 +177,9 @@ public class ShawnNPC : Entity
         return $"Press E to speak with {npcName}";
     }
 
-    private bool isInvincible = true;
-
     protected override void OnDamageTaken(int amount)
     {
-        if (isInvincible)
-        {
-            // Heal back to full immediately
-            Heal(amount);
-        }
+        Debug.Log($"[{npcName}] Took {amount} damage. HP: {currentHealth}/{maxHealth}");
     }
 
     protected override void OnDeath()
@@ -167,9 +188,10 @@ public class ShawnNPC : Entity
         LevelFailManager failManager = LevelFailManager.Instance != null
             ? LevelFailManager.Instance
             : FindFirstObjectByType<LevelFailManager>();
+
         if (failManager != null)
-            failManager.TriggerFail("The Ancient Spirit has fallen!");
+            failManager.TriggerFail("The Prisoner has fallen!");
         else
-            Debug.LogError("[ForestNPC] No LevelFailManager found in scene.");
+            Debug.LogError("[DungeonNPC] No LevelFailManager found in scene.");
     }
 }
