@@ -40,23 +40,32 @@ public class LevelCompletion : MonoBehaviour
 
         HUD hud = FindFirstObjectByType<HUD>();
 
-        GraveyardNPC graveyardNPC = FindFirstObjectByType<GraveyardNPC>();
-        if (graveyardNPC != null)
+        DungeonNPC dungeonNPC = FindFirstObjectByType<DungeonNPC>();
+        if (dungeonNPC != null)
         {
-            hud?.SetDefaultPrompt("Speak with the Ancient Spirit.");
-            graveyardNPC.PrepareChronosphereReward();
+            hud?.SetDefaultPrompt("Speak with the Prisoner.");
+            dungeonNPC.PrepareChronosphereReward();
         }
         else
         {
-            StoryNPC elder = FindFirstObjectByType<StoryNPC>();
-            if (elder != null)
+            GraveyardNPC graveyardNPC = FindFirstObjectByType<GraveyardNPC>();
+            if (graveyardNPC != null)
             {
-                hud?.SetDefaultPrompt("The ritual is complete. Speak with the Elder.");
-                elder.PrepareChronosphereReward();
+                hud?.SetDefaultPrompt("Speak with the Ancient Spirit.");
+                graveyardNPC.PrepareChronosphereReward();
             }
             else
             {
-                ClaimChronosphereReward();
+                StoryNPC elder = FindFirstObjectByType<StoryNPC>();
+                if (elder != null)
+                {
+                    hud?.SetDefaultPrompt("The ritual is complete. Speak with the Elder.");
+                    elder.PrepareChronosphereReward();
+                }
+                else
+                {
+                    ClaimChronosphereReward();
+                }
             }
         }
 
