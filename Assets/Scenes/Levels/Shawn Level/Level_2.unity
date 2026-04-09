@@ -21685,11 +21685,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40a86a144964031449e7e0665079e216, type: 3}
---- !u!4 &567633406 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3064840219892096065, guid: cc64a72ab8a109a42ab9bbb1559a2fd6, type: 3}
-  m_PrefabInstance: {fileID: 2015635186}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &567811856
 GameObject:
   m_ObjectHideFlags: 0
@@ -22875,11 +22870,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4273806964738512, guid: f0cdf773223c8bd49ad0cb82eb59e3ac, type: 3}
   m_PrefabInstance: {fileID: 598728127}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &600914815 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6443371465654575001, guid: cc64a72ab8a109a42ab9bbb1559a2fd6, type: 3}
-  m_PrefabInstance: {fileID: 2015635186}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &601239070
 PrefabInstance:
@@ -32139,27 +32129,27 @@ PrefabInstance:
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: 'globalSpawnPoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 600914815}
+      objectReference: {fileID: 2102083860}
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: 'globalSpawnPoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 2048622970}
+      objectReference: {fileID: 2102083860}
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: 'globalSpawnPoints.Array.data[3]'
       value: 
-      objectReference: {fileID: 567633406}
+      objectReference: {fileID: 2102083860}
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: 'globalSpawnPoints.Array.data[4]'
       value: 
-      objectReference: {fileID: 567633406}
+      objectReference: {fileID: 2102083860}
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: 'globalSpawnPoints.Array.data[5]'
       value: 
-      objectReference: {fileID: 360642239}
+      objectReference: {fileID: 2102083860}
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: 'globalSpawnPoints.Array.data[6]'
       value: 
-      objectReference: {fileID: 360642239}
+      objectReference: {fileID: 2102083860}
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: 'globalSpawnPoints.Array.data[7]'
       value: 
@@ -78462,11 +78452,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 30920470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2048622970 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 387004126815143324, guid: cc64a72ab8a109a42ab9bbb1559a2fd6, type: 3}
-  m_PrefabInstance: {fileID: 2015635186}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2048639211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4843851095487270, guid: 153286bf9085bef4b90e7b5b87438b8c, type: 3}
