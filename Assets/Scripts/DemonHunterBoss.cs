@@ -1,53 +1,61 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DemonBoss : EnemyMotion
+public class DemonBoss : MonoBehaviour
 {
+    public Transform target;
     private Animator anim;
-    private Transform player;
+    private float moveSpeed = 5f;
+    private float rotationSpeed = 5f;
 
     [Header("Boss Settings")]
     public float attackRange = 3.5f;
     public float attackCooldown = 2.0f;
     private float lastAttackTime;
 
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         anim = GetComponent<Animator>();
 
-        
-        GameObject playerObj = GameObject.FindWithTag("Player");
-        if (playerObj != null)
+        if (target == null)
         {
-            player = playerObj.transform;
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                target = playerObj.transform;
+                Debug.Log("✓ DemonBoss FOUND player at: " + target.position);
+            }
+            else
+            {
+                Debug.LogError("✗ DemonBoss FAILED to find Player tag!");
+            }
         }
         else
         {
-            Debug.LogWarning("DemonBoss: No GameObject with the 'Player' tag found in the scene!");
-        }
-
-        if (agent != null)
-        {
-            agent.speed = 7f;
-            agent.acceleration = 12f;
-            agent.stoppingDistance = 2.5f;
+            Debug.Log("✓ DemonBoss target already set to: " + target.name);
         }
     }
 
-    protected override void Update()
+    void Update()
     {
-        base.Update();
+        if (anim == null || target == null)
+        {
+            Debug.LogWarning("DemonBoss missing anim or target!");
+            return;
+        }
 
-        
-        if (anim == null || player == null || agent == null) return;
+        float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-        float currentSpeed = agent.velocity.magnitude;
+        Vector3 directionToPlayer = (target.position - transform.position).normalized;
+        transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
 
-        
-        anim.SetFloat("Speed", currentSpeed);
+        if (directionToPlayer.magnitude > 0.1f)
+        {
+            float angle = Mathf.Atan2(directionToPlayer.x, directionToPlayer.z) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
 
-        
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        anim.SetFloat("Speed", moveSpeed);
 
         if (distanceToPlayer <= attackRange && Time.time > lastAttackTime + attackCooldown)
         {
@@ -60,7 +68,6 @@ public class DemonBoss : EnemyMotion
         lastAttackTime = Time.time;
 
         float choice = Random.value;
-
         if (choice < 0.5f)
         {
             anim.SetTrigger("BasicAttack");
@@ -71,15 +78,13 @@ public class DemonBoss : EnemyMotion
         }
         else
         {
-            anim.SetTrigger("SpecialMove");
+            anim.SetTrigger("SpecialAttack");
         }
 
-        agent.isStopped = true;
         Invoke("ResumeMovement", 1.5f);
     }
 
     void ResumeMovement()
     {
-        if (agent != null && agent.enabled) agent.isStopped = false;
     }
 }
