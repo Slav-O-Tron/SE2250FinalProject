@@ -30,6 +30,8 @@ public class Player : Entity
     private CharacterController controller;
     private float verticalVelocity;
     
+    public bool movementLocked = false;
+    
     //Skill Tree Abilities
     private PlayerAbilities abilities;
     private bool hasDoubleJumped = false;
@@ -120,6 +122,13 @@ public class Player : Entity
 
     private void Update()
     {
+        if (inventoryManager != null && inventoryManager.MenuActivated)
+            return;
+
+        if (movementLocked)
+            return;
+
+        jumpPressed = Input.inputString.Contains(" ");
         if (Input.inputString.Length > 0)
             Debug.Log("inputString: '" + Input.inputString + "'");
         if (inventoryManager != null && inventoryManager.MenuActivated)
@@ -309,5 +318,10 @@ public class Player : Entity
     private static bool IsUsablePlayer(Player candidate)
     {
         return candidate != null && candidate.gameObject.activeInHierarchy;
+    }
+    
+    public void ResetVelocity()
+    {
+        verticalVelocity = -2f;
     }
 }
