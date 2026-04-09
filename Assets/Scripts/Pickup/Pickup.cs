@@ -15,6 +15,13 @@ public abstract class Pickup : MonoBehaviour
             return;
         }
 
+        // Ignore triggers originating from within the same root hierarchy
+        // (e.g. a player's equipped weapon triggering the pickup on their own body).
+        if (other.transform.root == transform.root)
+        {
+            return;
+        }
+
         Player player = ResolvePlayer(other);
         if (player == null)
         {

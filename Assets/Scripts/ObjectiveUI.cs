@@ -1,14 +1,14 @@
 using UnityEngine;
 using TMPro;
 
-/// <summary>
+
 /// Displays a single objective line on screen (e.g. "Speak with the Elder to begin").
 /// Any script can call ObjectiveUI.Set("text") to update it at any time.
 ///
 /// Scene setup:
 ///   Create a Canvas (Screen Space - Overlay) → add a child TextMeshPro object.
 ///   Attach this script to that TextMeshPro object.
-/// </summary>
+
 public class ObjectiveUI : MonoBehaviour
 {
     public static ObjectiveUI Instance { get; private set; }

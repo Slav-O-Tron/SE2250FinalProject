@@ -17,10 +17,18 @@ public class PlayerInventory : MonoBehaviour
     public float staminaRegenRate = 10f;    // Per second when not sprinting
     public float staminaRegenDelay = 1.5f;  // Seconds after sprint stops before regen
 
+    [Header("Health Regen")]
+    public float healthRegenRate = 4f;      // HP per second (slower than stamina)
+    public float healthRegenDelay = 5f;     // Seconds after taking damage before regen starts
+
     private float regenDelayTimer = 0f;
+    private float healthRegenDelayTimer = 0f;
+    private float healthRegenAccumulator = 0f;
+    private Player player;
 
     private void Awake()
     {
+        player = GetComponent<Player>();
         PlayerData pd = PlayerData.GetOrCreate();
         xp = pd.xp;
         level = pd.playerLevel;
@@ -47,6 +55,26 @@ public class PlayerInventory : MonoBehaviour
             regenDelayTimer -= Time.deltaTime;
         else if (stamina < maxStamina)
             stamina = Mathf.Min(maxStamina, stamina + staminaRegenRate * Time.deltaTime);
+
+        if (healthRegenDelayTimer > 0f)
+        {
+            healthRegenDelayTimer -= Time.deltaTime;
+            healthRegenAccumulator = 0f;
+        }
+        else if (player != null && player.IsAlive && player.CurrentHealth < player.MaxHealth)
+        {
+            healthRegenAccumulator += healthRegenRate * Time.deltaTime;
+            int toHeal = Mathf.FloorToInt(healthRegenAccumulator);
+            if (toHeal >= 1)
+            {
+                player.Heal(toHeal);
+                healthRegenAccumulator -= toHeal;
+            }
+        }
+        else
+        {
+            healthRegenAccumulator = 0f;
+        }
     }
 
     // XP 
@@ -82,6 +110,12 @@ public class PlayerInventory : MonoBehaviour
         stamina = Mathf.Max(0f, stamina - amount);
         regenDelayTimer = staminaRegenDelay;
         return true;
+    }
+
+    /// Call this whenever the player takes damage to reset the health regen delay.
+    public void NotifyDamageTaken()
+    {
+        healthRegenDelayTimer = healthRegenDelay;
     }
 
     public bool HasStamina() => stamina > 0f;

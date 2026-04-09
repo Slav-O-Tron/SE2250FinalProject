@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f7d3db474e4f8baed6be127525faa3, type: 3}
   m_Name: TomasZombieData
   m_EditorClassIdentifier: Assembly-CSharp::ZombieData
-  maxHealth: 60
-  attackDamage: 12
-  attackRange: 2
+  maxHealth: 20
+  attackDamage: 5
+  attackRange: 1.8
   attackCooldown: 1.2
   moveSpeed: 3.2
   detectRange: 12

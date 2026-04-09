@@ -39,16 +39,25 @@ public class LevelCompletion : MonoBehaviour
             levelCompletePanel.SetActive(true);
 
         HUD hud = FindFirstObjectByType<HUD>();
-        hud?.SetDefaultPrompt("The ritual is complete. Speak with the Elder.");
 
-        StoryNPC elder = FindFirstObjectByType<StoryNPC>();
-        if (elder != null)
+        GraveyardNPC graveyardNPC = FindFirstObjectByType<GraveyardNPC>();
+        if (graveyardNPC != null)
         {
-            elder.PrepareChronosphereReward();
+            hud?.SetDefaultPrompt("Speak with the Ancient Spirit.");
+            graveyardNPC.PrepareChronosphereReward();
         }
         else
         {
-            ClaimChronosphereReward();
+            StoryNPC elder = FindFirstObjectByType<StoryNPC>();
+            if (elder != null)
+            {
+                hud?.SetDefaultPrompt("The ritual is complete. Speak with the Elder.");
+                elder.PrepareChronosphereReward();
+            }
+            else
+            {
+                ClaimChronosphereReward();
+            }
         }
 
         Debug.Log("[LevelCompletion] Level objective complete — waiting for Chronosphere reward.");

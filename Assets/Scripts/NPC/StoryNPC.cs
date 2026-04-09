@@ -271,10 +271,6 @@ public class StoryNPC : Entity
         if (inventoryManager == null)
             inventoryManager = FindFirstObjectByType<InventoryManager>();
 
-        ItemData shardItem = GetChronoShardItem();
-        if (inventoryManager != null && shardItem != null)
-            inventoryManager.AddItem(shardItem, 1);
-
         shardTurnInReady = true;
         finalShardTurnIn = completesLevelAfterTurnIn;
         pendingShardWave = waveNumber;

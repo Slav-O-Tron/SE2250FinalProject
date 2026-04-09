@@ -173,7 +173,11 @@ public class EquipmentManager : MonoBehaviour
             return;
         }
 
-        Player playerOwner = GetComponentInParent<Player>();
+        // Search up the hierarchy first; fall back to the active player so that
+        // EquipmentManager placed as a sibling of the Player model still works.
+        Player playerOwner = GetComponentInParent<Player>()
+            ?? Player.ActivePlayer
+            ?? Player.ResolveActivePlayer();
         PlayerCombat combatOwner = GetComponentInParent<PlayerCombat>();
         WeaponHitbox[] hitboxes = weaponObject.GetComponentsInChildren<WeaponHitbox>(true);
 

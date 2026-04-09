@@ -91,6 +91,22 @@ public class Player : Entity
 
     private void Start()
     {
+        // If this Player has no camera assigned and another Player with a camera
+        // already exists, this is an orphaned container script — disable it to
+        // prevent double movement, double gravity, and camera interference.
+        if (cameraTransform == null)
+        {
+            Player[] all = FindObjectsByType<Player>(FindObjectsSortMode.None);
+            foreach (Player p in all)
+            {
+                if (p != this && p.cameraTransform != null && p.gameObject.activeInHierarchy)
+                {
+                    enabled = false;
+                    return;
+                }
+            }
+        }
+
         inventoryManager = FindFirstObjectByType<InventoryManager>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -234,7 +250,7 @@ public class Player : Entity
 
     protected override void OnDamageTaken(int amount)
     {
-        // TODO: hit flash, sound
+        playerInventory?.NotifyDamageTaken();
     }
 
     protected override void OnDeath()

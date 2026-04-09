@@ -35712,7 +35712,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 28.077423}
+  m_margin: {x: -47.55902, y: 0, z: 0, w: 28.077423}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -37724,6 +37724,8 @@ MonoBehaviour:
   stamina: 100
   staminaRegenRate: 10
   staminaRegenDelay: 1.5
+  healthRegenRate: 4
+  healthRegenDelay: 5
 --- !u!143 &737891682
 CharacterController:
   m_ObjectHideFlags: 0
@@ -37908,6 +37910,7 @@ MonoBehaviour:
   attackDuration: 0.5
   attackCooldown: 1
   attackDamage: 10
+  wand: {fileID: 0}
 --- !u!1001 &737984945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105891,6 +105894,8 @@ MonoBehaviour:
   stamina: 100
   staminaRegenRate: 10
   staminaRegenDelay: 1.5
+  healthRegenRate: 4
+  healthRegenDelay: 5
 --- !u!114 &2093443030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105905,7 +105910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   maxHealth: 100
   currentHealth: 0
-  money: 0
+  money: 100
   moveSpeed: 9
   sprintSpeed: 15
   staminaDrainRate: 20
@@ -109533,7 +109538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5498285532266618629, guid: 32588e706726f3c4fa98c99dce4e5f26, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6439082308370029633, guid: 32588e706726f3c4fa98c99dce4e5f26, type: 3}
       propertyPath: m_AnchorMax.y
@@ -109561,7 +109566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6930746555130586732, guid: 32588e706726f3c4fa98c99dce4e5f26, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8559665272972377988, guid: 32588e706726f3c4fa98c99dce4e5f26, type: 3}
       propertyPath: m_AnchorMax.y
