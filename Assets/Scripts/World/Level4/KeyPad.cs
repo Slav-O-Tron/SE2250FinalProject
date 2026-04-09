@@ -7,9 +7,27 @@ public class KeyPad : MonoBehaviour
     [SerializeField] private Door door;
     [SerializeField] private string Answer = "BOE";
 
+    private bool isOpen = false;
+
+    public void SetOpenState(bool state)
+    {
+        isOpen = state;
+
+        if (!isOpen && Ans != null)
+        {
+            Ans.text = "";
+        }
+    }
+
     public void AddLetter(string letter)
     {
         Debug.Log("AddLetter called with: " + letter);
+
+        if (!isOpen)
+        {
+            Debug.LogWarning("Keypad is not open, ignoring button press.");
+            return;
+        }
 
         if (Ans == null)
         {
@@ -38,6 +56,12 @@ public class KeyPad : MonoBehaviour
 
     public void Execute()
     {
+        if (!isOpen)
+        {
+            Debug.LogWarning("Keypad is not open, ignoring execute.");
+            return;
+        }
+
         if (Ans == null)
         {
             Debug.LogError("Ans text is NOT assigned in the Inspector.");
@@ -54,12 +78,11 @@ public class KeyPad : MonoBehaviour
 
             if (door != null)
             {
-                Debug.Log("Keypad: door reference found");
                 door.OpenFromKeypad();
             }
             else
             {
-                Debug.LogError("Keypad: door reference is NULL");
+                Debug.LogError("Door reference is NULL");
             }
         }
         else
