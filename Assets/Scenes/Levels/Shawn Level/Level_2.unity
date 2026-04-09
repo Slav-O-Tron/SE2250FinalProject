@@ -68017,7 +68017,7 @@ MonoBehaviour:
   dialogueUI: {fileID: 1950684618}
   storyGiftItem: {fileID: 0}
   storyGiftLine: "Take this \u2014 you will need it to fight off the enemies."
-  chronoShardItem: {fileID: 11400000, guid: ffb6476b3da254d0fad9e0b8a17f9bac, type: 2}
+  chronoShardItem: {fileID: 11400000, guid: aa9fb487d0e5adb4b9dd2571b213705b, type: 2}
 --- !u!114 &1809559935
 MonoBehaviour:
   m_ObjectHideFlags: 0
