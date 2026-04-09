@@ -13,6 +13,7 @@ public class DungeonNPC : Entity
 
     private HUD hud;
     private LevelCompletion levelCompletion;
+    private Player playerController;
 
     private bool playerInRange = false;
     private bool dialogueOpen = false;
@@ -56,6 +57,7 @@ public class DungeonNPC : Entity
     {
         hud = FindFirstObjectByType<HUD>();
         levelCompletion = FindFirstObjectByType<LevelCompletion>();
+        playerController = FindFirstObjectByType<Player>();
 
         if (dialogueUI == null)
             dialogueUI = FindFirstObjectByType<DialogueUI>();
@@ -79,11 +81,20 @@ public class DungeonNPC : Entity
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+
         playerInRange = false;
         hud?.HideInteractPrompt();
-        if (dialogueOpen) dialogueUI?.CloseDialogue();
+
+        if (dialogueOpen)
+            dialogueUI?.CloseDialogue();
+
         dialogueOpen = false;
-        if (hud != null) hud.ShowHUD(true);
+
+        if (playerController != null)
+            playerController.enabled = true;
+
+        if (hud != null)
+            hud.ShowHUD(true);
     }
 
     private void OpenDialogue()
@@ -92,7 +103,13 @@ public class DungeonNPC : Entity
 
         dialogueOpen = true;
         hud?.HideInteractPrompt();
-        if (hud != null) hud.ShowHUD(false);
+
+        if (hud != null)
+            hud.ShowHUD(false);
+
+        // Disable player movement while talking
+        if (playerController != null)
+            playerController.enabled = false;
 
         if (!hasTriggeredCompletion)
         {
@@ -107,7 +124,13 @@ public class DungeonNPC : Entity
         dialogueUI.StartDialogue(lines, onFinished: () =>
         {
             dialogueOpen = false;
-            if (hud != null) hud.ShowHUD(true);
+
+            // Turn player movement back on
+            if (playerController != null)
+                playerController.enabled = true;
+
+            if (hud != null)
+                hud.ShowHUD(true);
 
             if (isRewardConversation)
                 rewardClaimed = levelCompletion != null && levelCompletion.ClaimChronosphereReward();
@@ -120,7 +143,9 @@ public class DungeonNPC : Entity
                     hud?.ShowInteractPrompt(GetInteractPromptText());
             }
             else
+            {
                 hud?.HideInteractPrompt();
+            }
         });
     }
 
@@ -163,6 +188,7 @@ public class DungeonNPC : Entity
         LevelFailManager failManager = LevelFailManager.Instance != null
             ? LevelFailManager.Instance
             : FindFirstObjectByType<LevelFailManager>();
+
         if (failManager != null)
             failManager.TriggerFail("The Prisoner has fallen!");
         else
