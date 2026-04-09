@@ -25,9 +25,21 @@ public class SkillTree : MonoBehaviour
 
     private Player GetPlayer()
     {
-        if (cachedPlayer == null)
-            cachedPlayer = FindFirstObjectByType<Player>();
-        return cachedPlayer;
+        cachedPlayer = null;
+        Player[] allPlayers = FindObjectsByType<Player>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        Debug.Log("Found " + allPlayers.Length + " Player instances:");
+        foreach (Player p in allPlayers)
+            Debug.Log(" - " + p.gameObject.name + " active: " + p.gameObject.activeInHierarchy + " moveSpeed: " + p.moveSpeed);
+    
+        foreach (Player p in allPlayers)
+        {
+            if (p.gameObject.activeInHierarchy)
+            {
+                cachedPlayer = p;
+                return p;
+            }
+        }
+        return null;
     }
 
     public void AddSkillPoints(int amount)
@@ -74,11 +86,14 @@ public class SkillTree : MonoBehaviour
 
     private void ApplySkillEffect(SkillNode node, Player player)
     {
+        
+        Debug.Log("ApplySkillEffect called. Player: " + (player != null ? player.gameObject.name : "NULL"));
         if (player == null)
         {
-            Debug.LogWarning("SkillTree: no player found to apply effect to");
+            Debug.LogWarning("SkillTree: no player found");
             return;
         }
+        Debug.Log("Before - attackDamage: " + player.attackDamage + " moveSpeed: " + player.moveSpeed);
 
         PlayerAbilities abilities = player.GetComponent<PlayerAbilities>();
 
