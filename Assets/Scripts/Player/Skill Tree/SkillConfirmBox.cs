@@ -30,7 +30,7 @@ public class SkillConfirmBox : MonoBehaviour
             skillDescription.text = node.description;
 
         if (confirmButtonText != null)
-            confirmButtonText.text = "Unlock — " + node.cost + " pt" + (node.cost > 1 ? "s" : "");
+            confirmButtonText.text = "Unlock — " + node.cost + " level" + (node.cost > 1 ? "s" : "");
 
         gameObject.SetActive(true);
     }

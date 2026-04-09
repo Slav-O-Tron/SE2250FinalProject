@@ -5,7 +5,6 @@ public class SkillTree : MonoBehaviour
 {
     public static SkillTree Instance;
 
-    public int availableSkillPoints = 0;
     public List<string> unlockedSkills = new List<string>();
 
     private Player cachedPlayer;
@@ -25,12 +24,10 @@ public class SkillTree : MonoBehaviour
 
     private Player GetPlayer()
     {
-        cachedPlayer = null;
+        if (cachedPlayer != null && cachedPlayer.gameObject.activeInHierarchy)
+            return cachedPlayer;
+
         Player[] allPlayers = FindObjectsByType<Player>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-        Debug.Log("Found " + allPlayers.Length + " Player instances:");
-        foreach (Player p in allPlayers)
-            Debug.Log(" - " + p.gameObject.name + " active: " + p.gameObject.activeInHierarchy + " moveSpeed: " + p.moveSpeed);
-    
         foreach (Player p in allPlayers)
         {
             if (p.gameObject.activeInHierarchy)
@@ -42,10 +39,25 @@ public class SkillTree : MonoBehaviour
         return null;
     }
 
-    public void AddSkillPoints(int amount)
+    private PlayerInventory GetPlayerInventory()
     {
-        availableSkillPoints += amount;
-        Debug.Log("Skill points: " + availableSkillPoints);
+        Player p = GetPlayer();
+        return p != null ? p.GetComponent<PlayerInventory>() : null;
+    }
+
+    /// Returns the player's current level — this is the currency for buying skills.
+    public int GetAvailableLevels()
+    {
+        PlayerInventory inv = GetPlayerInventory();
+        return inv != null ? inv.level : 0;
+    }
+
+    private void SpendLevels(int amount)
+    {
+        PlayerInventory inv = GetPlayerInventory();
+        if (inv == null) return;
+        inv.level = Mathf.Max(0, inv.level - amount);
+        inv.SaveToPlayerData();
     }
 
     public bool IsSkillUnlocked(string skillID)
@@ -57,7 +69,7 @@ public class SkillTree : MonoBehaviour
     {
         if (node == null) return false;
         if (IsSkillUnlocked(node.skillID)) return false;
-        if (availableSkillPoints < node.cost) return false;
+        if (GetAvailableLevels() < node.cost) return false;
 
         foreach (string prereq in node.prerequisiteSkillIDs)
         {
@@ -72,7 +84,7 @@ public class SkillTree : MonoBehaviour
     {
         if (!CanUnlockSkill(node)) return false;
 
-        availableSkillPoints -= node.cost;
+        SpendLevels(node.cost);
         unlockedSkills.Add(node.skillID);
 
         Player p = player ?? GetPlayer();
@@ -86,14 +98,11 @@ public class SkillTree : MonoBehaviour
 
     private void ApplySkillEffect(SkillNode node, Player player)
     {
-        
-        Debug.Log("ApplySkillEffect called. Player: " + (player != null ? player.gameObject.name : "NULL"));
         if (player == null)
         {
-            Debug.LogWarning("SkillTree: no player found");
+            Debug.LogWarning("SkillTree: no player found to apply effect to");
             return;
         }
-        Debug.Log("Before - attackDamage: " + player.attackDamage + " moveSpeed: " + player.moveSpeed);
 
         PlayerAbilities abilities = player.GetComponent<PlayerAbilities>();
 
@@ -101,28 +110,22 @@ public class SkillTree : MonoBehaviour
         {
             case "health_boost":
                 player.AddMaxHealth(25);
-                Debug.Log("Health boosted by 25");
                 break;
             case "attack_boost":
                 player.attackDamage += 5;
-                Debug.Log("Attack damage: " + player.attackDamage);
                 break;
             case "speed_boost":
                 player.moveSpeed += 1f;
                 player.sprintSpeed += 1.5f;
-                Debug.Log("Speed boosted");
                 break;
             case "double_jump":
                 if (abilities != null) abilities.canDoubleJump = true;
-                Debug.Log("Double jump unlocked");
                 break;
             case "dash":
                 if (abilities != null) abilities.canDash = true;
-                Debug.Log("Dash unlocked");
                 break;
             case "projectile_mastery":
                 player.attackDamage += 3;
-                Debug.Log("Projectile mastery: attack damage " + player.attackDamage);
                 break;
             case "endure_hit":
                 if (abilities != null)
@@ -130,15 +133,12 @@ public class SkillTree : MonoBehaviour
                     abilities.hasEndureHit = true;
                     abilities.endureHitAvailable = true;
                 }
-                Debug.Log("Endure Hit unlocked");
                 break;
             case "damage_resistance":
                 player.damageReduction += 0.1f;
-                Debug.Log("Damage reduction: " + player.damageReduction);
                 break;
             case "critical_strike":
                 player.attackDamage += 8;
-                Debug.Log("Critical strike: attack damage " + player.attackDamage);
                 break;
         }
     }

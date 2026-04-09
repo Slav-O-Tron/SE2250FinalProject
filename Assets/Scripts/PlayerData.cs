@@ -21,7 +21,7 @@ public class PlayerData : MonoBehaviour
     /// <summary>Current experience points (within the current character level).</summary>
     public int xp = 0;
     /// <summary>Player character level (skill level, not the game world level).</summary>
-    public int playerLevel = 1;
+    public int playerLevel = 0;
     /// <summary>XP required to reach the next character level.</summary>
     public int xpToNextLevel = 100;
 

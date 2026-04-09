@@ -9,7 +9,7 @@ public class PlayerInventory : MonoBehaviour
     public bool hasDoorKey = false;
 
     public int xp = 0;
-    public int level = 1;
+    public int level = 0;
     public int xpToNextLevel = 100;
 
     public float maxStamina = 100f;
