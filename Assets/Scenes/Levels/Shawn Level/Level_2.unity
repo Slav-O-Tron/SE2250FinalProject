@@ -32128,6 +32128,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: globalSpawnPoints.Array.size
       value: 10
       objectReference: {fileID: 0}
@@ -32171,6 +32175,10 @@ PrefabInstance:
       propertyPath: 'globalSpawnPoints.Array.data[9]'
       value: 
       objectReference: {fileID: 2102083860}
+    - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
+      propertyPath: waves.Array.data[0].zombieCount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3797773171455414106, guid: 0e98475b03ea60047898d6e3a4df0df3, type: 3}
       propertyPath: waves.Array.data[0].zombiePrefab
       value: 
@@ -43954,7 +43962,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
