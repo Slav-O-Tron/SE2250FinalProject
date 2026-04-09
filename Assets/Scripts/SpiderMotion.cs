@@ -1,50 +1,69 @@
 using UnityEngine;
+using UnityEngine.AI; // Added because the new code uses 'agent'
 
-public class SpiderMotion : EnemyMotion
+public class SpiderMotion : MonoBehaviour
 {
-    public float pounce = 10f;
-    public float climbSpeed = 5f;
-    public float rotationSpeed = 5f;
-    public LayerMask walkableLayers;
+    public Transform target;
+    private Animator anim;
+    private float moveSpeed = 6f;
+    private float rotationSpeed = 5f;
+    private float climbSpeed = 4f; // Required for the new climbing logic
+    private NavMeshAgent agent; // Added to support the new logic
+    public LayerMask walkableLayers; // Required for the raycast
 
-    
-    protected Animator anim;
-
-    protected override void Start()
+    void Start()
     {
-        base.Start();
-        agent.speed = 8f;
-        agent.updateRotation = false;
+        // Using the new logic from your teammates
+        agent = GetComponent<NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.speed = 8f;
+            agent.updateRotation = false;
+        }
+
         anim = GetComponent<Animator>();
+
+        // If target not manually assigned, auto-find player
+        if (target == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                target = playerObj.transform;
+            }
+        }
     }
 
-    protected override void Update()
+    void Update()
     {
+        // Safety check from your local version
+        if (target == null || anim == null) return;
+
         RaycastHit hit;
         // Use -transform.forward because the model is imported facing backwards
         Vector3 rayDir = (-transform.forward * 0.5f) + (-transform.up);
         float currentMovingSpeed = 0f;
 
-        if (Physics.Raycast(transform.position, rayDir, out hit, 3f, walkableLayers))
+        // Note: The teammate's logic assumes a base class or additional variables 
+        // like 'climbSpeed'. I've added defaults to keep it from breaking.
+
+        if (Physics.Raycast(transform.position, rayDir, out hit, 1f))
         {
-            if (agent.enabled) agent.enabled = false;
-            Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             // Move in the visual forward direction (negated because model faces backwards)
             transform.Translate(-Vector3.forward * climbSpeed * Time.deltaTime);
-
             currentMovingSpeed = climbSpeed;
         }
         else
         {
-            if (!agent.enabled)
+            if (agent != null && !agent.enabled)
             {
                 if (Physics.Raycast(transform.position, -Vector3.up, 1f, walkableLayers))
                     agent.enabled = true;
             }
-            if (agent.enabled)
+
+            if (agent != null && agent.enabled)
             {
-                base.Update();
+                agent.SetDestination(target.position);
 
                 // Manually rotate to face movement direction, flipped 180° for backwards model
                 Vector3 velocity = agent.velocity;
@@ -59,7 +78,6 @@ public class SpiderMotion : EnemyMotion
             }
         }
 
-        if (anim != null)
-            anim.SetFloat("Speed", currentMovingSpeed);
+        anim.SetFloat("Speed", currentMovingSpeed);
     }
 }
