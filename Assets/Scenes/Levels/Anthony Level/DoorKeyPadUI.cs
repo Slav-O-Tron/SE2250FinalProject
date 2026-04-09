@@ -7,12 +7,14 @@ public class DoorKeypadUI : MonoBehaviour
     [SerializeField] private float showDistance = 3f;
 
     private bool isShowing = false;
+    private KeyPad keypad;
 
     void Start()
     {
         if (keypadUI != null)
         {
-            keypadUI.SetActive(false); // start hidden
+            keypadUI.SetActive(false);
+            keypad = keypadUI.GetComponentInChildren<KeyPad>(true);
         }
     }
 
@@ -30,20 +32,23 @@ public class DoorKeypadUI : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            if (keypad != null)
+                keypad.SetOpenState(true);
         }
         else if (!shouldShow && isShowing)
         {
+            if (keypad != null)
+            {
+                keypad.SetOpenState(false);
+                keypad.Clear();
+            }
+
             keypadUI.SetActive(false);
             isShowing = false;
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-
-            KeyPad keypad = keypadUI.GetComponentInChildren<KeyPad>(true);
-            if (keypad != null)
-            {
-                keypad.Clear();
-            }
         }
     }
 }
